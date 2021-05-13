@@ -1,0 +1,147 @@
+html {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+body {
+  min-width: 320px;
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 300;
+  color: var(--color-text-main);
+
+  background-color: var(--color-body);
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.Container {
+  max-width: 100%;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+
+  @media (min-width: $screen-s) {
+    padding: 0 20px;
+  }
+
+  @media (min-width: $screen-xxl) {
+    max-width: 1920px;
+    padding: 0 43px;
+  }
+}
+
+.Users-Slide.swiper-slide {
+  display: none;
+  @media (min-width: $screen-l) {
+    .Works {
+      display: none;
+    }
+  }
+}
+
+.Users-Slide.swiper-slide-active {
+  display: none;
+  @media (min-width: $screen-l) {
+    .Works {
+      display: block;
+    }
+  }
+}
+
+.Modal {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+
+  &-Menu {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    background-color: var(--color-body);
+  }
+
+  &-Close {
+    cursor: pointer;
+
+    span {
+      width: 20px;
+      height: 1px;
+      display: block;
+      background-color: var(--color-text-main);
+      transform: rotateZ(45deg);
+
+      &:first-child {
+        transform: rotateZ(-45deg);
+      }
+    }
+  }
+
+  &-Logo {
+    width: 88px;
+    height: 60px;
+    background-image: url(./../assets/image/logo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
