@@ -22,7 +22,7 @@ html {
 
 body {
   min-width: 320px;
-  font-family: 'Gilroy', sans-serif;
+  font-family: 'Museo Sans Cyrl', sans-serif;
   font-weight: 300;
   color: var(--color-text-main);
 
@@ -75,31 +75,9 @@ img {
   padding: 0 15px;
   margin: 0 auto;
 
-  @media (min-width: $screen-s) {
+  @media (min-width: $screen-xl) {
+    max-width: 1280px;
     padding: 0 20px;
-  }
-
-  @media (min-width: $screen-xxl) {
-    max-width: 1920px;
-    padding: 0 43px;
-  }
-}
-
-.Users-Slide.swiper-slide {
-  display: none;
-  @media (min-width: $screen-l) {
-    .Works {
-      display: none;
-    }
-  }
-}
-
-.Users-Slide.swiper-slide-active {
-  display: none;
-  @media (min-width: $screen-l) {
-    .Works {
-      display: block;
-    }
   }
 }
 
@@ -139,7 +117,7 @@ img {
   &-Logo {
     width: 88px;
     height: 60px;
-    background-image: url(./../assets/image/logo.png);
+    background-image: url(./../assets/image/logo.svg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

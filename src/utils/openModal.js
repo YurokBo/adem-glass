@@ -6,13 +6,11 @@ export default function showModal(itemInfo) {
             template: `
               <div name="modal" class="Modal Modal--bg" @close="$emit('close')">
               <div class="Modal-Menu">
-                <div class="Modal-Logo"></div>
                 <button type="button" class="Modal-Close Btn" @click="$emit('close')">
                   <span></span>
                   <span></span>
                 </button>
               </div>
-              <Works :works="itemInfo"/>
               </div>
             `,
             props: ['itemInfo'],
