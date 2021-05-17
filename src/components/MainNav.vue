@@ -2,13 +2,7 @@
   <nav class="MainNav">
     <div class="Container">
       <div class="MainNav-Wrapper">
-        <div class="MainNav-Logo">
-          <div class="MainNav-LogoTitle">ADEM GLASS</div>
-          <div class="MainNav-LogoText">
-            <span>Изготовление дверей</span>
-            <span>купе на заказ</span>
-          </div>
-        </div>
+        <Logo />
         <div class="MainNav-Contacts">
           <a href="tel:+74951617967" class="MainNav-Contact Phone">+7 (495) 161-79-67</a>
           <div class="MainNav-Contact Metro">ст.м. Марьино</div>
@@ -21,8 +15,10 @@
 </template>
 
 <script>
+import Logo from "@/components/Logo";
 export default {
-  name: "MainNav"
+  name: "MainNav",
+  components: {Logo}
 }
 </script>
 
