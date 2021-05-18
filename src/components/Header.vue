@@ -1,7 +1,7 @@
 <template>
   <div class="Header">
     <div class="Container">
-      <HeaderNav />
+      <HeaderMenu />
       <h1 class="Title Header-Title">
         Двери для шкафа-купе и гардеробной от 8 000 до 80 000 руб.
       </h1>
@@ -22,12 +22,12 @@
 </template>
 
 <script>
-import HeaderNav from "@/components/HeaderNav";
+import HeaderMenu from "@/components/HeaderMenu";
 
 export default {
   name: "Header",
   components: {
-    HeaderNav
+    HeaderMenu
   },
   data() {
     return {
