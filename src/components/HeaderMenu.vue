@@ -41,7 +41,6 @@ export default {
     position: relative;
     padding-left: 43px;
     font-size: 18px;
-    line-height: 1.35em;
 
     &:before {
       content: '';

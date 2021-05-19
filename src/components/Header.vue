@@ -2,19 +2,21 @@
   <div class="Header">
     <div class="Container">
       <HeaderMenu />
-      <h1 class="Title Header-Title">
-        Двери для шкафа-купе и гардеробной от 8 000 до 80 000 руб.
-      </h1>
-      <div class="Subtitle Header-Subtitle">
-        От производителя на заказ по индивидуальным размерам
-      </div>
-      <div class="Header-List">
-        <div class="Header-Item"
-             v-for="(item, index) in items"
-             :key="index"
-        >
-          <img :src="require(`@/assets/image/${item.image}`)" alt="image" class="Header-ItemImage">
-          <div class="Header-ItemText" v-html="item.text"></div>
+      <div class="Header-Content">
+        <h1 class="Title Header-Title">
+          Двери для шкафа-купе <br> и гардеробной <br> от 8 000 до 80 000 руб.
+        </h1>
+        <div class="Subtitle Header-Subtitle">
+          От производителя на заказ по индивидуальным размерам
+        </div>
+        <div class="Header-List">
+          <div class="Header-Item"
+               v-for="(item, index) in items"
+               :key="index"
+          >
+            <img :src="require(`@/assets/image/${item.image}`)" alt="image" class="Header-ItemImage">
+            <div class="Header-ItemText" v-html="item.text"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -47,5 +49,20 @@ export default {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  &-Content {
+    max-width: 640px;
+    width: 100%;
+  }
+
+  &-Title {
+    margin-bottom: 10px;
+  }
+
+  &-Subtitle {
+    margin-bottom: 66px;
+    line-height: 1.444;
+    color: var(--color-text-main2);
+  }
 }
 </style>
