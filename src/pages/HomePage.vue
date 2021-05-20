@@ -1,14 +1,16 @@
 <template>
 <div>
   <Header />
+  <Form />
 </div>
 </template>
 
 <script>
 import Header from "@/components/Header";
+import Form from "@/components/Form";
 export default {
   name: "HomePage",
-  components: {Header,}
+  components: {Form, Header,}
 }
 </script>
 

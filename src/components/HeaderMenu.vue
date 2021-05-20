@@ -24,6 +24,7 @@ export default {
 <style scoped lang="scss">
 .HeaderMenu {
   padding: 40px 0;
+  margin-bottom: 30px;
 
   &-Wrapper {
     display: flex;

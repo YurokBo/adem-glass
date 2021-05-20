@@ -1,8 +1,16 @@
 :root {
     --color-body: #FFFFFF;
     --color-text-main: rgb(253, 247, 242);
-    --color-text-main2: rgb(227, 225, 223);
-    --color-text-ghost: #A0A0A0;
+    --color-text-main2: rgb(227, 225, 223); /*e3e1df*/
+    --color-text-main3: rgb(255, 255, 255);
+    --color-text-decor: rgba(253, 247, 242, 0.502);
+    --color-text-ghost: #7c7268;
+    --color-text-btn: #58534f;
+    --color-text-btn-gold: #e5be83;
     --color-text-logo: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(197,142,70,1) 35%);
     --color-bg-logo: rgba(243, 203, 171,.6);
+    --color-bg-btn-before: linear-gradient( 0deg, rgb(195,139,66) 0%, rgb(225,184,122) 57%, rgb(254,229,178) 100%);
+    --color-bg-btn: linear-gradient( 0deg, rgb(162,116,56) 0%, rgb(208,173,117) 57%, rgb(254,229,178) 100%);
+    --color-bg-label: linear-gradient( 0deg, rgb(225,181,124) 0%, rgb(240,213,176) 57%, rgb(254,245,228) 100%);
+    --color-bg-decor: rgba(243, 203, 171,.6);
 }

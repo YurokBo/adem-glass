@@ -72,6 +72,7 @@ img {
 }
 
 .Container {
+  position: relative;
   max-width: 100%;
   width: 100%;
   padding: 0 15px;
@@ -123,5 +124,42 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+  }
+}
+
+.Digit {
+  font-family: 'Cormorant Infant', 'Cormorant Garamond', sans-serif;
+  font-weight: 700;
+}
+
+.Decor {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: -58%;
+  transform: rotateZ(-90deg);
+  display: flex;
+  align-items: center;
+
+    &-Line {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: var(--color-bg-decor);
+    }
+
+  &-Text {
+    font-size: 16px;
+    color: var(--color-text-decor);
+    white-space: nowrap;
+    padding: 0 14px;
+  }
+
+  .Left {
+    width: 60%;
+  }
+
+  .Right {
+    margin-top: 4px;
   }
 }
