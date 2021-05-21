@@ -3,6 +3,7 @@
     --color-text-main: rgb(253, 247, 242);
     --color-text-main2: rgb(227, 225, 223); /*e3e1df*/
     --color-text-main3: rgb(255, 255, 255);
+    --color-text-placeholder: rgb(160, 154, 150);;
     --color-text-decor: rgba(253, 247, 242, 0.502);
     --color-text-ghost: #7c7268;
     --color-text-btn: #58534f;
@@ -13,4 +14,5 @@
     --color-bg-btn: linear-gradient( 0deg, rgb(162,116,56) 0%, rgb(208,173,117) 57%, rgb(254,229,178) 100%);
     --color-bg-label: linear-gradient( 0deg, rgb(225,181,124) 0%, rgb(240,213,176) 57%, rgb(254,245,228) 100%);
     --color-bg-decor: rgba(243, 203, 171,.6);
+    --color-bg-input: rgb(249, 247, 245);
 }

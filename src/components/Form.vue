@@ -47,7 +47,7 @@
           </div>
           <div class="Form-Field">
             <input type="text"
-                   class="Form-TopInput Input"
+                   class="Form-Input Input"
                    name="name"
                    placeholder="Ваше имя"
                    v-model.trim="form.name"
@@ -59,7 +59,7 @@
           </div>
           <div class="Form-Field">
             <input type="text"
-                   class="Form-TopInput Input"
+                   class="Form-Input Input"
                    name="phone"
                    placeholder="Ваш телефон"
                    v-model.trim="form.phone"
@@ -68,7 +68,7 @@
             <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
                   class="invalid-feedback">Required field!</span>
           </div>
-          <button type="submit" class="Btn Form-Btn">send</button>
+          <button type="submit" class="Btn Form-Btn">подобрать двери купе</button>
         </form>
         <div class="Form-ImgBox">
           <img src="../assets/image/woman.png" alt="woman" class="Form-Img">
@@ -203,6 +203,41 @@ export default {
     letter-spacing: .015em;
     color: var(--color-text-ghost);
   }
+
+  &-Field {
+    margin-bottom: 12px;
+    max-width: 324px;
+    width: 100%;
+
+    &:nth-child(5) {
+      margin-bottom: 22px;
+    }
+  }
+
+  &-Input {
+    width: 100%;
+    padding: 28px 32px;
+    border: 1px solid var(--color-bg-input);
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    letter-spacing: .045em;
+    color: var(--color-text-btn);
+    background-color: var(--color-bg-input);
+
+    &::placeholder {
+      color: var(--color-text-placeholder);
+    }
+
+    &:focus {
+      border: 1px solid var(--color-text-btn);
+    }
+  }
+
+  &-Btn {
+    padding: 27px 34px 28px 30px;
+  }
+
 
   &-ImgBox {
     position: relative;
