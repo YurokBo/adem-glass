@@ -15,61 +15,68 @@
         Оставьте заявку и наш манеждер свяжемся с вами в течении 30 минут
       </div>
       <div class="Form-Content">
-        <form class="Form-Form" @submit.prevent="onSubmit()" novalidate>
-          <h3 class="Title Form-FormTitle">
-            Оставьте заявку
-          </h3>
-          <div class="Form-Field">
-            <input type="text"
-                   class="Form-Input Input"
-                   name="size"
-                   placeholder="Размер проема (высота*ширина)"
-                   v-model.trim="form.email"
-                   :class="$v.form.email.$error ? 'is-invalid' : ''"
-            >
-            <span v-if="$v.form.email.$dirty && !$v.form.email.required"
-                  class="invalid-feedback">Required field!</span>
-            <span v-if="$v.form.email.$dirty && !$v.form.email.email"
-                  class="invalid-feedback">Incorrect email</span>
-          </div>
-          <div class="Form-Field">
-            <input type="text"
-                   class="Form-Input Input"
-                   name="doors"
-                   placeholder="Количество дверей"
-                   v-model.trim="form.email"
-                   :class="$v.form.email.$error ? 'is-invalid' : ''"
-            >
-            <span v-if="$v.form.email.$dirty && !$v.form.email.required"
-                  class="invalid-feedback">Required field!</span>
-            <span v-if="$v.form.email.$dirty && !$v.form.email.email"
-                  class="invalid-feedback">Incorrect email</span>
-          </div>
-          <div class="Form-Field">
-            <input type="text"
-                   class="Form-Input Input"
-                   name="name"
-                   placeholder="Ваше имя"
-                   v-model.trim="form.name"
-                   :class="$v.form.name.$error ? 'is-invalid' : ''"
-            >
-            <span v-if="$v.form.name.$dirty && !$v.form.name.required"
-                  class="invalid-feedback">Required field!</span>
+        <div class="Form-ContentInner">
+          <form class="Form-Form" @submit.prevent="onSubmit()" novalidate>
+            <h3 class="Title Form-FormTitle">
+              Оставьте заявку
+            </h3>
+            <div class="Form-Field">
+              <input type="text"
+                     class="Form-Input Input"
+                     name="size"
+                     placeholder="Размер проема (высота*ширина)"
+                     v-model.trim="form.email"
+                     :class="$v.form.email.$error ? 'is-invalid' : ''"
+              >
+              <span v-if="$v.form.email.$dirty && !$v.form.email.required"
+                    class="invalid-feedback">Required field!</span>
+              <span v-if="$v.form.email.$dirty && !$v.form.email.email"
+                    class="invalid-feedback">Incorrect email</span>
+            </div>
+            <div class="Form-Field">
+              <input type="text"
+                     class="Form-Input Input"
+                     name="doors"
+                     placeholder="Количество дверей"
+                     v-model.trim="form.email"
+                     :class="$v.form.email.$error ? 'is-invalid' : ''"
+              >
+              <span v-if="$v.form.email.$dirty && !$v.form.email.required"
+                    class="invalid-feedback">Required field!</span>
+              <span v-if="$v.form.email.$dirty && !$v.form.email.email"
+                    class="invalid-feedback">Incorrect email</span>
+            </div>
+            <div class="Form-Field">
+              <input type="text"
+                     class="Form-Input Input"
+                     name="name"
+                     placeholder="Ваше имя"
+                     v-model.trim="form.name"
+                     :class="$v.form.name.$error ? 'is-invalid' : ''"
+              >
+              <span v-if="$v.form.name.$dirty && !$v.form.name.required"
+                    class="invalid-feedback">Required field!</span>
 
-          </div>
-          <div class="Form-Field">
-            <input type="text"
-                   class="Form-Input Input"
-                   name="phone"
-                   placeholder="Ваш телефон"
-                   v-model.trim="form.phone"
-                   :class="$v.form.phone.$error ? 'is-invalid' : ''"
-            >
-            <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
-                  class="invalid-feedback">Required field!</span>
-          </div>
-          <button type="submit" class="Btn Form-Btn">подобрать двери купе</button>
-        </form>
+            </div>
+            <div class="Form-Field">
+              <input type="text"
+                     class="Form-Input Input"
+                     name="phone"
+                     placeholder="Ваш телефон"
+                     v-model.trim="form.phone"
+                     :class="$v.form.phone.$error ? 'is-invalid' : ''"
+              >
+              <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
+                    class="invalid-feedback">Required field!</span>
+            </div>
+            <button type="submit" class="Btn Form-Btn">подобрать двери купе</button>
+          </form>
+          <a href="tel:+74995209636" class="Form-PhoneBox">
+            <div class="Form-PhoneTitle">Или звоните:</div>
+            <div class="Form-Phone">+7 (499) 520-96-36</div>
+          </a>
+        </div>
+
         <div class="Form-ImgBox">
           <img src="../assets/image/woman.png" alt="woman" class="Form-Img">
           <div class="Form-ImgDescription">
@@ -187,10 +194,12 @@ export default {
 
   &-Content {
     display: flex;
+    justify-content: space-between;
   }
 
   &-Form {
     width: 494px;
+    margin-bottom: 15px;
     padding: 60px 50px;
     border-radius: 8px;
     background-color: var(--color-text-main3);
@@ -235,7 +244,32 @@ export default {
   }
 
   &-Btn {
-    padding: 27px 34px 28px 30px;
+    padding: 24px 32px 27px 28px;
+  }
+
+  &-PhoneBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 27px;
+      height: 27px;
+      top: 50%;
+      left: 0;
+      transform: translate(0,-50%);
+      background-image: url(~@/assets/image/phone-icon-white.svg);
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+
+  &-PhoneTitle {
+    margin-right: 7px;
   }
 
 
