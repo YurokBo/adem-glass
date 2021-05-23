@@ -59,15 +59,27 @@ export default {
 <style scoped lang="scss">
 .Header {
   position: relative;
-  padding: 0 0 240px;
-  background-image: url(~@/assets/image/header-fone.png);
+  padding: 0 0 65px;
+  background-image: url(~@/assets/image/header-bg-mobile.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
 
+  @media (min-width: $screen-xs) {
+    background-image: url(~@/assets/image/header-fone.png);
+  }
+
+  @media (min-width: $screen-m) {
+    padding: 0 0 240px;
+  }
+
   &-Content {
-    max-width: 640px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    @media (min-width: $screen-m) {
+      max-width: 640px;
+    }
   }
 
   &-Title {
@@ -75,34 +87,57 @@ export default {
   }
 
   &-Subtitle {
-    margin-bottom: 66px;
+    margin-bottom: 37px;
+    width: 240px;
     line-height: 1.444;
     color: var(--color-text-main2);
+
+    @media (min-width: $screen-m) {
+      width: 100%;
+      margin-bottom: 66px;
+    }
   }
 
   &-List {
     display: flex;
     align-items: flex-end;
-    margin-bottom: 47px;
+    flex-wrap: wrap;
+    order: 3;
+
+    @media (min-width: $screen-s) {
+      flex-wrap: nowrap;
+      margin-bottom: 47px;
+      order: 2;
+    }
   }
 
   &-Item {
-    margin-right: 75px;
-    font-size: 18px;
-    line-height: 1.444em;
-    color: var(--color-text-main2);
-
+    margin-right: 30px;
+    font-size: 14px;
     &:last-child {
-      margin-right: 0;
+      margin-top: 30px;
+    }
+    img {
+      display: block;
+      margin: 0 auto 10px;
+    }
+    @media (min-width: $screen-s) {
+      margin-right: 35px;
+      line-height: 1.444em;
+      color: var(--color-text-main2);
 
-      img {
-        display: block;
-        margin: 0 auto 10px;
-      }
+      &:last-child {
+        margin-right: 0;
+        margin-top: 0;
 
-      .Header-ItemText {
-        padding-left: 0;
+        .Header-ItemText {
+          padding-left: 0;
+        }
       }
+    }
+    @media (min-width: $screen-m) {
+      margin-right: 75px;
+      font-size: 18px;
     }
   }
 
@@ -111,21 +146,35 @@ export default {
   }
 
   &-BtnBox {
-    display: flex;
-    align-items: center;
+    order: 1;
+    margin-bottom: 62px;
+    @media (min-width: $screen-m) {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      margin-bottom: 62px;
+      order: 3;
+    }
   }
 
   &-Btn {
-    padding: 24px 23px 28px;
+    display: block;
+    margin-bottom: 12px;
+    padding: 22px 24px 26px;
     margin-right: 20px;
+
+    @media (min-width: $screen-m) {
+      margin-bottom: 0;
+      padding: 24px 23px 28px;
+    }
   }
 
   &-BtnCatalog {
     position: relative;
-    padding: 27px 65px 30px 27px;
+    padding: 24px 63px 26px 24px;
     font-family: 'Museo Sans Cyrl', sans-serif;
     font-weight: 900;
-    font-size: 14px;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: .12em;
     color: var(--color-text-btn-gold);
@@ -152,10 +201,10 @@ export default {
     &:after {
       content: '';
       position: absolute;
-      width: 113px;
-      height: 112px;
-      top: 35%;
-      right: -62px;
+      width: 84px;
+      height: 83px;
+      top: 43%;
+      right: -31px;
       transform: translate(0, -50%);
       background-image: url(~@/assets/image/magazine.png);
       background-repeat: no-repeat;
@@ -166,6 +215,17 @@ export default {
     &:hover, &:focus {
       &:before {
         background: var(--color-bg-btn-before);
+      }
+    }
+    @media (min-width: $screen-m) {
+      padding: 27px 65px 30px 27px;
+      font-size: 14px;
+
+      &:after {
+        width: 113px;
+        height: 112px;
+        top: 35%;
+        right: -62px;
       }
     }
   }

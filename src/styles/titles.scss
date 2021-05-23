@@ -1,13 +1,21 @@
 .Title {
   font-family: 'Cormorant Garamond', 'Museo Sans Cyrl', sans-serif;
   font-weight: 700;
-  font-size: 42px;
+  font-size: 26px;
   line-height: 1.31em;
   letter-spacing: .022em;
   text-transform: uppercase;
+
+  @media (min-width: $screen-m) {
+    font-size: 42px;
+  }
 }
 
 .SubTitle {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--color-text-main2);
+
+  @media (min-width: $screen-m) {
+    font-size: 18px;
+  }
 }

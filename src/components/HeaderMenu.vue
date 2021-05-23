@@ -24,8 +24,13 @@ export default {
 
   &-Wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+    @media (min-width: $screen-xl) {
+      flex-direction: row;
+    }
   }
 }
 </style>

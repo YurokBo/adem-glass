@@ -1,21 +1,21 @@
 <template>
 <div>
   <Header />
-  <Form />
-  <Footer />
+<!--  <Form />
+  <Footer />-->
 </div>
 </template>
 
 <script>
 import Header from "@/components/Header";
-import Form from "@/components/Form";
-import Footer from "@/components/Footer";
+// import Form from "@/components/Form";
+// import Footer from "@/components/Footer";
 export default {
   name: "HomePage",
   components: {
-    Form,
+    //Form,
     Header,
-    Footer
+    //Footer
   }
 }
 </script>

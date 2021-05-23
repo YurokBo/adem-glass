@@ -1,7 +1,7 @@
 .Btn {
   font-family: 'Museo Sans Cyrl', sans-serif;
   font-weight: 900;
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .12em;
   color: var(--color-text-btn);
@@ -23,6 +23,10 @@
     border-radius: 8px;
     background-image: var(--color-bg-btn-before);
     z-index: -1;
+  }
+
+  @media (min-width: $screen-m) {
+    font-size: 14px;
   }
 
   &:hover,&:focus {
