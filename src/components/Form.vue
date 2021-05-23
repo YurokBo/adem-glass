@@ -25,26 +25,22 @@
                      class="Form-Input Input"
                      name="size"
                      placeholder="Размер проема (высота*ширина)"
-                     v-model.trim="form.email"
-                     :class="$v.form.email.$error ? 'is-invalid' : ''"
+                     v-model.trim="form.size"
+                     :class="$v.form.size.$error ? 'is-invalid' : ''"
               >
-              <span v-if="$v.form.email.$dirty && !$v.form.email.required"
-                    class="invalid-feedback">Required field!</span>
-              <span v-if="$v.form.email.$dirty && !$v.form.email.email"
-                    class="invalid-feedback">Incorrect email</span>
+              <span v-if="$v.form.size.$dirty && !$v.form.size.required"
+                    class="invalid-feedback">Обязательное поле!</span>
             </div>
             <div class="Form-Field">
               <input type="text"
                      class="Form-Input Input"
                      name="doors"
                      placeholder="Количество дверей"
-                     v-model.trim="form.email"
-                     :class="$v.form.email.$error ? 'is-invalid' : ''"
+                     v-model.trim="form.doors"
+                     :class="$v.form.doors.$error ? 'is-invalid' : ''"
               >
-              <span v-if="$v.form.email.$dirty && !$v.form.email.required"
-                    class="invalid-feedback">Required field!</span>
-              <span v-if="$v.form.email.$dirty && !$v.form.email.email"
-                    class="invalid-feedback">Incorrect email</span>
+              <span v-if="$v.form.doors.$dirty && !$v.form.doors.required"
+                    class="invalid-feedback">Обязательное поле!</span>
             </div>
             <div class="Form-Field">
               <input type="text"
@@ -55,8 +51,7 @@
                      :class="$v.form.name.$error ? 'is-invalid' : ''"
               >
               <span v-if="$v.form.name.$dirty && !$v.form.name.required"
-                    class="invalid-feedback">Required field!</span>
-
+                    class="invalid-feedback">Обязательное поле!</span>
             </div>
             <div class="Form-Field">
               <input type="text"
@@ -67,7 +62,7 @@
                      :class="$v.form.phone.$error ? 'is-invalid' : ''"
               >
               <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
-                    class="invalid-feedback">Required field!</span>
+                    class="invalid-feedback">Обязательное поле!</span>
             </div>
             <button type="submit" class="Btn Form-Btn">подобрать двери купе</button>
           </form>
@@ -92,8 +87,9 @@
 
 <script>
 import {validationMixin} from 'vuelidate'
-import {email, required} from "vuelidate/lib/validators";
+import {required} from "vuelidate/lib/validators";
 import axios from 'axios';
+import Modal from "@/components/Modal";
 //import Modal from "@/components/Modal";
 
 export default {
@@ -102,32 +98,31 @@ export default {
   data() {
     return {
       form: {
-        name: '',
+        size: '',
+        doors: '',
         phone: '',
         email: '',
-        message: '',
       },
     }
   },
   validations: {
     form: {
+      size: {
+        required,
+      },
+      doors: {
+        required,
+      },
       name: {
         required,
       },
       phone: {
         required,
       },
-      email: {
-        required,
-        email
-      },
-      message: {
-        required,
-      },
     }
   },
   methods: {
-    /*showAuthDialog() {
+    showAuthDialog() {
       this.$modal.show(
           Modal,
           {},
@@ -141,15 +136,15 @@ export default {
           },
           {},
       );
-    },*/
+    },
     onSubmit() {
       this.$v.form.$touch();
       if (!this.$v.form.$error) {
         const params = new URLSearchParams();
+        params.append('size', this.form.size);
+        params.append('doors', this.form.doors);
         params.append('name', this.form.name);
         params.append('phone', this.form.phone);
-        params.append('email', this.form.email);
-        params.append('message', this.form.message);
 
         axios.post(
             "/mail.php",
@@ -159,14 +154,12 @@ export default {
                 'content-type': 'application/x-www-form-urlencoded'
               }
             }
-        ).then(() => {
-
-        })
+        ).then(() => {})
         this.showAuthDialog()
-        this.form.name = '',
-            this.form.phone = '',
-            this.form.email = '',
-            this.form.message = ''
+        this.form.size = ''
+        this.form.doors = ''
+        this.form.name = ''
+        this.form.phone = ''
         this.$nextTick(() => {
           this.$v.$reset()
         })
@@ -178,11 +171,25 @@ export default {
 
 <style scoped lang="scss">
 .Form {
-  padding: 90px 0 0;
+  padding: 90px 0 80px;
   background-image: url(~@/assets/image/form-bg.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  .Decor {
+
+    &-Text {
+      color: var(--color-text-main3);
+    }
+    .Left {
+      width: 35%;
+    }
+
+    .Right {
+      width: 45%;
+    }
+  }
 
   &-Title {
     margin-bottom: 25px;
@@ -190,17 +197,24 @@ export default {
 
   &-Subtitle {
     margin-bottom: 30px;
+    font-size: 22px;
+    color: var(--color-text-main2);
   }
 
   &-Content {
     display: flex;
     justify-content: space-between;
+    position: relative;
+  }
+
+  &-ContentInner {
+    width: 50%;
   }
 
   &-Form {
     width: 494px;
-    margin-bottom: 15px;
-    padding: 60px 50px;
+    margin: 0 auto 15px;
+    padding: 60px 70px;
     border-radius: 8px;
     background-color: var(--color-text-main3);
   }
@@ -217,6 +231,7 @@ export default {
     margin-bottom: 12px;
     max-width: 324px;
     width: 100%;
+    position: relative;
 
     &:nth-child(5) {
       margin-bottom: 22px;
@@ -251,7 +266,13 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--color-text-main3);
+  }
+
+  &-PhoneTitle {
+    margin-right: 7px;
     position: relative;
+    padding-left: 38px;
 
     &:before {
       content: '';
@@ -260,27 +281,57 @@ export default {
       height: 27px;
       top: 50%;
       left: 0;
-      transform: translate(0,-50%);
-      background-image: url(~@/assets/image/phone-icon-white.svg);
+      transform: translate(0, -50%);
+      background-image: url(~@/assets/image/phone-icon-white.png);
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
     }
   }
 
-  &-PhoneTitle {
-    margin-right: 7px;
-  }
+  &-Phone {
+    display: block;
+    position: relative;
+    font-weight: 700;
 
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-text-main3);
+    }
+
+    @media (min-width: $screen-l) {
+      &:before {
+        opacity: 0;
+        transition: .3s;
+      }
+      &:hover {
+        &:before {
+          opacity: 0.502;
+        }
+      }
+    }
+  }
 
   &-ImgBox {
     position: relative;
+    width: 50%;
+  }
+
+  &-Img {
+    position: absolute;
+    left: -95px;
+    bottom: -80px;
   }
 
   &-ImgDescription {
     position: absolute;
     top: 0;
-    right: 0;
+    right: -74px;
     z-index: 2;
   }
 
@@ -294,7 +345,6 @@ export default {
     text-align: center;
     color: var(--color-text-btn);
     white-space: nowrap;
-    //padding: 22px 43px 25px;
 
     &:before {
       content: '';
@@ -331,6 +381,14 @@ export default {
   .Arc {
     position: absolute;
     left: 50px;
+  }
+
+  .invalid-feedback {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    font-size: 10px;
+    color: var(--color-text-error);
   }
 }
 </style>
