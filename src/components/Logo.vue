@@ -2,15 +2,22 @@
   <a href="/" class="Logo">
     <div class="Logo-Title">ADEM GLASS</div>
     <div class="Logo-Text">
-      <span>Изготовление дверей</span>
-      <span>купе на заказ</span>
+      <div :class="coloredLogo">Изготовление дверей</div>
+      <div :class="coloredLogo">купе на заказ</div>
     </div>
   </a>
 </template>
 
 <script>
 export default {
-  name: "Logo"
+  name: "Logo",
+  props: {
+    coloredLogo: {
+      type: String,
+      required: false,
+      default: ""
+    }
+  }
 }
 </script>
 
@@ -47,12 +54,16 @@ export default {
       position: absolute;
       width: 2px;
       height: 36px;
-      top: 0;
+      top: 50%;
       left: 0;
-      transform: translate(-50%,0);
+      transform: translate(-50%,-50%);
       background-color: var(--color-bg-logo);
       //box-shadow: 0px 0px 1px var(--color-bg-logo), 0 0 25px var(--color-bg-logo), 0 0 4px var(--color-bg-logo);
     }
+  }
+
+  &-Text--colored {
+    color: var(--color-text-ghost);
   }
 }
 </style>
