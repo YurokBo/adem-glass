@@ -13,66 +13,67 @@
         Полностью целиковое полотно или с комбинированными вставками, делителями
         - на ваш выбор, под ваш интерьер!
       </div>
-      <!--      <div class="Variables-Content">-->
-      <div class="Variables-Content">
-        <div class="Variables-ContentItem">
-          <div class="Variables-ContentItemInfo">
-            <div class="Variables-ContentItemTitle">С окрашенным стеклом Лакобель</div>
-            <div class="Variables-ContentItemText">Сохраняет стойкость цвета 15 и более лет</div>
-          </div>
-          <img src="../assets/image/var-glass1.png" alt="Glass variable" class="Variables-ContentItemImg">
-        </div>
-        <div class="Variables-ContentItem">
-          <img src="../assets/image/var-glass2.png" alt="Glass variable" class="Variables-ContentItemImg">
-          <div class="Variables-ContentItemInfo">
-            <div class="Variables-ContentItemTitle">Матовое стекло</div>
-            <div class="Variables-ContentItemText">Матовое стекло наполняет интерьер воздушностью</div>
-          </div>
-        </div>
-      </div>
-      <div class="Variables-Content Variables-Content--center">
-        <div class="Variables-ContentItem">
-          <div class="Variables-ContentItemInfo">
-            <div class="Variables-ContentItemTitle">С декоративным стеклом</div>
-            <div class="Variables-ContentItemText">
-              +350 вариантов
-              декоративного стекла
-              в современном
-              и классическом стилях
+      <div class="Variables-ContentList">
+        <div class="Variables-Content">
+          <div class="Variables-ContentItem">
+            <div class="Variables-ContentItemInfo">
+              <div class="Variables-ContentItemTitle">С окрашенным стеклом Лакобель</div>
+              <div class="Variables-ContentItemText">Сохраняет стойкость цвета 15 и более лет</div>
             </div>
+            <img src="../assets/image/var-glass1.png" alt="Glass variable" class="Variables-ContentItemImg">
           </div>
-          <img src="../assets/image/var-glass3.png" alt="Glass variable" class="Variables-ContentItemImg">
-        </div>
-        <div class="Variables-ContentItem">
-          <img src="../assets/image/var-glass4.png" alt="Glass variable" class="Variables-ContentItemImg">
-          <div class="Variables-ContentItemInfo">
-            <div class="Variables-ContentItemTitle">С делителями</div>
-            <div class="Variables-ContentItemText">
-              Делители и профиль,
-              подобранные в цвет
-              интерьера, завершают
-              общую картину
+          <div class="Variables-ContentItem">
+            <img src="../assets/image/var-glass2.png" alt="Glass variable" class="Variables-ContentItemImg">
+            <div class="Variables-ContentItemInfo">
+              <div class="Variables-ContentItemTitle Text--right">Матовое стекло</div>
+              <div class="Variables-ContentItemText Text--right">Матовое стекло наполняет интерьер воздушностью</div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="Variables-Content">
-        <div class="Variables-ContentItem">
-          <div class="Variables-ContentItemInfo">
-            <div class="Variables-ContentItemTitle">С окрашенным матовым стеклом</div>
-            <div class="Variables-ContentItemText">Модное матовое окрашенное стекло</div>
+        <div class="Variables-Content Variables-Content--center">
+          <div class="Variables-ContentItem">
+            <div class="Variables-ContentItemInfo">
+              <div class="Variables-ContentItemTitle">С декоративным стеклом</div>
+              <div class="Variables-ContentItemText">
+                +350 вариантов
+                декоративного стекла
+                в современном
+                и классическом стилях
+              </div>
+            </div>
+            <img src="../assets/image/var-glass3.png" alt="Glass variable" class="Variables-ContentItemImg">
           </div>
-          <img src="../assets/image/var-glass5.png" alt="Glass variable" class="Variables-ContentItemImg">
+          <div class="Variables-ContentItem">
+            <img src="../assets/image/var-glass4.png" alt="Glass variable" class="Variables-ContentItemImg">
+            <div class="Variables-ContentItemInfo">
+              <div class="Variables-ContentItemTitle Text--right">С делителями</div>
+              <div class="Variables-ContentItemText Text--right">
+                Делители и профиль,
+                подобранные в цвет
+                интерьера, завершают
+                общую картину
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="Variables-ContentItem">
-          <img src="../assets/image/var-glass6.png" alt="Glass variable" class="Variables-ContentItemImg">
-          <div class="Variables-ContentItemInfo">
-            <div class="Variables-ContentItemTitle">С окрашенным стеклом Лакобель</div>
-            <div class="Variables-ContentItemText">Белое, бежевое, капучино, черное.- на ваш выбор!</div>
+        <div class="Variables-Content">
+          <div class="Variables-ContentItem">
+            <div class="Variables-ContentItemInfo">
+              <div class="Variables-ContentItemTitle">С окрашенным матовым стеклом</div>
+              <div class="Variables-ContentItemText">Модное матовое окрашенное стекло</div>
+            </div>
+            <img src="../assets/image/var-glass5.png" alt="Glass variable" class="Variables-ContentItemImg">
+          </div>
+          <div class="Variables-ContentItem">
+            <img src="../assets/image/var-glass6.png" alt="Glass variable" class="Variables-ContentItemImg">
+            <div class="Variables-ContentItemInfo">
+              <div class="Variables-ContentItemTitle Text--right">С окрашенным стеклом Лакобель</div>
+              <div class="Variables-ContentItemText Text--right">Белое, бежевое, капучино, черное.- на ваш выбор!</div>
+            </div>
           </div>
         </div>
       </div>
-      <!--      </div>-->
+      <button class="Btn Variables-Btn">рассчитать стоимость</button>
     </div>
   </section>
 </template>
@@ -103,6 +104,10 @@ export default {
     text-align: center;
   }
 
+  &-ContentList {
+    margin-bottom: 95px;
+  }
+
   &-Content {
     display: flex;
     align-items: center;
@@ -124,9 +129,20 @@ export default {
   }
 
   &-ContentItemInfo {
-    max-width: 297px;
+    max-width: 260px;
     width: 100%;
-    //padding: 0 30px 0 47px;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 43px;
+      height: 43px;
+      background-image: url(~@/assets/image/ball-ring.png);
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
   }
 
   &-ContentItemTitle {
@@ -142,6 +158,16 @@ export default {
     font-size: 18px;
     line-height: 1.22em;
     color: var(--color-text-main2);
+  }
+
+  .Text--right {
+    text-align: right;
+  }
+
+  &-Btn {
+    display: block;
+    margin: 0 auto;
+    padding: 24px 23px 28px;
   }
 }
 </style>
