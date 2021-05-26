@@ -176,6 +176,7 @@ export default {
       width: 22px;
       height: 22px;
       top: 2px;
+      left: -13px;
       background-image: url(~@/assets/image/ball-ring.png);
       background-position: center center;
       background-size: cover;
@@ -189,16 +190,10 @@ export default {
         width: 43px;
         height: 43px;
         top: -15px;
+        left: -11px;
       }
     }
-  }
-
-  .Info--left {
-    &:before {
-      left: -13px;
-    }
-
-    @media (min-width: $screen-l) {
+    @media (min-width: $screen-xl) {
       &:before {
         left: -51px;
       }
@@ -206,31 +201,39 @@ export default {
   }
 
   .Info--right {
-    &:before {
-      left: -13px;
-    }
-
     @media (min-width: $screen-l) {
       &:before {
-        right: -51px;
+        left: 231px;
+      }
+    }
+    @media (min-width: $screen-xl) {
+      &:before {
+        left: 267px;
       }
     }
   }
 
   &-ContentItemImg {
+    max-width: 133px;
+    height: 133px;
     text-align: center;
     @media (min-width: $screen-s) {
-
+      max-width: 177px;
+      height: 177px;
     }
   }
 
   &-ContentItemTitle {
     margin-bottom: 10px;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 1.15em;
     letter-spacing: .032em;
     color: var(--color-text-main2);
+
+    @media (min-width: $screen-xs) {
+      font-size: 16px;
+    }
 
     @media (min-width: $screen-s) {
       font-size: 26px;
@@ -238,9 +241,14 @@ export default {
   }
 
   &-ContentItemText {
-    font-size: 14px;
+    font-size: 11px;
     line-height: 1.22em;
     color: var(--color-text-main2);
+
+    @media (min-width: $screen-xs) {
+      font-size: 14px;
+    }
+
     @media (min-width: $screen-s) {
       font-size: 18px;
     }
