@@ -15,24 +15,25 @@
       </div>
       <div class="Variables-ContentList">
         <div class="Variables-Content">
-          <div class="Variables-ContentItem">
-            <div class="Variables-ContentItemInfo">
+          <div class="Variables-ContentItem ContentItem--left">
+            <img src="../assets/image/var-glass1.png" alt="Glass variable" class="Variables-ContentItemImg">
+            <div class="Variables-ContentItemInfo Info--left">
               <div class="Variables-ContentItemTitle">С окрашенным стеклом Лакобель</div>
               <div class="Variables-ContentItemText">Сохраняет стойкость цвета 15 и более лет</div>
             </div>
-            <img src="../assets/image/var-glass1.png" alt="Glass variable" class="Variables-ContentItemImg">
           </div>
           <div class="Variables-ContentItem">
             <img src="../assets/image/var-glass2.png" alt="Glass variable" class="Variables-ContentItemImg">
-            <div class="Variables-ContentItemInfo">
+            <div class="Variables-ContentItemInfo Info--right">
               <div class="Variables-ContentItemTitle Text--right">Матовое стекло</div>
               <div class="Variables-ContentItemText Text--right">Матовое стекло наполняет интерьер воздушностью</div>
             </div>
           </div>
         </div>
         <div class="Variables-Content Variables-Content--center">
-          <div class="Variables-ContentItem">
-            <div class="Variables-ContentItemInfo">
+          <div class="Variables-ContentItem ContentItem--left">
+            <img src="../assets/image/var-glass3.png" alt="Glass variable" class="Variables-ContentItemImg">
+            <div class="Variables-ContentItemInfo Info--left">
               <div class="Variables-ContentItemTitle">С декоративным стеклом</div>
               <div class="Variables-ContentItemText">
                 +350 вариантов
@@ -41,11 +42,10 @@
                 и классическом стилях
               </div>
             </div>
-            <img src="../assets/image/var-glass3.png" alt="Glass variable" class="Variables-ContentItemImg">
           </div>
           <div class="Variables-ContentItem">
             <img src="../assets/image/var-glass4.png" alt="Glass variable" class="Variables-ContentItemImg">
-            <div class="Variables-ContentItemInfo">
+            <div class="Variables-ContentItemInfo Info--right">
               <div class="Variables-ContentItemTitle Text--right">С делителями</div>
               <div class="Variables-ContentItemText Text--right">
                 Делители и профиль,
@@ -57,16 +57,16 @@
           </div>
         </div>
         <div class="Variables-Content">
-          <div class="Variables-ContentItem">
-            <div class="Variables-ContentItemInfo">
+          <div class="Variables-ContentItem ContentItem--left">
+            <img src="../assets/image/var-glass5.png" alt="Glass variable" class="Variables-ContentItemImg">
+            <div class="Variables-ContentItemInfo Info--left">
               <div class="Variables-ContentItemTitle">С окрашенным матовым стеклом</div>
               <div class="Variables-ContentItemText">Модное матовое окрашенное стекло</div>
             </div>
-            <img src="../assets/image/var-glass5.png" alt="Glass variable" class="Variables-ContentItemImg">
           </div>
           <div class="Variables-ContentItem">
             <img src="../assets/image/var-glass6.png" alt="Glass variable" class="Variables-ContentItemImg">
-            <div class="Variables-ContentItemInfo">
+            <div class="Variables-ContentItemInfo Info--right">
               <div class="Variables-ContentItemTitle Text--right">С окрашенным стеклом Лакобель</div>
               <div class="Variables-ContentItemText Text--right">Белое, бежевое, капучино, черное.- на ваш выбор!</div>
             </div>
@@ -86,22 +86,33 @@ export default {
 
 <style scoped lang="scss">
 .Variables {
-  padding: 89px 0;
+  padding: 70px 0;
   background-image: url(~@/assets/image/variables-bg.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  @media (min-width: $screen-l) {
+    padding: 89px 0;
+  }
 
   &-Title {
-    width: 545px;
-    margin: 0 auto 20px;
     text-align: center;
+    margin: 0 0 20px;
+    @media (min-width: $screen-l) {
+      width: 545px;
+      margin: 0 auto 20px;
+    }
   }
 
   &-SubTitle {
-    width: 545px;
-    margin: 0 auto 74px;
+    margin: 0 0 60px;
+    padding: 0 15px;
     text-align: center;
+    @media (min-width: $screen-l) {
+      width: 545px;
+      margin: 0 auto 74px;
+      padding: 0;
+    }
   }
 
   &-ContentList {
@@ -110,58 +121,135 @@ export default {
 
   &-Content {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    //align-items: center;
+    //flex-direction: column;
     margin-bottom: 70px;
 
     &:last-child {
       margin-bottom: 0;
     }
+
+    @media (min-width: $screen-l) {
+      //flex-direction: row;
+      justify-content: space-around;
+    }
   }
 
   &-Content--center {
-    justify-content: space-between;
+    @media (min-width: $screen-xxl) {
+      justify-content: space-between;
+    }
   }
 
   &-ContentItem {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    margin-right: 27px;
+    //align-items: center;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @media (min-width: $screen-l) {
+      flex-direction: row;
+      margin-right: 0;
+    }
+  }
+
+  .ContentItem--left {
+    @media (min-width: $screen-l) {
+      flex-direction: row-reverse;
+    }
   }
 
   &-ContentItemInfo {
     max-width: 260px;
     width: 100%;
+    padding-left: 20px;
     position: relative;
 
     &:before {
       content: '';
       position: absolute;
-      width: 43px;
-      height: 43px;
+      width: 22px;
+      height: 22px;
+      top: 2px;
       background-image: url(~@/assets/image/ball-ring.png);
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
+    }
+
+    @media (min-width: $screen-l) {
+      padding-top: 20px;
+      padding-left: 0;
+      &:before {
+        width: 43px;
+        height: 43px;
+        top: -15px;
+      }
+    }
+  }
+
+  .Info--left {
+    &:before {
+      left: -13px;
+    }
+
+    @media (min-width: $screen-l) {
+      &:before {
+        left: -51px;
+      }
+    }
+  }
+
+  .Info--right {
+    &:before {
+      left: -13px;
+    }
+
+    @media (min-width: $screen-l) {
+      &:before {
+        right: -51px;
+      }
+    }
+  }
+
+  &-ContentItemImg {
+    text-align: center;
+    @media (min-width: $screen-s) {
+
     }
   }
 
   &-ContentItemTitle {
     margin-bottom: 10px;
     font-weight: 700;
-    font-size: 26px;
+    font-size: 16px;
     line-height: 1.15em;
     letter-spacing: .032em;
     color: var(--color-text-main2);
+
+    @media (min-width: $screen-s) {
+      font-size: 26px;
+    }
   }
 
   &-ContentItemText {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.22em;
     color: var(--color-text-main2);
+    @media (min-width: $screen-s) {
+      font-size: 18px;
+    }
   }
 
   .Text--right {
-    text-align: right;
+    @media (min-width: $screen-l) {
+      text-align: right;
+    }
   }
 
   &-Btn {
