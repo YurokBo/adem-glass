@@ -8,7 +8,7 @@
         </div>
         <span class="Decor-Line Right"></span>
       </div>
-      <HeaderMenu/>
+      <HeaderMenu />
       <div class="Header-Content">
         <h1 class="Title Header-Title">
           Двери для шкафа-купе <br> и гардеробной <br> от
@@ -50,7 +50,7 @@ export default {
         {image: "window.png", text: "Используем<br/> популярный<br/> узкий профиль"},
         {image: "glasses.png", text: "+350 видов<br/> красивейших<br/> стекол и зеркал"},
         {image: "clock.png", text: "Изготовление<br/> дверей от 3-х<br/> рабочих дней"}
-      ]
+      ],
     }
   }
 }

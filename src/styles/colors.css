@@ -16,4 +16,5 @@
     --color-bg-label: linear-gradient( 0deg, rgb(225,181,124) 0%, rgb(240,213,176) 57%, rgb(254,245,228) 100%);
     --color-bg-decor: rgba(243, 203, 171,.6);
     --color-bg-input: rgb(249, 247, 245);
+    --color-bg-footer-mobile: #483725;
 }
