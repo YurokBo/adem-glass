@@ -165,7 +165,7 @@ export default {
   }
 
   &-ContentItemInfo {
-    max-width: 260px;
+    max-width: 160px;
     width: 100%;
     padding-left: 20px;
     position: relative;
@@ -173,14 +173,18 @@ export default {
     &:before {
       content: '';
       position: absolute;
-      width: 22px;
-      height: 22px;
-      top: 2px;
+      width: 19px;
+      height: 19px;
+      top: 0;
       left: -13px;
       background-image: url(~@/assets/image/ball-ring.png);
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
+    }
+
+    @media (min-width: $screen-m) {
+      max-width: 260px;
     }
 
     @media (min-width: $screen-l) {
@@ -214,10 +218,12 @@ export default {
   }
 
   &-ContentItemImg {
+    margin-bottom: 10px;
     max-width: 133px;
     height: 133px;
     text-align: center;
     @media (min-width: $screen-s) {
+      margin-bottom: 0;
       max-width: 177px;
       height: 177px;
     }
