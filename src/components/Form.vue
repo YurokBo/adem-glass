@@ -171,11 +171,15 @@ export default {
 
 <style scoped lang="scss">
 .Form {
-  padding: 90px 0 80px;
+  padding: 50px 0 55px;
   background-image: url(~@/assets/image/form-bg.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  @media (min-width: 1350px) {
+    padding: 90px 0 80px;
+  }
 
   .Decor {
 
@@ -193,48 +197,84 @@ export default {
 
   &-Title {
     margin-bottom: 25px;
+    text-align: center;
+    @media (min-width: $screen-xl) {
+     text-align: left;
+    }
   }
 
   &-Subtitle {
-    margin-bottom: 30px;
-    font-size: 22px;
+    width: 300px;
+    margin: 0 auto 40px;
+    font-size: 16px;
+    text-align: center;
     color: var(--color-text-main2);
+    @media (min-width: $screen-m) {
+      width: 100%;
+    }
+
+    @media (min-width: $screen-l) {
+      padding: 0;
+      font-size: 22px;
+    }
+
+    @media (min-width: $screen-xl) {
+      text-align: left;
+    }
   }
 
   &-Content {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
+    @media (min-width: $screen-xl) {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+    }
   }
 
   &-ContentInner {
-    width: 50%;
+    @media (min-width: $screen-xl) {
+      width: 50%;
+    }
   }
 
   &-Form {
-    width: 494px;
+    width: 100%;
     margin: 0 auto 15px;
-    padding: 60px 70px;
+    padding: 40px 50px;
     border-radius: 8px;
     background-color: var(--color-text-main3);
+    @media (min-width: $screen-s) {
+      width: 494px;
+    }
+    @media (min-width: $screen-m) {
+      padding: 60px 70px;
+    }
   }
 
   &-FormTitle {
     margin-bottom: 20px;
-    font-size: 38px;
+    font-size: 24px;
     line-height: 1.35em;
     letter-spacing: .015em;
+    text-align: center;
     color: var(--color-text-ghost);
+    @media (min-width: $screen-m) {
+      font-size: 38px;
+      text-align: left;
+    }
   }
 
   &-Field {
     margin-bottom: 12px;
-    max-width: 324px;
+    max-width: 100%;
     width: 100%;
     position: relative;
 
     &:nth-child(5) {
       margin-bottom: 22px;
+    }
+    @media (min-width: $screen-m) {
+      max-width: 324px;
     }
   }
 
@@ -318,21 +358,51 @@ export default {
   }
 
   &-ImgBox {
-    position: relative;
-    width: 50%;
+    display: none;
+    @media (min-width: $screen-xl) {
+      display: block;
+      position: relative;
+      width: 40%;
+    }
+    @media (min-width: 1350px) {
+      width: 45%;
+    }
+    @media (min-width: 1450px) {
+      width: 50%;
+    }
   }
 
   &-Img {
-    position: absolute;
-    left: -95px;
-    bottom: -80px;
+
+    @media (min-width: $screen-xl) {
+      position: absolute;
+      left: -215px;
+      bottom: -55px;
+    }
+    @media (min-width: 1350px) {
+      left: -155px;
+      bottom: -80px;
+    }
+    @media (min-width: 1450px) {
+      left: -95px;
+      bottom: -80px;
+    }
   }
 
   &-ImgDescription {
-    position: absolute;
-    top: 0;
-    right: -74px;
-    z-index: 2;
+
+    @media (min-width: $screen-xl) {
+      position: absolute;
+      top: 0;
+      right: 40px;
+      z-index: 2;
+    }
+    @media (min-width: 1350px) {
+      right: -34px;
+    }
+    @media (min-width: 1450px) {
+      right: -74px;
+    }
   }
 
   &-ImgTitle {
