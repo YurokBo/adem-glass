@@ -32,14 +32,12 @@
               <span class="Plus-Plus Vertical Plus-Plus--left"></span>
               <span class="Plus-Plus Horizontal Plus-Plus--left"></span>
             </div>
-            <ul class="Achievs-List">
-              <li class="Achievs-Item"
-                  v-for="(item,index) in achivsList1"
-                  :key="index"
-              >
-                <img :src="require(`@/assets/image/${item}`)" alt="" class="Achievs-Img">
-              </li>
-            </ul>
+            <div class="About-AchievsList Achivs--left">
+              <img v-for="(item,index) in achivsList1"
+                   :key="index"
+                   :src="require(`@/assets/image/${item}`)"
+                   alt="" class="About-AchievsImg">
+            </div>
             <img src="../assets/image/macbook.png" alt="image" class="About-ItemImg">
             <div class="About-ItemTitle">
               Участвуем
@@ -60,6 +58,12 @@
               <span class="Plus-Plus Vertical Plus-Plus--right"></span>
               <span class="Plus-Plus Horizontal Plus-Plus--right"></span>
             </div>
+            <div class="About-AchievsList Achivs--right">
+              <img v-for="(item,index) in achivsList2"
+                   :key="index"
+                   :src="require(`@/assets/image/${item}`)"
+                   alt="" class="About-AchievsImg">
+            </div>
             <img src="../assets/image/exposition.png" alt="image" class="About-ItemImg">
             <div class="About-ItemTitle">
               Регулярно принимаем
@@ -72,7 +76,7 @@
             </ul>
           </div>
           <div class="About-ContentItem">
-            <img src="../assets/image/glasses.png" alt="image" class="About-ItemImg">
+            <img src="../assets/image/glasses-about.png" alt="image" class="About-ItemImg">
             <div class="About-ItemTitle">
               Большой выбор стекла
               для дверей купе
@@ -95,9 +99,13 @@ export default {
   data() {
     return {
       achivsList1: [
-         "dacha-answer.png",
-         "design-fight.png",
-         "big-changing.png"
+        "dacha-answer.png",
+        "design-fight.png",
+        "big-changing.png"
+      ],
+      achivsList2: [
+        "mir-stekla.png",
+        "mos-build.png",
       ]
     }
   }
@@ -106,61 +114,112 @@ export default {
 
 <style scoped lang="scss">
 .About {
-  padding: 87px 0;
+  padding: 55px 0 30px;
   color: var(--color-text-dark);
 
+  @media (min-width: $screen-m) {
+    padding: 87px 0;
+  }
+
+  .Decor-Text {
+    color: var(--color-text-btn);
+  }
+
   &-Title {
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     text-align: center;
+    @media (min-width: $screen-m) {
+      margin-bottom: 100px;
+    }
   }
 
   &-Wrapper {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    @media (min-width: $screen-l) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: start;
+    }
   }
 
   &-Img {
-    max-width: 620px;
-    width: 100%;
-    align-self: center;
+    display: none;
+
+    @media (min-width: 1170px) {
+      display: block;
+      max-width: 500px;
+      width: 100%;
+      align-self: center;
+    }
+
+    @media (min-width: $screen-xl) {
+      max-width: 620px;
+    }
   }
 
   &-Content {
-    max-width: 310px;
+    max-width: 320px;
     width: 100%;
+    @media (min-width: $screen-s) {
+      max-width: 45%;
+    }
+    @media (min-width: $screen-l) {
+      max-width: 45%;
+    }
+    @media (min-width: 1170px) {
+      max-width: 310px;
+      width: 100%;
+    }
   }
 
   &-ContentItem {
-    margin-bottom: 75px;
+    margin-bottom: 50px;
     position: relative;
 
-    &:last-child {
-      margin-bottom: 0;
+    @media (min-width: $screen-m) {
+      margin-bottom: 75px;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
   &-ItemImg {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    @media (min-width: $screen-m) {
+      margin-bottom: 30px;
+    }
   }
 
   &-ItemTitle {
-    margin-bottom: 28px;
+    margin-bottom: 15px;
     font-weight: 700;
-    font-size: 26px;
+    font-size: 20px;
     line-height: 1.3;
     letter-spacing: .032em;
+
+    @media (min-width: $screen-m) {
+      margin-bottom: 28px;
+      font-size: 26px;
+    }
   }
 
   &-ItemText {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 300;
     line-height: 1.35;
     letter-spacing: .022em;
+    @media (min-width: $screen-m) {
+      font-size: 18px;
+    }
   }
 
   &-ListItem {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     padding-left: 23px;
 
     &:last-child {
@@ -180,10 +239,15 @@ export default {
       left: 0;
       transform: translate(0, -50%);
     }
+
+    @media (min-width: $screen-m) {
+      margin-bottom: 10px;
+    }
   }
 
   .Plus {
     position: absolute;
+    z-index: 5;
     cursor: pointer;
     top: -27px;
     transition: .3s;
@@ -217,12 +281,59 @@ export default {
   }
 
   .Plus--right {
-    right: 34px;
+    right: 45px;
+    @media (min-width: $screen-l) {
+      right: 40%;
+    }
+    @media (min-width: 1170px) {
+      right: 40px;
+    }
   }
 
   .Vertical {
     transform: rotateZ(90deg);
     transition: .3s;
+  }
+
+  &-AchievsList {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px 29px;
+    position: absolute;
+    border-radius: 8px;
+    background-color: var(--color-bg-input);
+    z-index: 4;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s;
+
+    @media (min-width: $screen-l) {
+      flex-direction: row;
+      padding: 52px 44px 49px;
+    }
+  }
+
+  &-AchievsImg {
+    max-width: 230px;
+    flex-grow: 1;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .Achivs--left {
+    left: 17px;
+  }
+
+  .Achivs--right {
+    top: 5px;
+    right: 68px;
+  }
+
+  .Plus:hover + &-AchievsList {
+    visibility: visible;
+    opacity: 1;
   }
 }
 </style>
