@@ -17,7 +17,7 @@
       <div class="Form-Content">
         <div class="Form-ContentInner">
           <form class="Form-Form" @submit.prevent="onSubmit()" novalidate>
-            <h3 class="Title Form-FormTitle">
+            <h3 class="Title--h3 Form-FormTitle">
               Оставьте заявку
             </h3>
             <div class="Form-Field">
@@ -253,11 +253,7 @@ export default {
 
   &-FormTitle {
     margin-bottom: 20px;
-    font-size: 24px;
-    line-height: 1.35em;
-    letter-spacing: .015em;
     text-align: center;
-    color: var(--color-text-ghost);
     @media (min-width: $screen-m) {
       font-size: 38px;
       text-align: left;

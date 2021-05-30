@@ -4,6 +4,7 @@
   <Variables />
   <Form />
   <About />
+  <Faq />
   <Footer />
 </div>
 </template>
@@ -14,9 +15,11 @@ import Form from "@/components/Form";
 import Footer from "@/components/Footer";
 import Variables from "@/components/Variables";
 import About from "@/components/About";
+import Faq from "@/components/Faq";
 export default {
   name: "HomePage",
   components: {
+    Faq,
     About,
     Variables,
     Form,
