@@ -90,7 +90,6 @@ import {validationMixin} from 'vuelidate'
 import {required} from "vuelidate/lib/validators";
 import axios from 'axios';
 import Modal from "@/components/Modal";
-//import Modal from "@/components/Modal";
 
 export default {
   mixins: [validationMixin],
