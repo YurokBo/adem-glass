@@ -43,7 +43,7 @@ export default {
 
   @media (min-width: $screen-xl) {
     padding: 62px 0 35px;
-    background-color: var(--color-text-main);
+    background-color: var(--color-text-main3);
   }
 
   &-Inner {
