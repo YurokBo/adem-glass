@@ -77,11 +77,14 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1.417;
     letter-spacing: .032em;
     color: var(--color-text-faq-light);
+    @media (min-width: $screen-m) {
+      font-size: 24px;
+    }
   }
 
   &-Content {
@@ -89,22 +92,30 @@ export default {
     z-index: 3;
     padding: 18px 25px 22px 35px;
     background-color: var(--color-text-main3);
-    top: 108px;
+    top: 94px;
     right: 0;
     left: 0;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: 12px;
     line-height: 1.35;
     color: var(--color-text-faq-light);
     transition: .3s;
+    @media (min-width: $screen-m) {
+      top: 108px;
+      font-size: 20px;
+    }
   }
 
   .Circle {
     display: block;
-    width: 52px;
-    height: 52px;
+    width: 37px;
+    height: 37px;
     background-image: var(--color-bg-btn-before);
     border-radius: 50%;
+    @media (min-width: $screen-m) {
+      width: 52px;
+      height: 52px;
+    }
   }
   .Triangle {
     position: absolute;
@@ -115,16 +126,21 @@ export default {
     top: 50%;
     left: 51%;
     transform: translate(-50%, -50%) rotateZ(0);
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
 
-    border-left: 12px solid var(--color-text-main3);
+    border-left: 8px solid var(--color-text-main3);
     transition: .3s;
 
     &--active {
       top: 54%;
 
       transform: translate(-50%, -50%) rotate(90deg);
+    }
+    @media (min-width: $screen-m) {
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 12px solid var(--color-text-main3);
     }
   }
 }

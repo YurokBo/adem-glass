@@ -180,59 +180,93 @@ export default {
 
   &-Quiz {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 30px 32px;
+    grid-template-columns: 1fr;
+    grid-gap: 9px 0;
     margin-bottom: 90px;
+    @media (min-width: $screen-xl) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 30px 32px;
+    }
   }
 
   &-Form {
-    width: 1080px;
+    width: 100%;
     margin: 0 auto;
-    padding: 41px 72px 59px 78px;
+    padding: 35px 38px 45px;
     border-radius: 8px;
     background-color: var(--color-text-main3);
-    position: relative;
-    z-index: 1;
 
-    &:after {
-      content: '';
-      position: absolute;
-      display: block;
-      width: 96%;
-      height: 100%;
-      top: 15px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      border-radius: 8px;
-      background-color: rgba(255, 255, 255, .4);
-      z-index: -1;
+    @media (min-width: $screen-m) {
+      padding: 41px 72px 59px 78px;
+      position: relative;
+      z-index: 1;
+
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 96%;
+        height: 100%;
+        top: 15px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, .4);
+        z-index: -1;
+      }
+
+    }
+
+    @media (min-width: 1170px) {
+      width: 1080px;
     }
   }
 
   &-FormTop {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 35px;
+    margin-bottom: 22px;
+    @media (min-width: $screen-m) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+    }
   }
 
   &-FormTitle {
     margin-bottom: 8px;
+    padding: 0 23px;
+    text-align: center;
+    @media (min-width: $screen-s) {
+      padding: 0;
+    }
+    @media (min-width: $screen-l) {
+      text-align: left;
+    }
   }
 
   &-FormSubtitle {
-    //font-weight: 300;
-    font-size: 20px;
+    font-size: 14px;
     line-height: 1.35em;
     letter-spacing: .035em;
     color: var(--color-text-faq-light2);
+    text-align: center;
+
+    @media (min-width: $screen-m) {
+      font-size: 20px;
+    }
+    @media (min-width: $screen-l) {
+      text-align: left;
+    }
   }
 
   &-FormPerson {
-    display: flex;
-    align-items: center;
-    line-height: 1.35;
-    letter-spacing: .035em;
+    display: none;
+    @media (min-width: 1170px) {
+      display: flex;
+      align-items: center;
+      line-height: 1.35;
+      letter-spacing: .035em;
+    }
   }
 
   &-FormPersonImg {
@@ -252,7 +286,11 @@ export default {
 
   &-FormForm {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    @media (min-width: 1170px) {
+      flex-direction: row;
+    }
   }
 
   &-FormField {
@@ -261,7 +299,7 @@ export default {
     width: 100%;
     position: relative;
 
-    @media (min-width: $screen-m) {
+    @media (min-width: 1170px) {
       max-width: 275px;
       margin-right: 15px;
       margin-bottom: 0;
@@ -270,7 +308,7 @@ export default {
 
   &-FormInput {
     width: 100%;
-    padding: 28px 32px;
+    padding: 19px 20px 19px 32px;
     border: 1px solid var(--color-bg-input);
     border-radius: 8px;
     outline: none;
@@ -286,10 +324,18 @@ export default {
     &:focus {
       border: 1px solid var(--color-text-btn);
     }
+
+    @media (min-width: $screen-m) {
+      padding: 28px 32px;
+    }
   }
 
   &-FormBtn {
+    margin-top: 32px;
     padding: 24px 32px 27px 28px;
+    @media (min-width: 1170px) {
+      margin-top: 0;
+    }
   }
 
   .invalid-feedback {

@@ -291,6 +291,10 @@ export default {
     &:focus {
       border: 1px solid var(--color-text-btn);
     }
+
+    @media (min-width: $screen-m) {
+      padding: 28px 32px;
+    }
   }
 
   &-Btn {
