@@ -128,6 +128,7 @@ export default {
   &-Title {
     margin-bottom: 30px;
     text-align: center;
+    color: var(--color-text-dark);
     @media (min-width: $screen-m) {
       margin-bottom: 100px;
     }
