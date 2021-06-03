@@ -1,13 +1,13 @@
 <template>
-<div>
-  <Header />
-  <Variables />
-  <Form />
-  <About />
-<Projects />
-  <Faq />
-  <Footer />
-</div>
+  <div>
+    <Header/>
+    <Variables/>
+    <Form/>
+    <About/>
+    <Projects/>
+    <Faq/>
+    <Footer/>
+  </div>
 </template>
 
 <script>

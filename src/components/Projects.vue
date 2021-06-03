@@ -36,6 +36,12 @@ export default {
 .Projects {
   padding: 35px 0 108px;
 
+  .Container {
+    @media (min-width: $screen-xxxl) {
+      //max-width: 1480px;
+    }
+  }
+
   &-Title {
     margin-bottom: 30px;
     text-align: center;
