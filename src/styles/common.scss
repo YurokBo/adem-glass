@@ -139,6 +139,7 @@ img {
   transform: rotateZ(-90deg);
   display: flex;
   align-items: center;
+  z-index: 99;
 
     &-Line {
       display: block;

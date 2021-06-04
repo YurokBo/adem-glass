@@ -1,6 +1,6 @@
 <template>
   <section class="Projects">
-    <div class="Container">
+<!--    <div class="Container">-->
       <div class="Decor">
         <span class="Decor-Line Left"></span>
         <div class="Decor-Text">
@@ -12,7 +12,7 @@
         Наши проекты на tv
       </h2>
       <ProjectSlider/>
-    </div>
+<!--    </div>-->
   </section>
 </template>
 
@@ -34,11 +34,25 @@ export default {
 
 <style scoped lang="scss">
 .Projects {
-  padding: 35px 0 108px;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 35px 0 153px;
+  position: relative;
 
-  .Container {
+  @media (min-width: $screen-xl) {
+    max-width: 1320px;
+  }
+
+  @media (min-width: $screen-xxxl) {
+    max-width: 1920px;
+  }
+
+  .Decor {
+    left: -56.2%;
+
     @media (min-width: $screen-xxxl) {
-      //max-width: 1480px;
+      left: -38.65%;
     }
   }
 

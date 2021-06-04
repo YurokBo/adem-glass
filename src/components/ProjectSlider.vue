@@ -1,49 +1,59 @@
 <template>
-  <swiper class="ProjectsSlider"
-          :options="optionSlider"
-  >
-    <swiper-slide class="ProjectsSlider-Slide"
-                  v-for="(item) in slides"
-                  :key="item.id"
+  <div class="ProjectsSlider">
+    <swiper class="ProjectsSlider-Slider"
+            :options="optionSlider"
     >
-      <div class="ProjectsSlider-Photo thumb-example">
-        <!-- swiper1 -->
-                <swiper class="ProjectsSlider-PhotoTop swiper gallery-top"
-                        :options="swiperOptionTop"
-                        :thumbs="{ swiper: thumbsSwiper }"
-                >
-                  <swiper-slide v-for="(item) in item.images"
-                                :key="item.id">
-                    <img :src="require(`@/assets/image/${item}`)" alt="" class="ProjectsSlider-PhotoTopImg">
-                  </swiper-slide>
-                </swiper>
-        <!-- swiper2 Thumbs -->
-                <swiper class="ProjectsSlider-PhotoBottom swiper gallery-thumbs"
-                        :options="swiperOptionThumbs" @click="setThumbsSwiper"
-                >
-                  <swiper-slide v-for="(item) in item.images"
-                                :key="item.id">
-                    <img :src="require(`@/assets/image/${item}`)" alt="" class="ProjectsSlider-PhotoBottomImg">
-                  </swiper-slide>
-                </swiper>
+      <swiper-slide class="ProjectsSlider-Slide"
+                    v-for="(item) in slides"
+                    :key="item.id"
+      >
+        <div class="ProjectsSlider-Photo thumb-example">
+          <!-- swiper1 -->
+          <swiper class="ProjectsSlider-PhotoTop swiper gallery-top"
+                  :options="swiperOptionTop"
+                  :thumbs="{ swiper: thumbsSwiper }"
+          >
+            <swiper-slide v-for="(item) in item.images"
+                          :key="item.id">
+              <img :src="require(`@/assets/image/${item}`)" alt="" class="ProjectsSlider-PhotoTopImg">
+            </swiper-slide>
+          </swiper>
+          <!-- swiper2 Thumbs -->
+          <swiper class="ProjectsSlider-PhotoBottom swiper gallery-thumbs"
+                  :options="swiperOptionThumbs" @swiper="setThumbsSwiper"
+                  ref="swiperThumbs"
+                  :freeMode="true" :watchSlidesVisibility="true" :watchSlidesProgress="true"
+          >
+            <swiper-slide v-for="(item) in item.images"
+                          :key="item.id">
+              <img :src="require(`@/assets/image/${item}`)" alt="" class="ProjectsSlider-PhotoBottomImg">
+            </swiper-slide>
+          </swiper>
+        </div>
+        <div class="ProjectsSlider-SliderContent">
+          <div class="ProjectsSlider-Name">{{ item.name }}</div>
+          <div class="ProjectsSlider-Title">{{ item.title }}</div>
+          <ul class="ProjectsSlider-List">
+            <li class="ProjectsSlider-Item" v-for="item in item.list" :key="item.id">
+              {{ item }}
+            </li>
+          </ul>
+        </div>
+      </swiper-slide>
+<!--      <div v-if="width > 1024" class="swiper-button-prev" slot="button-prev">
+        <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
       </div>
-      <div class="ProjectsSlider-SliderContent">
-        <div class="ProjectsSlider-Name">{{ item.name }}</div>
-        <div class="ProjectsSlider-Title">{{ item.title }}</div>
-        <ul class="ProjectsSlider-List">
-          <li class="ProjectsSlider-Item" v-for="item in item.list" :key="item.id">
-            {{ item }}
-          </li>
-        </ul>
-      </div>
-    </swiper-slide>
-    <div class="swiper-button-prev" slot="button-prev">
+      <div v-if="width > 1024" class="swiper-button-next" slot="button-next">
+        <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
+      </div>-->
+    </swiper>
+    <div  class="swiper-button swiper-button-prev" slot="button-prev">
       <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
     </div>
-    <div class="swiper-button-next" slot="button-next">
+    <div  class="swiper-button swiper-button-next" slot="button-next">
       <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
     </div>
-  </swiper>
+  </div>
 </template>
 
 <script>
@@ -70,11 +80,21 @@ export default {
       optionSlider: {
         slidesPerView: 'auto',
         centeredSlides: true,
-        spaceBetween: -30,
+        spaceBetween: 10,
         loop: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
+        },
+        breakpoints: {
+          1024: {
+            spaceBetween: -30,
+          },
+          1320: {
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: -30,
+          }
         }
       },
       swiperOptionTop: {
@@ -84,7 +104,7 @@ export default {
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
-        }
+        },
       },
       swiperOptionThumbs: {
         loop: true,
@@ -169,16 +189,15 @@ export default {
   methods: {
     setThumbsSwiper(swiper) {
       this.thumbsSwiper = swiper;
-      alert(this.thumbsSwiper)
     },
   },
   mounted() {
-    this.$nextTick(() => {
-      // const swiperTop = this.$refs.swiperTop.$swiper
-      // const swiperThumbs = this.$refs.swiperThumbs.$swiper
-      // swiperTop.controller.control = swiperThumbs
-      // swiperThumbs.controller.control = swiperTop
-    })
+    // this.$nextTick(() => {
+    //   const swiperTop = this.$refs.swiperTop.$swiper
+    //   const swiperThumbs = this.$refs.swiperThumbs.$swiper
+    //   swiperTop.controller.control = swiperThumbs
+    //   swiperThumbs.controller.control = swiperTop
+    // })
   }
 }
 </script>
@@ -189,15 +208,25 @@ export default {
   &-Slide {
     min-width: 0;
     min-height: 0;
-    width: 868px;
-    height: 426px;
+    width: 330px;
     padding: 34px 32px 32px 32px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     border-radius: 8px;
     background-color: var(--color-bg-faq);
     box-shadow: 0px 2px 6px 0px rgba(160, 153, 146, 0.7);
-    //transform: scale(.8);
+
+    @media (min-width: $screen-s) {
+      width: 390px;
+    }
+
+    @media (min-width: 1024px) {
+      width: 868px;
+      flex-direction: row;
+      align-items: flex-start;
+    }
   }
 
   &-SliderContent {
@@ -208,31 +237,35 @@ export default {
   &-Name {
     margin-bottom: 15px;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 16px;
     letter-spacing: .032em;
     line-height: 1.25;
     color: var(--color-text-dark-light);
     text-align: center;
+
+    @media (min-width: $screen-m) {
+      font-size: 24px;
+    }
   }
 
   &-Title {
     margin-bottom: 30px;
     font-weight: 700;
-    font-size: 26px;
+    font-size: 20px;
     letter-spacing: .032em;
     line-height: 1.154;
     color: var(--color-text-dark);
     text-align: center;
-  }
 
-  &-List {
-
+    @media (min-width: $screen-m) {
+      font-size: 26px;
+    }
   }
 
   &-Item {
     margin-bottom: 20px;
     padding-left: 20px;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: .022em;
     line-height: 1.444;
     color: var(--color-text-dark);
@@ -254,6 +287,10 @@ export default {
       background-size: cover;
       background-repeat: no-repeat;
     }
+
+    @media (min-width: $screen-m) {
+      font-size: 18px;
+    }
   }
 
   .swiper-slide {
@@ -262,16 +299,6 @@ export default {
 
   .swiper-slide-active {
     transform: scale(0.99);
-    //margin-left: -30px;
-    //margin-right: -30px;
-  }
-
-  .swiper-slide-next {
-   // margin-left: -30px;
-  }
-
-  .swiper-slide-prev {
-    //margin-right: -30px;
   }
 
   .swiper-button-prev,
@@ -285,14 +312,60 @@ export default {
   }
 
   .swiper-button-next, {
-    right: 107px;
+    right: 28%;
+
+    @media (min-width: $screen-xs) {
+      right: 150px;
+    }
+
+    @media (min-width: 1024px) {
+      right: 80px;
+    }
+
+    @media (min-width: $screen-xxxl) {
+      right: 23.2%;
+    }
   }
+
   .swiper-button-prev, {
-    left: 107px;
+    left: 28%;
+
+    @media (min-width: $screen-xs) {
+      left: 150px;
+    }
+    @media (min-width: 1024px) {
+      left: 80px;
+    }
+
+    @media (min-width: $screen-xxxl) {
+      left: 23.2%;
+    }
+  }
+
+  .swiper-button {
+    top: 87%;
+
+    @media (min-width: $screen-s) {
+      top: 90%;
+    }
+
+    @media (min-width: 1024px) {
+      top: 50%;
+    }
   }
 
   &-Photo {
-    width: 384px;
+    width: 346px;
+    margin-bottom: 30px;
+
+    @media (min-width: $screen-s) {
+      width: 384px;
+    }
+
+    @media (min-width: 1024px) {
+      margin-bottom: 0;
+    }
+
     .swiper-slide {
       transform: scale(0.99);
     }
@@ -306,10 +379,10 @@ export default {
     width: 123px;
     border-radius: 8px;
   }
+
   &-PhotoTopImg {
     border-radius: 8px;
   }
 }
-
 
 </style>
