@@ -3,6 +3,7 @@
     <Header/>
     <Variables/>
     <Form/>
+    <Examples />
     <About/>
     <Projects/>
     <Faq/>
@@ -18,10 +19,12 @@ import Variables from "@/components/Variables";
 import About from "@/components/About";
 import Faq from "@/components/Faq";
 import Projects from "@/components/Projects";
+import Examples from "@/components/Examples";
 
 export default {
   name: "HomePage",
   components: {
+    Examples,
     Projects,
 
     Faq,
