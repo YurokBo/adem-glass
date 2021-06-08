@@ -8,23 +8,41 @@
         </div>
         <span class="Decor-Line Right"></span>
       </div>
-      <h2 class="Title Projects-Title">
+      <h2 class="Title Examples-Title">
         Примеры стекла и зеркал
       </h2>
       <div class="Examples-Btns">
-        <div class="Examples-Btn"
-             v-for="(button) in buttons"
-             :key="button.id"
-        >
-          <input :id="button.type"
-                 class="Examples-Input"
-                 type="radio"
-                 v-model="selectedCategory" :value="button.type"
+        <div class="Examples-BtnRow">
+          <div class="Examples-Btn"
+               v-for="(button) in buttons.top"
+               :key="button.id"
           >
-          <label class="Examples-Label"
-                 :for="button.type">
-            {{ button.name }}
-          </label>
+            <input :id="button.type"
+                   class="Examples-Input"
+                   type="radio"
+                   v-model="selectedCategory" :value="button.type"
+            >
+            <label class="Examples-Label"
+                   :for="button.type">
+              {{ button.name }}
+            </label>
+          </div>
+        </div>
+        <div class="Examples-BtnRow">
+          <div class="Examples-Btn"
+               v-for="(button) in buttons.bottom"
+               :key="button.id"
+          >
+            <input :id="button.type"
+                   class="Examples-Input"
+                   type="radio"
+                   v-model="selectedCategory" :value="button.type"
+            >
+            <label class="Examples-Label"
+                   :for="button.type">
+              {{ button.name }}
+            </label>
+          </div>
         </div>
       </div>
     </div>
@@ -37,17 +55,21 @@ export default {
   data() {
     return {
       selectedCategory: "gloss",
-      buttons: [
-        {name: "Современный рисунок", type: "modern", isActive: false},
-        {name: "Рифленое стекло", type: "corrugated", isActive: false},
-        {name: "Окрашенное стекло, глянец", type: "gloss", isActive: true},
-        {name: "Цветное зеркало", type: "colored", isActive: false},
-        {name: "Природный рисунок", type: "natural", isActive: false},
-        {name: "Тонированое стекло", type: "toned", isActive: false},
-        {name: "Окрашенное стекло, матовое", type: "matt", isActive: false},
-        {name: "Состаренное стекло копия", type: "old", isActive: false},
-        {name: "Стекло имитация бетона и мрамора", type: "imitation", isActive: false},
-      ],
+      buttons: {
+        top: [
+          {name: "Современный рисунок", type: "modern", isActive: false},
+          {name: "Рифленое стекло", type: "corrugated", isActive: false},
+          {name: "Окрашенное стекло, глянец", type: "gloss", isActive: true},
+          {name: "Цветное зеркало", type: "colored", isActive: false},
+          {name: "Природный рисунок", type: "natural", isActive: false},
+        ],
+        bottom: [
+          {name: "Тонированое стекло", type: "toned", isActive: false},
+          {name: "Окрашенное стекло, матовое", type: "matt", isActive: false},
+          {name: "Состаренное стекло копия", type: "old", isActive: false},
+          {name: "Стекло имитация бетона и мрамора", type: "imitation", isActive: false},
+        ]
+      },
       sliderInfo: [
         {id: "1", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
         {id: "2", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
@@ -82,55 +104,96 @@ export default {
 <style scoped lang="scss">
 
 .Examples {
+  padding: 85px 0;
+
+  &-Title {
+    margin-bottom: 52px;
+    text-align: center;
+    color: var(--color-text-dark);
+  }
+
   &-Btns {
-    display: grid;
-    grid-template: repeat(2, 1fr)/repeat(5,1fr);
-    justify-self: center;
-    align-self: center;
+
+  }
+
+  &-BtnRow {
+    display: flex;
+    justify-content: center;
     align-items: center;
     white-space: nowrap;
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
+
   &-Btn {
+    padding: 21px 29px;
+    border: 1px solid var(--color-border-color);
+    background-image: var(--color-bg-label2);
+    text-align: center;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 16px solid transparent;
+      border-left: 175px solid var(--color-text-main3);
+      border-top: 0 solid var(--color-text-main3);
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      border: 16px solid transparent;
+      border-right: 175px solid var(--color-text-main3);
+      border-top: 0 solid var(--color-text-main3);
+    }
 
     @media (min-width: $screen-l) {
-      border: 3px solid var(--color-text-light);
+      //border: 3px solid var(--color-text-light);
 
       &:nth-child(2) {
-        border-left: none;
-        border-right: none;
+        //border-left: none;
+        //border-right: none;
       }
     }
   }
 
+
   &-Label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 326px;
-    padding: 12px;
+    //display: flex;
+    //align-items: center;
+    //justify-content: center;
+    //width: 326px;
     cursor: pointer;
-    font-family: 'Lexend', sans-serif;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 1.69em;
-    text-transform: uppercase;
-    color: var(--color-text-light);
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.44em;
+    letter-spacing: .022em;
+    color: var(--color-text-main4);
     transition: .3s;
 
     &:hover,
     &:focus {
-      background-color: var(--color-text-light);
-      color: var(--color-text-main3);
+      //background-color: var(--color-text-light);
+      //color: var(--color-text-main3);
     }
   }
+
   &-Input {
     display: none;
     position: absolute;
     visibility: hidden;
     z-index: -9999;
-    left:-9999;
+    left: -9999;
     right: -9999;
   }
+
 }
 
 </style>

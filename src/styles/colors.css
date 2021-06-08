@@ -3,6 +3,7 @@
     --color-text-main: rgb(253, 247, 242); /*fdf7f2*/
     --color-text-main2: rgb(227, 225, 223); /*e3e1df*/
     --color-text-main3: rgb(255, 255, 255);
+    --color-text-main4: #6e5e48;
     --color-text-faq: rgb(100, 86, 72);
     --color-text-faq-light: rgba(100, 86, 72, 0.639);
     --color-text-faq-light2: rgb(168, 162, 156);
@@ -20,9 +21,11 @@
     --color-bg-btn-before: linear-gradient( 0deg, rgb(195,139,66) 0%, rgb(225,184,122) 57%, rgb(254,229,178) 100%);
     --color-bg-btn: linear-gradient( 0deg, rgb(162,116,56) 0%, rgb(208,173,117) 57%, rgb(254,229,178) 100%);
     --color-bg-label: linear-gradient( 0deg, rgb(225,181,124) 0%, rgb(240,213,176) 57%, rgb(254,245,228) 100%);
+    --color-bg-label2: linear-gradient( 360deg, rgb(237,236,234) 0%, rgb(255,255,255) 100%);
     --color-bg-decor: rgba(243, 203, 171,.6);
     --color-bg-input: rgb(249, 247, 245);
     --color-bg-footer-mobile: #483725;
     --color-bg-faq: rgb(244, 242, 245);
     --color-bg-faq-border: rgba(204, 161, 105, .5);
+    --color-border-color: rgb(209, 208, 207);
 }
