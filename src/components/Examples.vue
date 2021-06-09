@@ -16,6 +16,7 @@
           <div class="Examples-Btn"
                v-for="(button) in buttons.top"
                :key="button.id"
+               :class="button.class"
           >
             <input :id="button.type"
                    class="Examples-Input"
@@ -39,7 +40,8 @@
                    v-model="selectedCategory" :value="button.type"
             >
             <label class="Examples-Label"
-                   :for="button.type">
+                   :for="button.type"
+            >
               {{ button.name }}
             </label>
           </div>
@@ -54,20 +56,20 @@ export default {
   name: "Examples",
   data() {
     return {
-      selectedCategory: "gloss",
+      selectedCategory: "natural",
       buttons: {
         top: [
-          {name: "Современный рисунок", type: "modern", isActive: false},
-          {name: "Рифленое стекло", type: "corrugated", isActive: false},
-          {name: "Окрашенное стекло, глянец", type: "gloss", isActive: true},
-          {name: "Цветное зеркало", type: "colored", isActive: false},
-          {name: "Природный рисунок", type: "natural", isActive: false},
+          {name: "Цветное зеркало", type: "colored",},
+          {name: "Рифленое стекло", type: "corrugated",},
+          {name: "Природный рисунок", type: "natural",},
+          {name: "Окрашенное, глянец", type: "gloss",},
+          {name: "Стекло имитация бетона и мрамора", type: "imitation", class: "Btn--centered"},
         ],
         bottom: [
-          {name: "Тонированое стекло", type: "toned", isActive: false},
-          {name: "Окрашенное стекло, матовое", type: "matt", isActive: false},
-          {name: "Состаренное стекло копия", type: "old", isActive: false},
-          {name: "Стекло имитация бетона и мрамора", type: "imitation", isActive: false},
+          {name: "Современный рисунок", type: "modern",},
+          {name: "Окрашенное, матовое", type: "matt",},
+          {name: "Тонированое стекло", type: "toned",},
+          {name: "Состаренное стекло", type: "old",},
         ]
       },
       sliderInfo: [
@@ -118,51 +120,79 @@ export default {
 
   &-Btns {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    @media (min-width: $screen-xl) {
+      flex-direction: column;
+    }
   }
 
   &-BtnRow {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+    //flex-wrap: wrap;
     white-space: nowrap;
-    margin-bottom: 60px;
+    //margin-bottom: 60px;
 
     &:last-child {
+      align-items: flex-start;
       margin-bottom: 0;
+      //margin-top: -65px;
+      @media (min-width: $screen-xl) {
+        margin-top: 0;
+      }
     }
 
     @media (min-width: $screen-xl) {
+      margin-bottom: 60px;
       flex-direction: row;
     }
   }
 
   &-Btn {
     text-align: center;
-
-    @media (min-width: $screen-l) {
+    margin-bottom: 28px;
+    &:nth-child(5) {
+      //margin-left: 50px;
+    }
+    @media (min-width: $screen-xl) {
+      margin-bottom: 0;
       //border: 3px solid var(--color-text-light);
 
-      &:nth-child(2) {
-        //border-left: none;
-        //border-right: none;
-      }
+    }
+  }
+  .Btn--centered {
+    margin-bottom: 0;
+    position: absolute;
+    bottom: -21px;
+    left: 20%;
+    @media (min-width: $screen-xl) {
+      position: relative;
+      bottom: 0;
+      left: 0;
     }
   }
 
-
   &-Label {
-    padding: 21px 29px;
+    padding: 15px 20px;
     cursor: pointer;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 12px;
     line-height: 1.44em;
     letter-spacing: .022em;
+    text-align: center;
     color: var(--color-text-main4);
     transition: .3s;
     position: relative;
+
+    @media (min-width: $screen-xl) {
+      padding: 21px 29px;
+      font-size: 18px;
+    }
 
     &:hover,
     &:focus {
@@ -192,8 +222,7 @@ export default {
     position: absolute;
     visibility: hidden;
     z-index: -9999;
-    left: -9999;
-    right: -9999;
+    left: -9999px;
   }
 
   input:checked + label:after {
