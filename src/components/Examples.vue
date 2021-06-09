@@ -167,6 +167,7 @@ export default {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  mix-blend-mode: multiply;
 
   .Decor-Text {
     color: var(--color-text-btn);
