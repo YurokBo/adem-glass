@@ -106,6 +106,10 @@ export default {
 .Examples {
   padding: 85px 0;
 
+  .Decor-Text {
+    color: var(--color-text-btn);
+  }
+
   &-Title {
     margin-bottom: 52px;
     text-align: center;
@@ -113,11 +117,14 @@ export default {
   }
 
   &-Btns {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &-BtnRow {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     white-space: nowrap;
@@ -125,6 +132,10 @@ export default {
 
     &:last-child {
       margin-bottom: 0;
+    }
+
+    @media (min-width: $screen-xl) {
+      flex-direction: row;
     }
   }
 
@@ -157,6 +168,7 @@ export default {
     &:focus {
       &:after {
         background-image: var(--color-bg-input-checked);
+        border: 1px solid var(--color-bg-input-checked);
       }
     }
 
@@ -186,7 +198,7 @@ export default {
 
   input:checked + label:after {
     background-image: var(--color-bg-input-checked);
-    //color: var(--color-text-main3);
+    border: 1px solid var(--color-bg-input-checked);
   }
 }
 
