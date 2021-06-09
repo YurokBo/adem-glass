@@ -24,6 +24,7 @@
     --color-bg-label2: linear-gradient( 360deg, rgb(237,236,234) 0%, rgb(255,255,255) 100%);
     --color-bg-decor: rgba(243, 203, 171,.6);
     --color-bg-input: rgb(249, 247, 245);
+    --color-bg-input-checked: linear-gradient( -360deg, rgb(225,181,124) 0%, rgb(240,213,176) 57%, rgb(254,245,228) 100%);
     --color-bg-footer-mobile: #483725;
     --color-bg-faq: rgb(244, 242, 245);
     --color-bg-faq-border: rgba(204, 161, 105, .5);

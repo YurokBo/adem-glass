@@ -121,7 +121,7 @@ export default {
     justify-content: center;
     align-items: center;
     white-space: nowrap;
-    margin-bottom: 15px;
+    margin-bottom: 60px;
 
     &:last-child {
       margin-bottom: 0;
@@ -129,30 +129,7 @@ export default {
   }
 
   &-Btn {
-    padding: 21px 29px;
-    border: 1px solid var(--color-border-color);
-    background-image: var(--color-bg-label2);
     text-align: center;
-    position: relative;
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      border: 16px solid transparent;
-      border-left: 175px solid var(--color-text-main3);
-      border-top: 0 solid var(--color-text-main3);
-    }
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      border: 16px solid transparent;
-      border-right: 175px solid var(--color-text-main3);
-      border-top: 0 solid var(--color-text-main3);
-    }
 
     @media (min-width: $screen-l) {
       //border: 3px solid var(--color-text-light);
@@ -166,10 +143,7 @@ export default {
 
 
   &-Label {
-    //display: flex;
-    //align-items: center;
-    //justify-content: center;
-    //width: 326px;
+    padding: 21px 29px;
     cursor: pointer;
     font-weight: 300;
     font-size: 18px;
@@ -177,11 +151,27 @@ export default {
     letter-spacing: .022em;
     color: var(--color-text-main4);
     transition: .3s;
+    position: relative;
 
     &:hover,
     &:focus {
-      //background-color: var(--color-text-light);
-      //color: var(--color-text-main3);
+      &:after {
+        background-image: var(--color-bg-input-checked);
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border: 1px solid var(--color-border-color);
+      border-radius: 4px;
+      background-image: var(--color-bg-label2);
+      z-index: -1;
+      transform: skew(-25deg);
     }
   }
 
@@ -194,6 +184,10 @@ export default {
     right: -9999;
   }
 
+  input:checked + label:after {
+    background-image: var(--color-bg-input-checked);
+    //color: var(--color-text-main3);
+  }
 }
 
 </style>
