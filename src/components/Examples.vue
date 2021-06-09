@@ -47,15 +47,71 @@
           </div>
         </div>
       </div>
+      <div class="Examples-SliderBox">
+        <swiper class="Examples-Slider"
+                :options="optionSlider"
+        >
+          <swiper-slide
+              class="Examples-Slide"
+              v-for="(slide) in sliderInfo"
+              :key="slide.id"
+          >
+            <img
+                :src="require(`@/assets/image/${slide.img}`)"
+                alt=""
+                class="Examples-SlideImg"
+            >
+            <div class="Examples-SlideTitle">{{ slide.title }}</div>
+          </swiper-slide>
+        </swiper>
+        <div class="Examples-SliderBtns">
+          <div class="swiper-button swiper-button-prev" slot="button-prev">
+            <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button swiper-button-next" slot="button-next">
+            <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
+import 'swiper/swiper-bundle.css'
+
+import SwiperCore, {
+  Navigation,Pagination
+} from 'swiper/core';
+
+// install Swiper modules
+SwiperCore.use([Navigation,Pagination]);
 export default {
   name: "Examples",
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   data() {
     return {
+      optionSlider: {
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        initialSlide: 5,
+        spaceBetween: 10,
+        loop: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+      },
       selectedCategory: "natural",
       buttons: {
         top: [
@@ -107,6 +163,10 @@ export default {
 
 .Examples {
   padding: 85px 0;
+  background-image: url(~@/assets/image/example-bg.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 
   .Decor-Text {
     color: var(--color-text-btn);
@@ -125,6 +185,7 @@ export default {
     align-items: center;
     @media (min-width: $screen-xl) {
       flex-direction: column;
+      margin-bottom: 85px;
     }
   }
 
@@ -156,15 +217,18 @@ export default {
   &-Btn {
     text-align: center;
     margin-bottom: 28px;
+
     &:nth-child(5) {
       //margin-left: 50px;
     }
+
     @media (min-width: $screen-xl) {
       margin-bottom: 0;
       //border: 3px solid var(--color-text-light);
 
     }
   }
+
   .Btn--centered {
     margin-bottom: 0;
     position: absolute;
@@ -228,6 +292,34 @@ export default {
   input:checked + label:after {
     background-image: var(--color-bg-input-checked);
     border: 1px solid var(--color-bg-input-checked);
+  }
+
+  &-SliderBtns {
+    position: relative;
+    width: 402px;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  .swiper-button-prev,
+  .swiper-button-next, {
+    width: 69px;
+    height: 69px;
+
+    &:after {
+      content: none;
+    }
+  }
+  .swiper-pagination-bullets-dynamic {
+    width: 100%!important;
+    left: 56%;
+    transform: translate(-50%, 0);
+  }
+  .swiper-pagination-bullet {
+    background: var(--color-bg-faq)!important;
+  }
+  .swiper-pagination-bullet-active {
+    background: var(--color-bg-btn-before)!important;
   }
 }
 

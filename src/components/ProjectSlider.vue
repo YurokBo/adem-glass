@@ -59,7 +59,7 @@
 <script>
 import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
-//import "swiper/components/navigation/navigation.min.css"
+
 import "swiper/components/thumbs/thumbs.min.css"
 import SwiperCore, {
   Navigation, Thumbs
