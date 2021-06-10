@@ -56,11 +56,13 @@
               v-for="(slide) in sliderInfo"
               :key="slide.id"
           >
-            <img
-                :src="require(`@/assets/image/${slide.img}`)"
-                alt=""
-                class="Examples-SlideImg"
-            >
+            <div class="Examples-SlideImgBox">
+              <img
+                  :src="require(`@/assets/image/${slide.img}`)"
+                  alt=""
+                  class="Examples-SlideImg"
+              >
+            </div>
             <div class="Examples-SlideTitle">{{ slide.title }}</div>
           </swiper-slide>
         </swiper>
@@ -111,6 +113,16 @@ export default {
           clickable: true,
           dynamicBullets: true,
         },
+        breakpoints: {
+          1024: {
+            spaceBetween: -190,
+          },
+          1320: {
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: -860,
+          }
+        }
       },
       selectedCategory: "natural",
       buttons: {
@@ -130,7 +142,7 @@ export default {
       },
       sliderInfo: [
         {id: "1", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
-        {id: "2", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
+        {id: "2", img: "example-1.png", title: "Лакобель 9003", type: "modern"},
         {id: "3", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
         {id: "4", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
         {id: "5", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
@@ -295,6 +307,51 @@ export default {
     border: 1px solid var(--color-bg-input-checked);
   }
 
+
+  &-Slider {
+    width: 1040px;
+    text-align: center;
+  }
+
+  .swiper-slide {
+    transform: scale(0.85);
+  }
+
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    transform: scale(0.92);
+  }
+  .swiper-slide-next {
+    z-index: 9;
+  }
+  .swiper-slide-next ~ .swiper-slide {
+    z-index: 8;
+  }
+
+  .swiper-slide-active {
+    transform: scale(0.99);
+    z-index: 10;
+    .Example-SlideImgBox {
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &-SlideImgBox {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      background-color: var(--color-body);
+      opacity: .4;
+    }
+  }
   &-SliderBtns {
     position: relative;
     width: 402px;
