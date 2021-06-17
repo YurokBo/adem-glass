@@ -21,7 +21,8 @@
             <input :id="button.type"
                    class="Examples-Input"
                    type="radio"
-                   v-model="selectedCategory" :value="button.type"
+                   v-model="selectedCategory"
+                   :value="button.type"
             >
             <label class="Examples-Label"
                    :for="button.type">
@@ -53,7 +54,7 @@
         >
           <swiper-slide
               class="Examples-Slide"
-              v-for="(slide) in sliderInfo"
+              v-for="(slide) in filteredPeople"
               :key="slide.id"
           >
             <div class="Examples-SlideImgBox">
@@ -83,13 +84,15 @@
 <script>
 import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
+// styles required for Pagination component
+import 'swiper/components/pagination/pagination.min.css';
 
 import SwiperCore, {
-  Navigation,Pagination
+  Navigation, Pagination
 } from 'swiper/core';
 
 // install Swiper modules
-SwiperCore.use([Navigation,Pagination]);
+SwiperCore.use([Navigation, Pagination]);
 export default {
   name: "Examples",
   components: {
@@ -108,11 +111,11 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         },
-        pagination: {
+        /*pagination: {
           el: ".swiper-pagination",
           clickable: true,
-          dynamicBullets: true,
-        },
+          type: 'bullets',
+        },*/
         breakpoints: {
           1024: {
             spaceBetween: -190,
@@ -141,31 +144,39 @@ export default {
         ]
       },
       sliderInfo: [
-        {id: "1", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
-        {id: "2", img: "example-1.png", title: "Лакобель 9003", type: "modern"},
-        {id: "3", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
-        {id: "4", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
-        {id: "5", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
-        {id: "6", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
-        {id: "7", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
-        {id: "8", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
-        {id: "9", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
-        {id: "10", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
-        {id: "11", img: "example-1.png", title: "Лакобель 9003", type: "gloss"},
+        {id: "1", img: "example-1.png", title: "gloss 9003", type: "gloss"},
+        {id: "2", img: "example-1.png", title: "modern 9003", type: "modern"},
+        {id: "3", img: "example-1.png", title: "gloss 9003", type: "gloss"},
+        {id: "4", img: "example-1.png", title: "gloss 9003", type: "gloss"},
+        {id: "5", img: "example-1.png", title: "gloss 9003", type: "gloss"},
+        {id: "6", img: "example-1.png", title: "corrugated 9003", type: "corrugated"},
+        {id: "7", img: "example-1.png", title: "corrugated 9003", type: "corrugated"},
+        {id: "8", img: "example-1.png", title: "corrugated 9003", type: "corrugated"},
+        {id: "9", img: "example-1.png", title: "corrugated 9003", type: "corrugated"},
+        {id: "10", img: "example-1.png", title: "gloss 9003", type: "gloss"},
+        {id: "11", img: "example-1.png", title: "gloss 9003", type: "gloss"},
+        {id: "12", img: "example-1.png", title: "natural 9003", type: "natural"},
+        {id: "13", img: "example-1.png", title: "natural 9003", type: "natural"},
+        {id: "14", img: "example-1.png", title: "natural 9003", type: "natural"},
+        {id: "15", img: "example-1.png", title: "natural 9003", type: "natural"},
+        {id: "16", img: "example-1.png", title: "gloss 9003", type: "gloss"},
+        {id: "17", img: "example-1.png", title: "gloss 9003", type: "gloss"},
+        {id: "18", img: "example-1.png", title: "gloss 9003", type: "gloss"},
+        {id: "19", img: "example-1.png", title: "modern 9003", type: "modern"},
+        {id: "20", img: "example-1.png", title: "modern 9003", type: "modern"},
+        {id: "21", img: "example-1.png", title: "modern 9003", type: "modern"},
+        {id: "22", img: "example-1.png", title: "modern 9003", type: "modern"},
+        {id: "23", img: "example-1.png", title: "modern 9003", type: "modern"},
+
       ]
     }
   },
   computed: {
     filteredPeople: function () {
       let category = this.selectedCategory;
-
-      if (category === "gloss") {
-        return this.cardInfo;
-      } else {
-        return this.cardInfo.filter(function (info) {
-          return info.type === category;
-        });
-      }
+      return this.sliderInfo.filter(function (info) {
+        return info.type === category
+      });
     }
   }
 }
@@ -310,6 +321,7 @@ export default {
 
   &-Slider {
     width: 1040px;
+    margin-bottom: 51px;
     text-align: center;
   }
 
@@ -321,9 +333,11 @@ export default {
   .swiper-slide-next {
     transform: scale(0.92);
   }
+
   .swiper-slide-next {
     z-index: 9;
   }
+
   .swiper-slide-next ~ .swiper-slide {
     z-index: 8;
   }
@@ -331,27 +345,22 @@ export default {
   .swiper-slide-active {
     transform: scale(0.99);
     z-index: 10;
-    .Example-SlideImgBox {
-      &:before {
-        opacity: 1;
-      }
+
+    .Examples-SlideTitle {
+      display: block;
     }
   }
 
   &-SlideImgBox {
-    position: relative;
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 100%;
-      background-color: var(--color-body);
-      opacity: .4;
-    }
+    margin-bottom: 35px;
   }
+
+  &-SlideTitle {
+    display: none;
+    font-size: 20px;
+    color: var(--color-text-grey);
+  }
+
   &-SliderBtns {
     position: relative;
     width: 402px;
@@ -359,6 +368,7 @@ export default {
     left: 50%;
     transform: translate(-50%, 0);
   }
+
   .swiper-button-prev,
   .swiper-button-next, {
     width: 69px;
@@ -368,17 +378,6 @@ export default {
       content: none;
     }
   }
-  .swiper-pagination-bullets-dynamic {
-    width: 100%!important;
-    left: 56%;
-    transform: translate(-50%, 0);
-  }
-  .swiper-pagination-bullet {
-    background: var(--color-bg-faq)!important;
-  }
-  .swiper-pagination-bullet-active {
-    background: var(--color-bg-btn-before)!important;
-  }
-}
 
+}
 </style>
