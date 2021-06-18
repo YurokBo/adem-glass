@@ -105,7 +105,7 @@ export default {
         slidesPerView: 'auto',
         centeredSlides: true,
         initialSlide: 5,
-        spaceBetween: 10,
+        spaceBetween: -280,
         loop: true,
         navigation: {
           nextEl: '.swiper-button-next',
@@ -117,13 +117,15 @@ export default {
           type: 'bullets',
         },*/
         breakpoints: {
-          1024: {
-            spaceBetween: -190,
-          },
-          1320: {
+          1070: {
             slidesPerView: 'auto',
             centeredSlides: true,
             spaceBetween: -860,
+          },
+          1320: {
+
+
+
           }
         }
       },
@@ -207,9 +209,9 @@ export default {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-bottom: 85px;
     @media (min-width: $screen-xl) {
       flex-direction: column;
-      margin-bottom: 85px;
     }
   }
 
@@ -320,13 +322,28 @@ export default {
 
 
   &-Slider {
-    width: 1040px;
+    width: 390px;
     margin-bottom: 51px;
     text-align: center;
+
+    @media (min-width: 1070px) {
+      width: 1040px;
+    }
+
   }
 
   .swiper-slide {
     transform: scale(0.85);
+    .Examples-SlideImgBox {
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255,255,255,.5);
+      }
+    }
   }
 
   .swiper-slide-prev,
@@ -346,13 +363,23 @@ export default {
     transform: scale(0.99);
     z-index: 10;
 
+    .Examples-SlideImgBox {
+      &:before {
+        display: none;
+      }
+    }
+
     .Examples-SlideTitle {
       display: block;
     }
   }
 
   &-SlideImgBox {
-    margin-bottom: 35px;
+    width: 290px;
+    margin: 0 auto 35px;
+    @media (min-width: 1070px) {
+      width: 460px;
+    }
   }
 
   &-SlideTitle {
@@ -363,19 +390,27 @@ export default {
 
   &-SliderBtns {
     position: relative;
-    width: 402px;
+    width: 200px;
     top: 100%;
     left: 50%;
     transform: translate(-50%, 0);
+    @media (min-width: 1070px) {
+      width: 402px;
+    }
   }
 
   .swiper-button-prev,
   .swiper-button-next, {
-    width: 69px;
-    height: 69px;
+    width: 59px;
+    height: 59px;
 
     &:after {
       content: none;
+    }
+
+    @media (min-width: 1070px) {
+      width: 69px;
+      height: 69px;
     }
   }
 
