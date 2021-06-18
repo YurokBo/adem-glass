@@ -2,6 +2,7 @@
   <div>
     <Header/>
     <Variables/>
+    <Price />
     <Form/>
     <Examples />
     <About/>
@@ -20,10 +21,12 @@ import About from "@/components/About";
 import Faq from "@/components/Faq";
 import Projects from "@/components/Projects";
 import Examples from "@/components/Examples";
+import Price from "@/components/Price";
 
 export default {
   name: "HomePage",
   components: {
+    Price,
     Examples,
     Projects,
 
