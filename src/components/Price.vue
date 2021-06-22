@@ -12,9 +12,9 @@
         Посмотрите примеры<br/> наших работ с ценами
       </h2>
       <div class="Price-Btns">
-        <div class="Price-BtnRow">
+<!--        <div class="Price-BtnRow">-->
           <div class="Price-Btn"
-               v-for="(button) in buttons.top"
+               v-for="(button) in buttons"
                :key="button.id"
           >
             <input :id="button.type"
@@ -28,8 +28,8 @@
               {{ button.name }}
             </label>
           </div>
-        </div>
-        <div class="Price-BtnRow">
+<!--        </div>-->
+<!--        <div class="Price-BtnRow">
           <div class="Price-Btn"
                v-for="(button) in buttons.bottom"
                :key="button.id"
@@ -45,9 +45,9 @@
               {{ button.name }}
             </label>
           </div>
-        </div>
+        </div>-->
       </div>
-      <div class="Price-SliderBox">
+<!--      <div class="Price-SliderBox">
         <swiper class="Price-Slider"
                 :options="optionSlider"
         >
@@ -83,13 +83,13 @@
             <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </section>
 </template>
 
 <script>
-import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
+// import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
 // styles required for Pagination component
 import 'swiper/components/pagination/pagination.min.css';
@@ -103,8 +103,8 @@ SwiperCore.use([Navigation, Pagination]);
 export default {
   name: "Price",
   components: {
-    Swiper,
-    SwiperSlide,
+    // Swiper,
+    // SwiperSlide,
   },
   data() {
     return {
@@ -128,16 +128,12 @@ export default {
           }
         }
       },
-      buttons: {
-        top: [
-          {name: "С простым зеркалом", type: "simple",},
-          {name: "С цветным стеклом", type: "colored",},
-        ],
-        bottom: [
-          {name: "С декоративным стеклом", type: "decor",},
-          {name: "Другие дизайны", type: "other",},
-        ]
-      },
+      buttons: [
+        {name: "С простым зеркалом", type: "simple",},
+        {name: "С цветным стеклом", type: "colored",},
+        {name: "С декоративным стеклом", type: "decor",},
+        {name: "Другие дизайны", type: "other",},
+      ],
       sliderInfo: [
         {id: "1", img: "green-glass.png", title: "gloss 9003", type: "colored"},
         {id: "2", img: "green-glass.png", title: "modern 9003", type: "colored"},
@@ -189,17 +185,24 @@ export default {
   }
 
   &-Btns {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 170px);
+    grid-gap: 6px 0;
     align-items: center;
+    justify-content: center;
     margin-bottom: 85px;
+
+    @media (min-width: $screen-xs) {
+      grid-template-columns: repeat(2, 200px);
+    }
+
     @media (min-width: $screen-xl) {
-      flex-direction: column;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 0;
     }
   }
 
-  &-BtnRow {
+ /* &-BtnRow {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -216,22 +219,22 @@ export default {
     }
 
     @media (min-width: $screen-xl) {
-      margin-bottom: 60px;
+      //margin-bottom: 60px;
       flex-direction: row;
     }
-  }
+  }*/
 
   &-Btn {
     text-align: center;
-    margin-bottom: 28px;
 
     @media (min-width: $screen-xl) {
-      margin-bottom: 0;
+
     }
   }
 
   &-Label {
-    padding: 15px 20px;
+    display: block;
+    padding: 15px 5px;
     cursor: pointer;
     font-weight: 300;
     font-size: 12px;
@@ -241,6 +244,10 @@ export default {
     color: var(--color-text-main4);
     transition: .3s;
     position: relative;
+
+    @media (min-width: $screen-xs) {
+      padding: 15px 20px;
+    }
 
     @media (min-width: $screen-xl) {
       padding: 21px 29px;
@@ -333,16 +340,16 @@ export default {
     }
   }
 
-  &-Btn {
-    display: block;
-    margin-bottom: 12px;
-    padding: 22px 24px 26px;
-    margin-right: 20px;
-
-    @media (min-width: $screen-m) {
-      margin-bottom: 0;
-      padding: 24px 23px 28px;
-    }
-  }
+  //&-Btn {
+  //  display: block;
+  //  margin-bottom: 12px;
+  //  padding: 22px 24px 26px;
+  //  //margin-right: 20px;
+  //
+  //  @media (min-width: $screen-m) {
+  //    margin-bottom: 0;
+  //    padding: 24px 23px 28px;
+  //  }
+  //}
 }
 </style>
