@@ -121,11 +121,6 @@ export default {
             slidesPerView: 'auto',
             centeredSlides: true,
             spaceBetween: -860,
-          },
-          1320: {
-
-
-
           }
         }
       },
@@ -221,14 +216,11 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    //flex-wrap: wrap;
     white-space: nowrap;
-    //margin-bottom: 60px;
 
     &:last-child {
       align-items: flex-start;
       margin-bottom: 0;
-      //margin-top: -65px;
       @media (min-width: $screen-xl) {
         margin-top: 0;
       }
@@ -244,14 +236,8 @@ export default {
     text-align: center;
     margin-bottom: 28px;
 
-    &:nth-child(5) {
-      //margin-left: 50px;
-    }
-
     @media (min-width: $screen-xl) {
       margin-bottom: 0;
-      //border: 3px solid var(--color-text-light);
-
     }
   }
 
