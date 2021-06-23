@@ -309,7 +309,7 @@ export default {
 
   &-Slider {
     width: 390px;
-    margin-bottom: 51px;
+    margin: 0 auto 51px;
     text-align: center;
 
     @media (min-width: 1070px) {

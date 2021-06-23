@@ -12,84 +12,70 @@
         Посмотрите примеры<br/> наших работ с ценами
       </h2>
       <div class="Price-Btns">
-<!--        <div class="Price-BtnRow">-->
-          <div class="Price-Btn"
-               v-for="(button) in buttons"
-               :key="button.id"
-          >
-            <input :id="button.type"
-                   class="Price-Input"
-                   type="radio"
-                   v-model="selectedCategory"
-                   :value="button.type"
-            >
-            <label class="Price-Label"
-                   :for="button.type">
-              {{ button.name }}
-            </label>
-          </div>
-<!--        </div>-->
-<!--        <div class="Price-BtnRow">
-          <div class="Price-Btn"
-               v-for="(button) in buttons.bottom"
-               :key="button.id"
-          >
-            <input :id="button.type"
-                   class="Price-Input"
-                   type="radio"
-                   v-model="selectedCategory" :value="button.type"
-            >
-            <label class="Price-Label"
-                   :for="button.type"
-            >
-              {{ button.name }}
-            </label>
-          </div>
-        </div>-->
-      </div>
-<!--      <div class="Price-SliderBox">
-        <swiper class="Price-Slider"
-                :options="optionSlider"
+        <div class="Price-Btn"
+             v-for="(button) in buttons"
+             :key="button.id"
         >
-          <swiper-slide
-              class="Price-Slide"
-              v-for="(slide) in filteredPeople"
-              :key="slide.id"
+          <input :id="button.type"
+                 class="Price-Input"
+                 type="radio"
+                 v-model="selectedCategory"
+                 :value="button.type"
           >
-            <img
-                :src="require(`@/assets/image/${slide.img}`)"
-                alt=""
-                class="Price-SlideImg"
-            >
-            <div class="Price-SlideContent">
-              <div class="Price-SlideTitle">{{ slide.title }}</div>
-              <div class="Price-SlideSubtitle">{{ slide.title }}</div>
-              <div class="Price-SlideTable">
-                <div class="Price-SlideTableRow">
-                  <div class="Price-SlideTableRowTitle"></div>
-                  <div class="Price-SlideTableRowText"></div>
-                </div>
-              </div>
-              <button class="Btn Price-Btn">рассчитать стоимость</button>
-            </div>
-          </swiper-slide>
-        </swiper>
-        <div class="Price-SliderBtns">
-          <div class="swiper-button swiper-button-prev" slot="button-prev">
-            <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
-          </div>
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button swiper-button-next" slot="button-next">
-            <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
-          </div>
+          <label class="Price-Label"
+                 :for="button.type">
+            {{ button.name }}
+          </label>
         </div>
-      </div>-->
+      </div>
     </div>
+    <div class="Price-SliderBox">
+      <swiper class="Price-Slider"
+              :options="optionSlider"
+      >
+        <swiper-slide
+            class="Price-Slide"
+            v-for="(slide) in filteredPeople"
+            :key="slide.id"
+        >
+          <img
+              :src="require(`@/assets/image/${slide.img}`)"
+              alt=""
+              class="Price-SlideImg"
+          >
+          <div class="Price-SlideContent">
+            <div class="Price-SlideTitle">{{ slide.title }}</div>
+            <div class="Price-SlideSubtitle">{{ slide.title }}</div>
+            <div class="Price-SlideTable">
+              <div class="Price-SlideTableRow">
+                <div class="Price-SlideTableRowTitle"></div>
+                <div class="Price-SlideTableRowText"></div>
+              </div>
+              <div class="Price-SlideTableRow">
+                <div class="Price-SlideTableRowTitle"></div>
+                <div class="Price-SlideTableRowText"></div>
+              </div>
+            </div>
+            <button class="Btn Price-Btn">рассчитать стоимость</button>
+          </div>
+        </swiper-slide>
+      </swiper>
+      <div class="Price-SliderBtns">
+        <div class="swiper-button swiper-button-prev" slot="button-prev">
+          <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button swiper-button-next" slot="button-next">
+          <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
+        </div>
+      </div>
+    </div>
+
   </section>
 </template>
 
 <script>
-// import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
+import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
 // styles required for Pagination component
 import 'swiper/components/pagination/pagination.min.css';
@@ -103,8 +89,8 @@ SwiperCore.use([Navigation, Pagination]);
 export default {
   name: "Price",
   components: {
-    // Swiper,
-    // SwiperSlide,
+    Swiper,
+    SwiperSlide,
   },
   data() {
     return {
@@ -122,9 +108,12 @@ export default {
             spaceBetween: -30,
           },
           1320: {
-            slidesPerView: 'auto',
+            /*slidesPerView: 'auto',
             centeredSlides: true,
-            spaceBetween: -30,
+            spaceBetween: -580,*/
+          },
+          1920: {
+            spaceBetween: -560,
           }
         }
       },
@@ -135,29 +124,259 @@ export default {
         {name: "Другие дизайны", type: "other",},
       ],
       sliderInfo: [
-        {id: "1", img: "green-glass.png", title: "gloss 9003", type: "colored"},
-        {id: "2", img: "green-glass.png", title: "modern 9003", type: "colored"},
-        {id: "3", img: "green-glass.png", title: "gloss 9003", type: "colored"},
-        {id: "4", img: "green-glass.png", title: "gloss 9003", type: "colored"},
-        {id: "5", img: "green-glass.png", title: "gloss 9003", type: "colored"},
-        {id: "6", img: "green-glass.png", title: "corrugated 9003", type: "simple"},
-        {id: "7", img: "green-glass.png", title: "corrugated 9003", type: "simple"},
-        {id: "8", img: "green-glass.png", title: "corrugated 9003", type: "simple"},
-        {id: "9", img: "green-glass.png", title: "corrugated 9003", type: "simple"},
-        {id: "10", img: "green-glass.png", title: "gloss 9003", type: "gloss"},
-        {id: "11", img: "green-glass.png", title: "gloss 9003", type: "gloss"},
-        {id: "12", img: "green-glass.png", title: "natural 9003", type: "natural"},
-        {id: "13", img: "green-glass.png", title: "natural 9003", type: "natural"},
-        {id: "14", img: "green-glass.png", title: "natural 9003", type: "natural"},
-        {id: "15", img: "green-glass.png", title: "natural 9003", type: "natural"},
-        {id: "16", img: "green-glass.png", title: "gloss 9003", type: "decor"},
-        {id: "17", img: "green-glass.png", title: "gloss 9003", type: "decor"},
-        {id: "18", img: "green-glass.png", title: "gloss 9003", type: "decor"},
-        {id: "19", img: "green-glass.png", title: "modern 9003", type: "decor"},
-        {id: "20", img: "green-glass.png", title: "modern 9003", type: "decor"},
-        {id: "21", img: "green-glass.png", title: "modern 9003", type: "other"},
-        {id: "22", img: "green-glass.png", title: "modern 9003", type: "other"},
-        {id: "23", img: "green-glass.png", title: "modern 9003", type: "other"},
+        {
+          id: "1",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "colored"
+        },
+        {
+          id: "2",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "colored"
+        },
+        {
+          id: "3",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "colored"
+        },
+        {
+          id: "4",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "colored"
+        },
+        {
+          id: "5",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "colored"
+        },
+        {
+          id: "6",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "simple"
+        },
+        {
+          id: "7",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "simple"
+        },
+        {
+          id: "8",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "simple"
+        },
+        {
+          id: "9",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "simple"
+        },
+        {
+          id: "10",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "gloss"
+        },
+        {
+          id: "11",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "gloss"
+        },
+        {
+          id: "12",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "natural"
+        },
+        {
+          id: "13",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "natural"
+        },
+        {
+          id: "14",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "natural"
+        },
+        {
+          id: "15",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "natural"
+        },
+        {
+          id: "16",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "decor"
+        },
+        {
+          id: "17",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "decor"
+        },
+        {
+          id: "18",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "decor"
+        },
+        {
+          id: "19",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "decor"
+        },
+        {
+          id: "20",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "decor"
+        },
+        {
+          id: "21",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "other"
+        },
+        {
+          id: "22",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "other"
+        },
+        {
+          id: "23",
+          img: "green-glass.png",
+          title: "Двери купе  в гардеробную",
+          subtitle: "Стекло с окрашиванием Лакобель",
+          sizeTitle: "Размеры 1 двери:",
+          priceTitle: "Цена 1 двери:",
+          sizeText: "700 мм",
+          priceText: "7 600 руб.",
+          type: "other"
+        },
 
       ],
       selectedCategory: "colored",
@@ -201,28 +420,6 @@ export default {
       grid-gap: 0;
     }
   }
-
- /* &-BtnRow {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    white-space: nowrap;
-
-    &:last-child {
-      align-items: flex-start;
-      margin-bottom: 0;
-      @media (min-width: $screen-xl) {
-        margin-top: 0;
-      }
-    }
-
-    @media (min-width: $screen-xl) {
-      //margin-bottom: 60px;
-      flex-direction: row;
-    }
-  }*/
 
   &-Btn {
     text-align: center;
@@ -290,6 +487,63 @@ export default {
     border: 1px solid var(--color-bg-input-checked);
   }
 
+  &-Slider {
+    width: 390px;
+    margin-bottom: 51px;
+    text-align: center;
+
+    @media (min-width: 1070px) {
+      width: 1040px;
+    }
+
+    @media (min-width: $screen-xl) {
+      width: 1240px;
+    }
+
+    @media (min-width: $screen-xxxl) {
+      width: 1650px;
+    }
+  }
+
+  .swiper-slide {
+    transform: scale(0.85);
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, .5);
+    }
+  }
+
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    transform: scale(0.92);
+  }
+
+  .swiper-slide-next {
+    z-index: 9;
+  }
+
+  .swiper-slide-next ~ .swiper-slide {
+    z-index: 8;
+  }
+
+  .swiper-slide-active {
+    transform: scale(0.99);
+    z-index: 10;
+
+    &:before {
+      display: none;
+    }
+
+    .Examples-SlideTitle {
+      display: block;
+    }
+  }
+
   &-SliderBtns {
     position: relative;
     width: 200px;
@@ -338,18 +592,10 @@ export default {
       flex-direction: row;
       align-items: flex-start;
     }
-  }
 
-  //&-Btn {
-  //  display: block;
-  //  margin-bottom: 12px;
-  //  padding: 22px 24px 26px;
-  //  //margin-right: 20px;
-  //
-  //  @media (min-width: $screen-m) {
-  //    margin-bottom: 0;
-  //    padding: 24px 23px 28px;
-  //  }
-  //}
+    @media (min-width: $screen-xl) {
+      width: 900px;
+    }
+  }
 }
 </style>
