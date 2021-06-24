@@ -45,18 +45,18 @@
           >
           <div class="Price-SlideContent">
             <div class="Price-SlideTitle">{{ slide.title }}</div>
-            <div class="Price-SlideSubtitle">{{ slide.title }}</div>
+            <div class="Price-SlideSubtitle">{{ slide.subtitle }}</div>
             <div class="Price-SlideTable">
               <div class="Price-SlideTableRow">
-                <div class="Price-SlideTableRowTitle"></div>
-                <div class="Price-SlideTableRowText"></div>
+                <div class="Price-SlideTableRowTitle">Размеры 1 двери:</div>
+                <div class="Price-SlideTableRowText">{{ slide.sizeText }}</div>
               </div>
               <div class="Price-SlideTableRow">
-                <div class="Price-SlideTableRowTitle"></div>
-                <div class="Price-SlideTableRowText"></div>
+                <div class="Price-SlideTableRowTitle">Цена 1 двери:</div>
+                <div class="Price-SlideTableRowText">{{ slide.priceText }}</div>
               </div>
             </div>
-            <button class="Btn Price-Btn">рассчитать стоимость</button>
+            <button class="Btn Price-SlideBtn">рассчитать стоимость</button>
           </div>
         </swiper-slide>
       </swiper>
@@ -490,7 +490,6 @@ export default {
   &-Slider {
     width: 390px;
     margin-bottom: 51px;
-    text-align: center;
 
     @media (min-width: 1070px) {
       width: 1040px;
@@ -512,8 +511,10 @@ export default {
     &:before {
       content: '';
       position: absolute;
-      width: 100%;
-      height: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       background-color: rgba(255, 255, 255, .5);
     }
   }
@@ -574,10 +575,10 @@ export default {
     min-width: 0;
     min-height: 0;
     width: 330px;
-    padding: 34px 32px 32px 32px;
+    padding: 34px 61px 32px 32px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    //justify-content: space-between;
     align-items: center;
     border-radius: 8px;
     background-color: var(--color-bg-faq);
@@ -597,5 +598,68 @@ export default {
       width: 900px;
     }
   }
+
+  &-SlideImg {
+    width: 500px;
+    margin-right: 50px;
+  }
+
+  &-SlideTitle {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.154;
+    color: var(--color-text-ghost);
+  }
+
+  &-SlideSubtitle {
+    margin-bottom: 55px;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.444;
+    color: var(--color-text-main4);
+  }
+
+  &-SlideTable {
+    margin-bottom: 77px;
+  }
+
+  &-SlideTableRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    color: var(--color-text-main4);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-SlideTableRowTitle {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.444;
+
+  }
+
+  &-SlideTableRowText {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.444;
+  }
+
+  &-SlideBtn {
+    display: block;
+    margin-bottom: 12px;
+    padding: 22px 24px 26px;
+    margin-right: 20px;
+
+    @media (min-width: $screen-m) {
+      margin-bottom: 0;
+      padding: 24px 23px 28px;
+    }
+  }
+
 }
 </style>
