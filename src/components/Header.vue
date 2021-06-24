@@ -114,6 +114,7 @@ export default {
   &-Item {
     margin-right: 30px;
     font-size: 14px;
+    color: var(--color-text-main2);
     &:last-child {
       margin-top: 30px;
     }
@@ -124,7 +125,6 @@ export default {
     @media (min-width: $screen-s) {
       margin-right: 35px;
       line-height: 1.444em;
-      color: var(--color-text-main2);
 
       &:last-child {
         margin-right: 0;

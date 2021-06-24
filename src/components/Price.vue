@@ -104,17 +104,9 @@ export default {
           prevEl: '.swiper-button-prev'
         },
         breakpoints: {
-          1024: {
-            spaceBetween: -30,
-          },
-          1320: {
-            /*slidesPerView: 'auto',
-            centeredSlides: true,
-            spaceBetween: -580,*/
-          },
-          1920: {
+          1070: {
             spaceBetween: -560,
-          }
+          },
         }
       },
       buttons: [
@@ -488,10 +480,10 @@ export default {
   }
 
   &-Slider {
-    width: 390px;
+    //width: 390px;
     margin-bottom: 51px;
 
-    @media (min-width: 1070px) {
+    @media (min-width: 1024px) {
       width: 1040px;
     }
 
@@ -515,6 +507,7 @@ export default {
       right: 0;
       bottom: 0;
       left: 0;
+      z-index: 2;
       background-color: rgba(255, 255, 255, .5);
     }
   }
@@ -575,10 +568,10 @@ export default {
     min-width: 0;
     min-height: 0;
     width: 330px;
-    padding: 34px 61px 32px 32px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    //justify-content: space-between;
+    justify-content: space-between;
     align-items: center;
     border-radius: 8px;
     background-color: var(--color-bg-faq);
@@ -590,6 +583,7 @@ export default {
 
     @media (min-width: 1024px) {
       width: 868px;
+      padding: 34px 61px 32px 32px;
       flex-direction: row;
       align-items: flex-start;
     }
@@ -600,64 +594,87 @@ export default {
   }
 
   &-SlideImg {
-    width: 500px;
-    margin-right: 50px;
+    margin-bottom: 35px;
+    @media (min-width: 1024px) {
+      width: 500px;
+      margin-bottom: 0;
+      margin-right: 50px;
+    }
   }
 
   &-SlideTitle {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     font-weight: 700;
-    font-size: 26px;
+    font-size: 20px;
     line-height: 1.154;
     color: var(--color-text-ghost);
+
+    @media (min-width: 1024px) {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
   }
 
   &-SlideSubtitle {
-    margin-bottom: 55px;
-    font-size: 18px;
+    margin-bottom: 35px;
+    font-size: 16px;
     font-weight: 300;
     line-height: 1.444;
     color: var(--color-text-main4);
+
+    @media (min-width: 1024px) {
+      margin-bottom: 55px;
+      font-size: 18px
+    }
   }
 
   &-SlideTable {
-    margin-bottom: 77px;
+    margin-bottom: 40px;
+
+    @media (min-width: 1024px) {
+      margin-bottom: 77px;
+    }
   }
 
   &-SlideTableRow {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
+    font-size: 16px;
     color: var(--color-text-main4);
 
     &:last-child {
       margin-bottom: 0;
     }
+
+    @media (min-width: 1024px) {
+      margin-bottom: 25px;
+      font-size: 18px
+    }
   }
 
   &-SlideTableRowTitle {
-    font-size: 18px;
     font-weight: 300;
     line-height: 1.444;
-
   }
 
   &-SlideTableRowText {
-    font-size: 18px;
     font-weight: 700;
     line-height: 1.444;
   }
 
   &-SlideBtn {
     display: block;
-    margin-bottom: 12px;
+    margin: 0 auto;
     padding: 22px 24px 26px;
-    margin-right: 20px;
 
     @media (min-width: $screen-m) {
-      margin-bottom: 0;
       padding: 24px 23px 28px;
+    }
+
+    @media (min-width: 1024px) {
+      margin: 0;
     }
   }
 

@@ -343,11 +343,7 @@ export default {
   }
 
   .swiper-button {
-    top: 87%;
-
-    @media (min-width: $screen-s) {
-      top: 90%;
-    }
+    top: 90%;
 
     @media (min-width: 1024px) {
       top: 50%;
