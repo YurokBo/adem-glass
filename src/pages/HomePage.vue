@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header/>
+    <Quiz />
     <Variables/>
     <Price />
     <Form/>
@@ -22,10 +23,12 @@ import Faq from "@/components/Faq";
 import Projects from "@/components/Projects";
 import Examples from "@/components/Examples";
 import Price from "@/components/Price";
+import Quiz from "@/components/Quiz";
 
 export default {
   name: "HomePage",
   components: {
+    Quiz,
     Price,
     Examples,
     Projects,
