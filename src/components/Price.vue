@@ -250,7 +250,7 @@ export default {
         },
         {
           id: "13",
-          img: "green-glass.png",
+          img: "black-window.png",
           title: "Двери купе  в гардеробную",
           subtitle: "Стекло с окрашиванием Лакобель",
           sizeTitle: "Размеры 1 двери:",
@@ -261,7 +261,7 @@ export default {
         },
         {
           id: "14",
-          img: "green-glass.png",
+          img: "black-window.png",
           title: "Двери купе  в гардеробную",
           subtitle: "Стекло с окрашиванием Лакобель",
           sizeTitle: "Размеры 1 двери:",
@@ -272,7 +272,7 @@ export default {
         },
         {
           id: "15",
-          img: "green-glass.png",
+          img: "black-window.png",
           title: "Двери купе  в гардеробную",
           subtitle: "Стекло с окрашиванием Лакобель",
           sizeTitle: "Размеры 1 двери:",
@@ -338,7 +338,7 @@ export default {
         },
         {
           id: "21",
-          img: "green-glass.png",
+          img: "black-window.png",
           title: "Двери купе  в гардеробную",
           subtitle: "Стекло с окрашиванием Лакобель",
           sizeTitle: "Размеры 1 двери:",
@@ -349,7 +349,7 @@ export default {
         },
         {
           id: "22",
-          img: "green-glass.png",
+          img: "black-window.png",
           title: "Двери купе  в гардеробную",
           subtitle: "Стекло с окрашиванием Лакобель",
           sizeTitle: "Размеры 1 двери:",
@@ -360,7 +360,7 @@ export default {
         },
         {
           id: "23",
-          img: "green-glass.png",
+          img: "black-window.png",
           title: "Двери купе  в гардеробную",
           subtitle: "Стекло с окрашиванием Лакобель",
           sizeTitle: "Размеры 1 двери:",
@@ -467,11 +467,11 @@ export default {
   }
 
   &-Input {
-    display: none;
     position: absolute;
-    visibility: hidden;
-    z-index: -9999;
-    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
   }
 
   input:checked + label:after {

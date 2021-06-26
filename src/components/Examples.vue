@@ -294,11 +294,11 @@ export default {
   }
 
   &-Input {
-    display: none;
     position: absolute;
-    visibility: hidden;
-    z-index: -9999;
-    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
   }
 
   input:checked + label:after {

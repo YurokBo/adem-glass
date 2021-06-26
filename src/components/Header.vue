@@ -70,7 +70,7 @@ export default {
   }
 
   @media (min-width: $screen-m) {
-    padding: 0 0 240px;
+    padding: 0 0 180px;
   }
 
   &-Content {
