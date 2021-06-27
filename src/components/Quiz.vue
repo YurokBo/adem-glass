@@ -15,7 +15,7 @@
         <h2 class="Title Quiz-Title">
           стоимости ваших дверей для шкафа и гардеробной
         </h2>
-        <form class="Quiz-Form">
+        <form class="Quiz-Form" @submit.prevent="onSubmit()" novalidate>
           <swiper class="Quiz-Slider">
             <swiper-slide class="Quiz-Slide">
               <h3 class="Quiz-Question" v-html="questions.question1.question"></h3>
@@ -24,13 +24,86 @@
                      v-for="answer in questions.question1.answers"
                      :key="answer.id"
                 >
+                  <input type="checkbox" :id="answer.id" class="Quiz-FormInput">
                   <label :for="answer.id" class="Quiz-FormLabel">
                     <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
-                    <input type="checkbox" class="Quiz-FormInput" checked>
                     <span class="Quiz-FormSpan">{{ answer.text }}</span>
                   </label>
                 </div>
               </div>
+            </swiper-slide>
+            <swiper-slide class="Quiz-Slide">
+              <h3 class="Quiz-Question" v-html="questions.question2.question"></h3>
+              <div class="Quiz-SlideAnswers">
+                <div class="Quiz-FormField"
+                     v-for="answer in questions.question2.answers"
+                     :key="answer.id"
+                >
+                  <input type="checkbox" :id="answer.id" class="Quiz-FormInput">
+                  <label :for="answer.id" class="Quiz-FormLabel">
+                    <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
+                    <span class="Quiz-FormSpan">{{ answer.text }}</span>
+                  </label>
+                </div>
+              </div>
+            </swiper-slide>
+            <swiper-slide class="Quiz-Slide">
+              <h3 class="Quiz-Question">
+                Укажите размер проема
+              </h3>
+              <!--              <div class="Quiz-SlideInput">-->
+              <div class="Quiz-FormField">
+                <input type="text"
+                       class="Quiz-FormInput Input"
+                       name="size"
+                       placeholder="Высота*Ширина"
+                >
+                <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+              </div>
+              <!--              </div>-->
+            </swiper-slide>
+            <swiper-slide class="Quiz-Slide">
+              <h3 class="Quiz-Question">
+                Количество дверей
+              </h3>
+              <!--              <div class="Quiz-SlideInput">-->
+              <div class="Quiz-FormField Field-Number">
+                <span class="Quiz-Math Minus"></span>
+                <input type="text"
+                       class="Quiz-FormInput Input Input-Number"
+                       name="size"
+                       placeholder="0"
+                >
+                <span class="Quiz-Math Plus"></span>
+                <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+              </div>
+              <!--              </div>-->
+            </swiper-slide>
+            <swiper-slide class="Quiz-Slide">
+              <h3 class="Quiz-Question">
+                Отлично! Теперь мы знаем, какие двери Вы хотите.<br/>
+                Укажите как с Вами связаться
+              </h3>
+              <!--              <div class="Quiz-SlideInput">-->
+              <div class="Quiz-FormField">
+                <input type="text"
+                       class="Quiz-FormInput Input"
+                       name="name"
+                       placeholder="Ваше имя"
+                >
+                <!--                <span v-if="$v.form.name.$dirty && !$v.form.name.required"
+                                      class="invalid-feedback">Обязательное поле!</span>-->
+              </div>
+              <div class="Quiz-FormField">
+                <input type="text"
+                       class="Quiz-FormInput Input"
+                       name="phone"
+                       placeholder="Ваш телефон"
+                >
+                <!--                <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
+                                      class="invalid-feedback">Обязательное поле!</span>-->
+              </div>
+              <button type="submit" class="Btn Quiz-FormBtn">Рассчитать стоимость</button>
             </swiper-slide>
           </swiper>
         </form>
@@ -47,6 +120,7 @@ import "swiper/components/thumbs/thumbs.min.css"
 import SwiperCore, {
   Navigation
 } from 'swiper/core';
+//import axios from "axios";
 
 SwiperCore.use([Navigation]);
 export default {
@@ -57,6 +131,7 @@ export default {
   },
   data() {
     return {
+      doorsCount: 0,
       questions: {
         question1: {
           question: "Выберите стиль наполнения дверей <br/>(лучше несколько, для сравнения цены)",
@@ -70,9 +145,58 @@ export default {
             {id: "modern-drawing", img: "quiz-7.png", text: "Современный рисунок"},
             {id: "monolithic-glass", img: "quiz-8.png", text: "Монолитное стекло с 3D рисунком"},
           ]
+        },
+        question2: {
+          question: "Выберите вариант разделения двери <br/>(Размер блоков может быть индивидуальный - как Вам нужно)",
+          answers: [
+            {id: "full-door", img: "quiz-1.png", text: "Разделение не нужно - дверь целиковая"},
+            {id: "comby-1", img: "comby_1.png", text: "Комби 1"},
+            {id: "comby-2", img: "comby_2.png", text: "Комби 2"},
+            {id: "comby-3", img: "comby_3.png", text: "Комби 3"},
+            {id: "comby-1-4", img: "comby_1-4.png", text: "Комби 1-4"},
+            {id: "comby-3-4", img: "comby_3-4.png", text: "Комби 3-4"},
+            {id: "comby-4-4", img: "comby_4-4.png", text: "Комби 4-4"},
+            {id: "comby-4-5", img: "comby_4-5.png", text: "Комби 4-5"},
+          ]
         }
       }
     }
+  },
+  methods: {
+    onSubmit() {
+      // this.$v.form.$touch();
+      // if (!this.$v.form.$error) {
+      //   const params = new URLSearchParams();
+      //   params.append('size', this.form.size);
+      //   params.append('doors', this.form.doors);
+      //   params.append('name', this.form.name);
+      //   params.append('phone', this.form.phone);
+      //
+      //   axios.post(
+      //       "/mail.php",
+      //       params,
+      //       {
+      //         headers: {
+      //           'content-type': 'application/x-www-form-urlencoded'
+      //         }
+      //       }
+      //   ).then(() => {})
+      //   this.showAuthDialog()
+      //   this.form.size = ''
+      //   this.form.doors = ''
+      //   this.form.name = ''
+      //   this.form.phone = ''
+      //   this.$nextTick(() => {
+      //     this.$v.$reset()
+      //   })
+      // }
+    },
+    // addToDoor() {
+    //   console.log(this.doorsCount++)
+    // },
+    // removeFromDoor() {
+    //   console.log( this.doorsCount === 0 ? this.doorsCount-- : 0)
+    // }
   }
 }
 </script>
@@ -129,15 +253,17 @@ export default {
   }
 
   &-FormImg {
-    width: 210px;
-    height: 263px;
+    width: 212px;
+    height: 265px;
     margin-bottom: 29px;
+    border-radius: 4px;
+    border: 1px solid var(--color-bg-faq);
   }
 
-  &-FormInput {
+  &-FormInput[type="checkbox"] {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    width: 10px;
+    height: 10px;
     overflow: hidden;
     clip: rect(0 0 0 0);
   }
@@ -150,6 +276,7 @@ export default {
     line-height: 1.25;
     color: var(--color-text-grey);
     position: relative;
+    cursor: pointer;
 
     &:before {
       content: '';
@@ -161,14 +288,13 @@ export default {
       transform: translate(-50%, 0);
       border-radius: 50%;
       background-color: var(--color-text-main);
-      box-shadow: 0px 0px 1px 0px rgba(155, 146, 137, 0.14),inset 0px 5px 6.79px 0.21px rgba(77, 67, 56, 0.13);
-
-      //box-shadow: inset 0px 5px 6.79px 0.21px rgba(199, 189, 176, 0.13);
+      box-shadow: 0px 0px 1px 0px rgba(155, 146, 137, 0.14), inset 0px 5px 6.79px 0.21px rgba(77, 67, 56, 0.13);
+      cursor: pointer;
+      transition: all .3s;
     }
-/*
+
     &:after {
       content: '';
-      display: none;
       border-radius: 50%;
       position: absolute;
       width: 17px;
@@ -177,20 +303,110 @@ export default {
       left: 50%;
       transform: translate(-50%, 0);
       background-image: var(--color-bg-btn-before);
-
-    }*/
+      opacity: 0;
+      transition: opacity .3s;
+    }
   }
 
   &-FormInput:checked + &-FormLabel:after {
-    content: '';
-    position: absolute;
-    width: 17px;
-    height: 17px;
-    top: 254px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    border-radius: 50%;
-    background-image: var(--color-bg-btn-before);
+    opacity: 1;
+  }
+
+  &-FormInput:checked + &-FormLabel:before {
+    box-shadow: inset 0px 5px 6.79px 0.21px rgba(199, 189, 176, 0.13);
+  }
+
+  &-FormInput:checked + &-FormLabel &-FormImg {
+    box-shadow: inset 0px 5px 6.79px 0.21px rgba(199, 189, 176, 0.13);
+    border: 1px solid var(--color-text-gold);
+  }
+
+  &-FormField {
+    margin-bottom: 12px;
+    max-width: 100%;
+    width: 92%;
+    position: relative;
+
+    @media (min-width: $screen-m) {
+      //max-width: 324px;
+    }
+  }
+
+  &-FormInput {
+    width: 100%;
+    padding: 28px 32px;
+    border: 1px solid var(--color-bg-input);
+    border-radius: 8px;
+    font-size: 22px;
+    letter-spacing: .045em;
+    color: var(--color-text-btn);
+    background-color: var(--color-bg-input);
+
+    &::placeholder {
+      color: var(--color-text-placeholder);
+    }
+
+    &:focus {
+      border: 1px solid var(--color-text-btn);
+    }
+
+    @media (min-width: $screen-m) {
+      padding: 28px 32px;
+    }
+  }
+
+  .Field-Number {
+    display: flex;
+    align-items: center;
+    width: 260px;
+    margin: 0 auto;
+  }
+
+  .Input-Number {
+    margin: 0 30px 0;
+  }
+
+  .Quiz-Math {
+    display: block;
+    width: 26px;
+    height: 26px;
+    position: relative;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 26px;
+      height: 2px;
+      top: 50%;
+      transform: translate(0, -50%);
+      background-color: var(--color-text-dark);
+    }
+  }
+
+  .Plus {
+    &:after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 25px;
+      background-color: var(--color-text-dark);
+      //top: -50%;
+      left: 17.5px;
+    }
+  }
+
+  .Minus {
+    margin-right: 30px;
+  }
+
+  &-FormBtn {
+    margin-top: 50px;
+    padding: 22px 24px 26px;
+
+    @media (min-width: $screen-m) {
+      padding: 24px 23px 28px;
+    }
   }
 }
 </style>
