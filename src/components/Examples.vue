@@ -71,7 +71,6 @@
           <div class="swiper-button swiper-button-prev" slot="button-prev">
             <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
           </div>
-          <div class="swiper-pagination"></div>
           <div class="swiper-button swiper-button-next" slot="button-next">
             <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
           </div>

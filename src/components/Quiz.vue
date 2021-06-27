@@ -16,7 +16,8 @@
           стоимости ваших дверей для шкафа и гардеробной
         </h2>
         <form class="Quiz-Form" @submit.prevent="onSubmit()" novalidate>
-          <swiper class="Quiz-Slider">
+          <div class="swiper-pagination"></div>
+          <swiper class="Quiz-Slider" :options="options">
             <swiper-slide class="Quiz-Slide">
               <h3 class="Quiz-Question" v-html="questions.question1.question"></h3>
               <div class="Quiz-SlideAnswers">
@@ -106,6 +107,15 @@
               <button type="submit" class="Btn Quiz-FormBtn">Рассчитать стоимость</button>
             </swiper-slide>
           </swiper>
+          <div class="Quiz-SliderBtns">
+            <div class="swiper-button swiper-button-prev prev" slot="button-prev">
+              <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
+            </div>
+            <div class="swiper-button swiper-button-next next" slot="button-next">
+              <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
+            </div>
+          </div>
+          <button type="button" class="Btn Quiz-FormNext next">следующий вопрос</button>
         </form>
       </div>
     </div>
@@ -118,11 +128,11 @@ import 'swiper/swiper-bundle.css'
 
 import "swiper/components/thumbs/thumbs.min.css"
 import SwiperCore, {
-  Navigation
+  Navigation, Pagination
 } from 'swiper/core';
 //import axios from "axios";
 
-SwiperCore.use([Navigation]);
+SwiperCore.use([Navigation, Pagination]);
 export default {
   name: "Quiz",
   components: {
@@ -132,6 +142,18 @@ export default {
   data() {
     return {
       doorsCount: 0,
+      options: {
+        navigation: {
+          nextEl: '.next',
+          prevEl: '.prev',
+          disabledClass: 'Btn--disabled'
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          type: "progressbar",
+        },
+      },
+
       questions: {
         question1: {
           question: "Выберите стиль наполнения дверей <br/>(лучше несколько, для сравнения цены)",
@@ -221,6 +243,7 @@ export default {
     border-radius: 12px;
     box-shadow: var(--color-box-shadow);
     text-align: center;
+    position: relative;
   }
 
   &-Subtitle {
@@ -407,6 +430,51 @@ export default {
     @media (min-width: $screen-m) {
       padding: 24px 23px 28px;
     }
+  }
+
+  &-SliderBtns {
+    width: 1123px;
+    position: absolute;
+
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    @media (min-width: 1070px) {
+      //width: 402px;
+    }
+  }
+  .swiper-button-prev,
+  .swiper-button-next, {
+    width: 59px;
+    height: 59px;
+
+    &:after {
+      content: none;
+    }
+
+    @media (min-width: 1070px) {
+      width: 69px;
+      height: 69px;
+    }
+  }
+  .swiper-button-prev {
+    left: -10px;
+  }
+
+  &-FormNext {
+    margin-top: 36px;
+    padding: 22px 24px 26px;
+
+    @media (min-width: $screen-m) {
+      padding: 24px 23px 28px;
+    }
+  }
+
+  .prev.Btn--disabled,
+  .next.Btn--disabled {
+    opacity: 0.35;
+    cursor: auto;
+    pointer-events: none;
   }
 }
 </style>
