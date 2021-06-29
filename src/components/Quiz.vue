@@ -143,6 +143,7 @@ export default {
     return {
       doorsCount: 0,
       options: {
+        allowTouchMove: false,
         navigation: {
           nextEl: '.next',
           prevEl: '.prev',
@@ -238,12 +239,23 @@ export default {
   &-Content {
     width: 100%;
     margin-top: -140px;
-    padding: 70px 187px 73px;
+    padding: 70px 48px 73px;
     background-color: var(--color-bg-faq);
     border-radius: 12px;
     box-shadow: var(--color-box-shadow);
     text-align: center;
     position: relative;
+
+    @media (min-width: $screen-l) {
+      width: 920px;
+      margin: -140px auto 0;
+      padding: 70px 107px 73px;
+    }
+
+    @media (min-width: $screen-xl) {
+      width: 100%;
+      padding: 70px 187px 73px;
+    }
   }
 
   &-Subtitle {
@@ -256,8 +268,16 @@ export default {
 
   &-Title {
     margin-bottom: 70px;
-    padding: 0 80px;
+    //padding: 0 80px;
     color: var(--color-text-dark);
+
+    @media (min-width: $screen-l) {
+      //padding: 0 80px;
+    }
+
+    @media (min-width: $screen-xl) {
+      padding: 0 80px;
+    }
   }
 
   &-Question {
@@ -271,8 +291,16 @@ export default {
 
   &-SlideAnswers {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 27px 20px;
+
+    @media (min-width: $screen-l) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: $screen-xl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   &-FormImg {
