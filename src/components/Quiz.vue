@@ -267,12 +267,12 @@ export default {
   }
 
   &-Title {
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     //padding: 0 80px;
     color: var(--color-text-dark);
 
     @media (min-width: $screen-l) {
-      //padding: 0 80px;
+      margin-bottom: 70px;
     }
 
     @media (min-width: $screen-xl) {
@@ -283,16 +283,27 @@ export default {
   &-Question {
     margin-bottom: 40px;
     font-weight: 500;
-    font-size: 26px;
+    font-size: 16px;
     line-height: 1.462;
     letter-spacing: .03em;
     color: var(--color-text-dark);
+
+    @media (min-width: $screen-l) {
+      font-size: 20px;
+    }
+
+    @media (min-width: $screen-xl) {
+      font-size: 26px;
+    }
   }
 
   &-SlideAnswers {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 27px 20px;
+    height: 520px;
+    overflow-y: auto;
+    margin-bottom: 100px;
 
     @media (min-width: $screen-l) {
       grid-template-columns: repeat(3, 1fr);
@@ -300,6 +311,8 @@ export default {
 
     @media (min-width: $screen-xl) {
       grid-template-columns: repeat(4, 1fr);
+      height: 100%;
+      margin-bottom: 0;
     }
   }
 
@@ -309,6 +322,15 @@ export default {
     margin-bottom: 29px;
     border-radius: 4px;
     border: 1px solid var(--color-bg-faq);
+
+    @media (min-width: $screen-l) {
+
+    }
+
+    @media (min-width: $screen-xl) {
+      width: 212px;
+      height: 265px;
+    }
   }
 
   &-FormInput[type="checkbox"] {
@@ -373,13 +395,18 @@ export default {
   }
 
   &-FormField {
-    margin-bottom: 12px;
+    //margin-bottom: 1;
     max-width: 100%;
     width: 92%;
+    margin: 0 auto 12px;
     position: relative;
 
-    @media (min-width: $screen-m) {
-      //max-width: 324px;
+    @media (min-width: $screen-l) {
+      width: 80%;
+    }
+
+    @media (min-width: $screen-xl) {
+      width: 92%;
     }
   }
 
@@ -461,14 +488,21 @@ export default {
   }
 
   &-SliderBtns {
-    width: 1123px;
+    width: 180px;
     position: absolute;
-
-    top: 60%;
-    left: 50%;
+    z-index: 3;
+    bottom: 18%;
+    left: 51%;
     transform: translate(-50%, 0);
-    @media (min-width: 1070px) {
-      //width: 402px;
+
+    @media (min-width: $screen-l) {
+      bottom: 19%;
+    }
+
+    @media (min-width: $screen-xl) {
+      width: 1123px;
+      bottom: 45%;
+      left: 50%;
     }
   }
   .swiper-button-prev,
