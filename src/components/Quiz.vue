@@ -144,6 +144,7 @@ export default {
       doorsCount: 0,
       options: {
         allowTouchMove: false,
+        spaceBetween: 30,
         navigation: {
           nextEl: '.next',
           prevEl: '.prev',
@@ -172,7 +173,7 @@ export default {
         question2: {
           question: "Выберите вариант разделения двери <br/>(Размер блоков может быть индивидуальный - как Вам нужно)",
           answers: [
-            {id: "full-door", img: "quiz-1.png", text: "Разделение не нужно - дверь целиковая"},
+            {id: "full-door", img: "quiz-1.png", text: "Дверь целиковая"},
             {id: "comby-1", img: "comby_1.png", text: "Комби 1"},
             {id: "comby-2", img: "comby_2.png", text: "Комби 2"},
             {id: "comby-3", img: "comby_3.png", text: "Комби 3"},
@@ -226,11 +227,15 @@ export default {
 
 <style scoped lang="scss">
 .Quiz {
-  margin: 0 0 90px;
+  padding: 0 0 40px;
   background-image: url(~@/assets/image/quiz-bg.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  @media (min-width: $screen-l) {
+    padding: 0 0 90px;
+  }
 
   .Decor-Text {
     color: var(--color-text-btn);
@@ -238,8 +243,8 @@ export default {
 
   &-Content {
     width: 100%;
-    margin-top: -140px;
-    padding: 70px 48px 73px;
+    margin-top: -20px;
+    padding: 70px 18px 73px;
     background-color: var(--color-bg-faq);
     border-radius: 12px;
     box-shadow: var(--color-box-shadow);
@@ -261,9 +266,13 @@ export default {
   &-Subtitle {
     margin-bottom: 25px;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.444;
     color: var(--color-text-ghost);
+
+    @media (min-width: $screen-l) {
+      font-size: 18px;
+    }
   }
 
   &-Title {
@@ -300,13 +309,16 @@ export default {
   &-SlideAnswers {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 27px 20px;
+    grid-gap: 4px 12px;
+    width: 327px;
     height: 520px;
     overflow-y: auto;
-    margin-bottom: 100px;
+    margin: 0 auto 100px;
 
     @media (min-width: $screen-l) {
       grid-template-columns: repeat(3, 1fr);
+      grid-gap: 27px 20px;
+      width: 100%;
     }
 
     @media (min-width: $screen-xl) {
@@ -317,19 +329,28 @@ export default {
   }
 
   &-FormImg {
-    width: 212px;
-    height: 265px;
-    margin-bottom: 29px;
+    width: 98%;
+    height: 197px;
+    margin-bottom: 17px;
     border-radius: 4px;
     border: 1px solid var(--color-bg-faq);
 
     @media (min-width: $screen-l) {
-
-    }
-
-    @media (min-width: $screen-xl) {
       width: 212px;
       height: 265px;
+      margin-bottom: 29px;
+    }
+  }
+
+  &-FormSpan {
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: .02em;
+    line-height: 1.25;
+    color: var(--color-text-grey);
+
+    @media (min-width: $screen-l) {
+      font-size: 16px;
     }
   }
 
@@ -343,6 +364,7 @@ export default {
 
   &-FormLabel {
     display: block;
+    //width: 138px;
     font-weight: 300;
     font-size: 14px;
     letter-spacing: .02em;
@@ -354,9 +376,9 @@ export default {
     &:before {
       content: '';
       position: absolute;
-      width: 43px;
-      height: 43px;
-      top: 241px;
+      width: 32px;
+      height: 32px;
+      top: 181px;
       left: 50%;
       transform: translate(-50%, 0);
       border-radius: 50%;
@@ -364,20 +386,33 @@ export default {
       box-shadow: 0px 0px 1px 0px rgba(155, 146, 137, 0.14), inset 0px 5px 6.79px 0.21px rgba(77, 67, 56, 0.13);
       cursor: pointer;
       transition: all .3s;
+
+      @media (min-width: $screen-l) {
+        width: 43px;
+        height: 43px;
+        top: 241px;
+      }
+
     }
 
     &:after {
       content: '';
       border-radius: 50%;
       position: absolute;
-      width: 17px;
-      height: 17px;
-      top: 254px;
+      width: 13px;
+      height: 13px;
+      top: 190px;
       left: 50%;
       transform: translate(-50%, 0);
       background-image: var(--color-bg-btn-before);
       opacity: 0;
       transition: opacity .3s;
+
+      @media (min-width: $screen-l) {
+        width: 17px;
+        height: 17px;
+        top: 254px;
+      }
     }
   }
 
@@ -395,27 +430,26 @@ export default {
   }
 
   &-FormField {
-    //margin-bottom: 1;
-    max-width: 100%;
-    width: 92%;
     margin: 0 auto 12px;
     position: relative;
 
     @media (min-width: $screen-l) {
-      width: 80%;
+      //width: 80%;
+      margin: 0;
     }
 
     @media (min-width: $screen-xl) {
-      width: 92%;
+      //width: 83%;
     }
   }
 
   &-FormInput {
-    width: 100%;
+    width: 72%;
+    margin: 0 auto;
     padding: 28px 32px;
     border: 1px solid var(--color-bg-input);
     border-radius: 8px;
-    font-size: 22px;
+    font-size: 16px;
     letter-spacing: .045em;
     color: var(--color-text-btn);
     background-color: var(--color-bg-input);
@@ -428,8 +462,9 @@ export default {
       border: 1px solid var(--color-text-btn);
     }
 
-    @media (min-width: $screen-m) {
+    @media (min-width: $screen-l) {
       padding: 28px 32px;
+      font-size: 22px;
     }
   }
 
@@ -488,7 +523,7 @@ export default {
   }
 
   &-SliderBtns {
-    width: 180px;
+    width: 150px;
     position: absolute;
     z-index: 3;
     bottom: 18%;
@@ -496,6 +531,7 @@ export default {
     transform: translate(-50%, 0);
 
     @media (min-width: $screen-l) {
+      width: 180px;
       bottom: 19%;
     }
 
