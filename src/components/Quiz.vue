@@ -86,7 +86,7 @@
                 Укажите как с Вами связаться
               </h3>
               <!--              <div class="Quiz-SlideInput">-->
-              <div class="Quiz-FormField">
+              <div class="Quiz-FormField Quiz-FormField--bottom">
                 <input type="text"
                        class="Quiz-FormInput Input"
                        name="name"
@@ -108,10 +108,10 @@
             </swiper-slide>
           </swiper>
           <div class="Quiz-SliderBtns">
-            <div class="swiper-button swiper-button-prev prev" slot="button-prev">
+            <div class="swiper-button swiper-button-prev quiz-prev" slot="button-prev">
               <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
             </div>
-            <div class="swiper-button swiper-button-next next" slot="button-next">
+            <div class="swiper-button swiper-button-next quiz-next" slot="button-next">
               <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
             </div>
           </div>
@@ -146,8 +146,8 @@ export default {
         allowTouchMove: false,
         spaceBetween: 30,
         navigation: {
-          nextEl: '.next',
-          prevEl: '.prev',
+          nextEl: '.quiz-next',
+          prevEl: '.quiz-prev',
           disabledClass: 'Btn--disabled'
         },
         pagination: {
@@ -309,7 +309,7 @@ export default {
   &-SlideAnswers {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 4px 12px;
+    grid-gap: 14px 12px;
     width: 327px;
     height: 520px;
     overflow-y: auto;
@@ -430,17 +430,20 @@ export default {
   }
 
   &-FormField {
-    margin: 0 auto 12px;
+    margin: 0 auto;
     position: relative;
 
     @media (min-width: $screen-l) {
-      //width: 80%;
       margin: 0;
     }
 
     @media (min-width: $screen-xl) {
-      //width: 83%;
+      //margin-bottom: 12px;
     }
+  }
+
+  &-FormField--bottom {
+    margin-bottom: 12px;
   }
 
   &-FormInput {
@@ -527,7 +530,7 @@ export default {
     position: absolute;
     z-index: 3;
     bottom: 18%;
-    left: 51%;
+    left: 52%;
     transform: translate(-50%, 0);
 
     @media (min-width: $screen-l) {

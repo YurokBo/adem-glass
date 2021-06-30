@@ -61,11 +61,11 @@
         </swiper-slide>
       </swiper>
       <div class="Price-SliderBtns">
-        <div class="swiper-button swiper-button-prev" slot="button-prev">
+        <div class="swiper-button swiper-button-prev price-prev" slot="button-prev">
           <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
         </div>
         <div class="swiper-pagination"></div>
-        <div class="swiper-button swiper-button-next" slot="button-next">
+        <div class="swiper-button swiper-button-next price-next" slot="button-next">
           <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
         </div>
       </div>
@@ -100,8 +100,8 @@ export default {
         spaceBetween: 10,
         loop: true,
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: '.price-next',
+          prevEl: '.price-prev'
         },
         breakpoints: {
           1070: {
@@ -110,10 +110,10 @@ export default {
         }
       },
       buttons: [
-        {name: "С простым зеркалом", type: "simple",},
-        {name: "С цветным стеклом", type: "colored",},
-        {name: "С декоративным стеклом", type: "decor",},
-        {name: "Другие дизайны", type: "other",},
+        {name: "С простым зеркалом", type: "simple-price",},
+        {name: "С цветным стеклом", type: "colored-price",},
+        {name: "С декоративным стеклом", type: "decor-price",},
+        {name: "Другие дизайны", type: "other-price",},
       ],
       sliderInfo: [
         {
@@ -125,7 +125,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "colored"
+          type: "colored-price"
         },
         {
           id: "2",
@@ -136,7 +136,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "colored"
+          type: "colored-price"
         },
         {
           id: "3",
@@ -147,7 +147,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "colored"
+          type: "colored-price"
         },
         {
           id: "4",
@@ -158,7 +158,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "colored"
+          type: "colored-price"
         },
         {
           id: "5",
@@ -169,7 +169,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "colored"
+          type: "colored-price"
         },
         {
           id: "6",
@@ -180,7 +180,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "simple"
+          type: "simple-price"
         },
         {
           id: "7",
@@ -191,7 +191,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "simple"
+          type: "simple-price"
         },
         {
           id: "8",
@@ -202,7 +202,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "simple"
+          type: "simple-price"
         },
         {
           id: "9",
@@ -213,7 +213,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "simple"
+          type: "simple-price"
         },
         {
           id: "10",
@@ -224,7 +224,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "gloss"
+          type: "gloss-price"
         },
         {
           id: "11",
@@ -235,7 +235,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "gloss"
+          type: "gloss-price"
         },
         {
           id: "12",
@@ -246,7 +246,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "natural"
+          type: "natural-price"
         },
         {
           id: "13",
@@ -257,7 +257,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "natural"
+          type: "natural-price"
         },
         {
           id: "14",
@@ -268,7 +268,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "natural"
+          type: "natural-price"
         },
         {
           id: "15",
@@ -279,7 +279,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "natural"
+          type: "natural-price"
         },
         {
           id: "16",
@@ -290,7 +290,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "decor"
+          type: "decor-price"
         },
         {
           id: "17",
@@ -301,7 +301,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "decor"
+          type: "decor-price"
         },
         {
           id: "18",
@@ -312,7 +312,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "decor"
+          type: "decor-price"
         },
         {
           id: "19",
@@ -323,7 +323,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "decor"
+          type: "decor-price"
         },
         {
           id: "20",
@@ -334,7 +334,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "decor"
+          type: "decor-price"
         },
         {
           id: "21",
@@ -345,7 +345,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "other"
+          type: "other-price"
         },
         {
           id: "22",
@@ -356,7 +356,7 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "other"
+          type: "other-price"
         },
         {
           id: "23",
@@ -367,11 +367,10 @@ export default {
           priceTitle: "Цена 1 двери:",
           sizeText: "700 мм",
           priceText: "7 600 руб.",
-          type: "other"
+          type: "other-price"
         },
-
       ],
-      selectedCategory: "colored",
+      selectedCategory: "colored-price",
     }
   },
   computed: {

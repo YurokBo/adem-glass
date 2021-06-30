@@ -47,11 +47,13 @@
         <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
       </div>-->
     </swiper>
-    <div  class="swiper-button swiper-button-prev" slot="button-prev">
-      <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
-    </div>
-    <div  class="swiper-button swiper-button-next" slot="button-next">
-      <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
+    <div class="ProjectsSlider-SliderBtns">
+      <div class="swiper-button swiper-button-prev project-prev" slot="button-prev">
+        <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
+      </div>
+      <div class="swiper-button swiper-button-next project-next" slot="button-next">
+        <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
+      </div>
     </div>
   </div>
 </template>
@@ -83,8 +85,8 @@ export default {
         spaceBetween: 10,
         loop: true,
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: '.project-next',
+          prevEl: '.project-prev'
         },
         breakpoints: {
           1024: {
@@ -102,8 +104,8 @@ export default {
         loopedSlides: 5, // looped slides should be the same
         spaceBetween: 10,
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          /*nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'*/
         },
       },
       swiperOptionThumbs: {
@@ -303,50 +305,35 @@ export default {
 
   .swiper-button-prev,
   .swiper-button-next, {
-    width: 69px;
-    height: 69px;
+    width: 59px;
+    height: 59px;
 
     &:after {
       content: none;
     }
-  }
 
-  .swiper-button-next, {
-    right: 28%;
-
-    @media (min-width: $screen-xs) {
-      right: 150px;
-    }
-
-    @media (min-width: 1024px) {
-      right: 80px;
-    }
-
-    @media (min-width: $screen-xxxl) {
-      right: 23.2%;
+    @media (min-width: 1070px) {
+      width: 69px;
+      height: 69px;
     }
   }
 
-  .swiper-button-prev, {
-    left: 28%;
+  &-SliderBtns {
+    width: 190px;
+    position: absolute;
+    z-index: 3;
+    bottom: 9%;
+    left: 50%;
+    transform: translate(-50%, 0);
 
-    @media (min-width: $screen-xs) {
-      left: 150px;
+    @media (min-width: $screen-l) {
+      width: 210px;
+      bottom: 13%;
     }
-    @media (min-width: 1024px) {
-      left: 80px;
-    }
 
-    @media (min-width: $screen-xxxl) {
-      left: 23.2%;
-    }
-  }
-
-  .swiper-button {
-    top: 90%;
-
-    @media (min-width: 1024px) {
-      top: 50%;
+    @media (min-width: $screen-xl) {
+      width: 1045px;
+      bottom: 47.5%;
     }
   }
 

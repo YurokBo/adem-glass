@@ -68,10 +68,10 @@
           </swiper-slide>
         </swiper>
         <div class="Examples-SliderBtns">
-          <div class="swiper-button swiper-button-prev" slot="button-prev">
+          <div class="swiper-button swiper-button-prev examples-prev" slot="button-prev">
             <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
           </div>
-          <div class="swiper-button swiper-button-next" slot="button-next">
+          <div class="swiper-button swiper-button-next examples-next" slot="button-next">
             <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
           </div>
         </div>
@@ -107,8 +107,8 @@ export default {
         spaceBetween: -280,
         loop: true,
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: '.examples-next',
+          prevEl: '.examples-prev'
         },
         /*pagination: {
           el: ".swiper-pagination",
