@@ -571,8 +571,8 @@ export default {
     }
   }
 
-  .prev.Btn--disabled,
-  .next.Btn--disabled {
+  .quiz-prev.Btn--disabled,
+  .quiz-next.Btn--disabled {
     opacity: 0.35;
     cursor: auto;
     pointer-events: none;

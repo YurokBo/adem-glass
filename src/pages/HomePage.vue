@@ -6,6 +6,7 @@
     <Price />
     <Form/>
     <Examples />
+    <Combined />
     <About/>
     <Projects/>
     <Faq/>
@@ -24,15 +25,16 @@ import Projects from "@/components/Projects";
 import Examples from "@/components/Examples";
 import Price from "@/components/Price";
 import Quiz from "@/components/Quiz";
+import Combined from "@/components/Combined";
 
 export default {
   name: "HomePage",
   components: {
+    Combined,
     Quiz,
     Price,
     Examples,
     Projects,
-
     Faq,
     About,
     Variables,
