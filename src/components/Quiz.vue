@@ -128,11 +128,11 @@ import 'swiper/swiper-bundle.css'
 
 import "swiper/components/thumbs/thumbs.min.css"
 import SwiperCore, {
-  Navigation, Pagination
+  Navigation
 } from 'swiper/core';
 //import axios from "axios";
 
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Navigation]);
 export default {
   name: "Quiz",
   components: {

@@ -104,8 +104,8 @@ export default {
         loopedSlides: 5, // looped slides should be the same
         spaceBetween: 10,
         navigation: {
-          /*nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'*/
+          nextEl: '.ProjectsSlider-PhotoBottomImg',
+          prevEl: '.ProjectsSlider-PhotoBottomImg'
         },
       },
       swiperOptionThumbs: {
