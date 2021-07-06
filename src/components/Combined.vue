@@ -14,36 +14,57 @@
       <div class="Combined-Content">
         <div class="Combined-FormBox">
           <form class="Combined-Form" @submit.prevent="onSubmit()" novalidate>
-            <h3 class="Combined-FormTitle">
-              Размер проема
-            </h3>
-            <!--              <div class="Quiz-SlideInput">-->
-            <div class="Combined-FormField">
-              <input type="text"
-                     class="Combined-FormInput Input"
-                     name="size"
-                     placeholder="Высота*Ширина"
-              >
-              <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
-            </div>
-            <h3 class="Quiz-Question">
-              Количество дверей
-            </h3>
-            <!--              <div class="Quiz-SlideInput">-->
-            <div class="Quiz-FormField Field-Number">
-              <span class="Quiz-Math Minus"></span>
-              <input type="text"
-                     class="Quiz-FormInput Input Input-Number"
-                     name="size"
-                     placeholder="0"
-              >
-              <span class="Quiz-Math Plus"></span>
-              <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+            <div class="Combined-FormContent">
+              <h3 class="Combined-FormTitle">
+                Размер проема
+              </h3>
+              <!--              <div class="Quiz-SlideInput">-->
+              <div class="Combined-FormField">
+                <input type="text"
+                       class="Combined-FormInput Input"
+                       name="size"
+                       placeholder="Высота*Ширина"
+                >
+                <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+              </div>
+              <h3 class="Combined-FormTitle">
+                Количество дверей
+              </h3>
+              <!--              <div class="Quiz-SlideInput">-->
+              <div class="Combined-FormField Field-Number">
+                <span class="Combined-Math Minus"></span>
+                <input type="text"
+                       class="Combined-FormInput Input Input-Number"
+                       name="size"
+                       placeholder="0"
+                >
+                <span class="Quiz-Math Plus"></span>
+                <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+              </div>
+              <h3 class="Combined-FormTitle">
+                Укажите вариант разделения дверей (из рисунка справа)
+              </h3>
+              <div class="Combined-FormField Field-Radio">
+                <div class="Combined-RadioBox"
+                 v-for="(id,index) in radioBtnId"
+                     :key="index"
+                >
+                  <input :id="id.id"
+                         type="radio"
+                         class="Combined-FormInput Input Input-Radio"
+                         name="size"
+                  >
+                  <label :for="id.id" class="Combined-Label">
+                    {{ id.label }}
+                  </label>
+                </div>
+                <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+              </div>
             </div>
           </form>
         </div>
         <div class="Combined-SliderBox">
-          <swiper :option="optionSlider" class="Combined-Slider">
+          <swiper :options="optionSlider" class="Combined-Slider">
             <swiper-slide class="Combined-Slide">
               <div class="Combined-SlideInner"
                    v-for="(item, i) in sliderInfo.slide1"
@@ -76,6 +97,7 @@
         </div>
       </div>
     </div>
+
   </section>
 </template>
 
@@ -88,8 +110,8 @@ import "swiper/components/thumbs/thumbs.min.css"
 import SwiperCore, {
   Navigation
 } from 'swiper/core';
+//import axios from "axios";
 
-// install Swiper modules
 SwiperCore.use([Navigation]);
 
 export default {
@@ -104,7 +126,6 @@ export default {
         loop: true,
         slidesPerView: 'auto',
         centeredSlides: true,
-        spaceBetween: 100,
         navigation: {
           nextEl: '.combined-next',
           prevEl: '.combined-prev'
@@ -123,7 +144,16 @@ export default {
           {img: "comby_4-5.png", text: "Комби - 4/5"},
           {img: "comby_4-5.png", text: "Бриз - 4/5"},
         ]
-      }
+      },
+      radioBtnId: [
+        {id: "combi-1", label: "Комби - 1",},
+        {id: "combi-2", label: "Комби - 2",},
+        {id: "combi-3", label: "Комби - 3",},
+        {id: "combi-1-4", label: "Комби - 1/4",},
+        {id: "combi-3-4", label: "Комби - 3/4",},
+        {id: "combi-4-4", label: "Комби - 4/4",},
+        {id: "combi-4-5", label: "Комби - 4/5",},
+      ]
     }
   },
   methods: {
@@ -192,6 +222,7 @@ export default {
 
   &-SliderBox {
     width: 830px;
+    position: relative;
   }
 
   &-Slide {
@@ -234,6 +265,15 @@ export default {
     font-size: 16px;
     letter-spacing: .045em;
     color: var(--color-text-ghost);
+  }
+
+  &-SliderBtns {
+    width: 200px;
+    position: absolute;
+    z-index: 3;
+    top: 107%;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
 
 
