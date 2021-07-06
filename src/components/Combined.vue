@@ -48,7 +48,9 @@
               <div class="Combined-SlideInner"
                    v-for="(item, i) in sliderInfo.slide1"
                    :key="i">
-                <img :src="require(`@/assets/image/${item.img}`)" alt="" class="Combined-SlideImg">
+                <div class="Combined-SlideImgBox">
+                  <img :src="require(`@/assets/image/${item.img}`)" alt="" class="Combined-SlideImg">
+                </div>
                 <div class="Combined-SlideText">{{ item.text }}</div>
               </div>
             </swiper-slide>
@@ -56,7 +58,9 @@
               <div class="Combined-SlideInner"
                    v-for="(item, i) in sliderInfo.slide2"
                    :key="i">
-                <img :src="require(`@/assets/image/${item.img}`)" alt="" class="Combined-SlideImg">
+                <div class="Combined-SlideImgBox">
+                  <img :src="require(`@/assets/image/${item.img}`)" alt="" class="Combined-SlideImg">
+                </div>
                 <div class="Combined-SlideText">{{ item.text }}</div>
               </div>
             </swiper-slide>
@@ -198,23 +202,39 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 43px 0;
+    border-radius: 8px;
     background-color: var(--color-text-main3);
   }
 
   &-SlideInner {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 360px;
+    //align-items: center;
+    //justify-content: center;
+    height: 330px;
+    padding: 15px 16px;
+    text-align: center;
     border-radius: 8px;
     background-color: var(--color-bg-faq);
   }
 
+  &-SlideImgBox {
+    width: 100%;
+    height: 255px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    padding: 20px 0 25px;
+    border-radius: 8px;
+    background-color: var(--color-text-main3);
+  }
 
-
-
-
+  &-SlideText {
+    font-size: 16px;
+    letter-spacing: .045em;
+    color: var(--color-text-ghost);
+  }
 
 
   .swiper-button-prev,
