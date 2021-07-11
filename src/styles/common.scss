@@ -171,3 +171,11 @@ img {
 .Text--colored {
   //color: var(--color-text-main3);
 }
+
+.Checkbox {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

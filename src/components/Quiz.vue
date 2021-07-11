@@ -19,13 +19,13 @@
           <div class="swiper-pagination"></div>
           <swiper class="Quiz-Slider" :options="options">
             <swiper-slide class="Quiz-Slide">
-              <h3 class="Quiz-Question" v-html="questions.question1.question"></h3>
+              <h4 class="Title--h4 Quiz-Question" v-html="questions.question1.question"></h4>
               <div class="Quiz-SlideAnswers">
                 <div class="Quiz-FormField"
                      v-for="answer in questions.question1.answers"
                      :key="answer.id"
                 >
-                  <input type="checkbox" :id="answer.id" class="Quiz-FormInput">
+                  <input type="checkbox" :id="answer.id" class="Quiz-FormInput Checkbox">
                   <label :for="answer.id" class="Quiz-FormLabel">
                     <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
                     <span class="Quiz-FormSpan">{{ answer.text }}</span>
@@ -34,13 +34,13 @@
               </div>
             </swiper-slide>
             <swiper-slide class="Quiz-Slide">
-              <h3 class="Quiz-Question" v-html="questions.question2.question"></h3>
+              <h4 class="Title--h4 Quiz-Question" v-html="questions.question2.question"></h4>
               <div class="Quiz-SlideAnswers">
                 <div class="Quiz-FormField"
                      v-for="answer in questions.question2.answers"
                      :key="answer.id"
                 >
-                  <input type="checkbox" :id="answer.id" class="Quiz-FormInput">
+                  <input type="checkbox" :id="answer.id" class="Quiz-FormInput Checkbox">
                   <label :for="answer.id" class="Quiz-FormLabel">
                     <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
                     <span class="Quiz-FormSpan">{{ answer.text }}</span>
@@ -49,9 +49,9 @@
               </div>
             </swiper-slide>
             <swiper-slide class="Quiz-Slide">
-              <h3 class="Quiz-Question">
+              <h4 class="Title--h4 Quiz-Question">
                 Укажите размер проема
-              </h3>
+              </h4>
               <!--              <div class="Quiz-SlideInput">-->
               <div class="Quiz-FormField">
                 <input type="text"
@@ -64,9 +64,9 @@
               <!--              </div>-->
             </swiper-slide>
             <swiper-slide class="Quiz-Slide">
-              <h3 class="Quiz-Question">
+              <h4 class="Title--h4 Quiz-Question">
                 Количество дверей
-              </h3>
+              </h4>
               <!--              <div class="Quiz-SlideInput">-->
               <div class="Quiz-FormField Field-Number">
                 <span class="Quiz-Math Minus"></span>
@@ -81,10 +81,10 @@
               <!--              </div>-->
             </swiper-slide>
             <swiper-slide class="Quiz-Slide">
-              <h3 class="Quiz-Question">
+              <h4 class="Title--h4 Quiz-Question">
                 Отлично! Теперь мы знаем, какие двери Вы хотите.<br/>
                 Укажите как с Вами связаться
-              </h3>
+              </h4>
               <!--              <div class="Quiz-SlideInput">-->
               <div class="Quiz-FormField Quiz-FormField--bottom">
                 <input type="text"
@@ -225,7 +225,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .Quiz {
   padding: 0 0 40px;
   background-image: url(~@/assets/image/quiz-bg.png);
@@ -291,19 +291,6 @@ export default {
 
   &-Question {
     margin-bottom: 40px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.462;
-    letter-spacing: .03em;
-    color: var(--color-text-dark);
-
-    @media (min-width: $screen-l) {
-      font-size: 20px;
-    }
-
-    @media (min-width: $screen-xl) {
-      font-size: 26px;
-    }
   }
 
   &-SlideAnswers {
@@ -352,14 +339,6 @@ export default {
     @media (min-width: $screen-l) {
       font-size: 16px;
     }
-  }
-
-  &-FormInput[type="checkbox"] {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
   }
 
   &-FormLabel {
@@ -476,6 +455,7 @@ export default {
     align-items: center;
     width: 260px;
     margin: 0 auto;
+    position: relative;
   }
 
   .Input-Number {
@@ -486,7 +466,7 @@ export default {
     display: block;
     width: 26px;
     height: 26px;
-    position: relative;
+
     cursor: pointer;
 
     &:before {
@@ -508,7 +488,7 @@ export default {
       height: 25px;
       background-color: var(--color-text-dark);
       //top: -50%;
-      left: 17.5px;
+      right: -7.5px;
     }
   }
 

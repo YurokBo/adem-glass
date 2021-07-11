@@ -33,3 +33,19 @@
     font-size: 38px;
   }
 }
+
+.Title--h4 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.462;
+  letter-spacing: .045em;
+  color: var(--color-text-dark);
+
+  @media (min-width: $screen-l) {
+    font-size: 24px;
+  }
+
+ /* @media (min-width: $screen-xl) {
+    font-size: 24px;
+  }*/
+}

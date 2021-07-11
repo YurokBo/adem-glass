@@ -14,22 +14,25 @@
       <div class="Combined-Content">
         <div class="Combined-FormBox">
           <form class="Combined-Form" @submit.prevent="onSubmit()" novalidate>
+
             <div class="Combined-FormContent">
-              <h3 class="Combined-FormTitle">
+              <h4 class="Title--h4 Combined-FormTitle">
                 Размер проема
-              </h3>
+              </h4>
               <!--              <div class="Quiz-SlideInput">-->
-              <div class="Combined-FormField">
+              <div class="Combined-FormField Field-Text">
                 <input type="text"
-                       class="Combined-FormInput Input"
+                       class="Combined-FormInput Input Input-Text"
                        name="size"
                        placeholder="Высота*Ширина"
                 >
                 <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
               </div>
-              <h3 class="Combined-FormTitle">
+            </div>
+            <div class="Combined-FormContent">
+              <h4 class="Title--h4 Combined-FormTitle">
                 Количество дверей
-              </h3>
+              </h4>
               <!--              <div class="Quiz-SlideInput">-->
               <div class="Combined-FormField Field-Number">
                 <span class="Combined-Math Minus"></span>
@@ -38,29 +41,47 @@
                        name="size"
                        placeholder="0"
                 >
-                <span class="Quiz-Math Plus"></span>
+                <span class="Combined-Math Plus"></span>
                 <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
               </div>
-              <h3 class="Combined-FormTitle">
-                Укажите вариант разделения дверей (из рисунка справа)
-              </h3>
+            </div>
+            <div class="Combined-FormContent">
+              <h4 class="Title--h4 Combined-FormTitle">
+                Укажите вариант разделения <br> дверей (из рисунка справа)
+              </h4>
               <div class="Combined-FormField Field-Radio">
                 <div class="Combined-RadioBox"
-                 v-for="(id,index) in radioBtnId"
+                     v-for="(id,index) in radioBtnId"
                      :key="index"
                 >
                   <input :id="id.id"
                          type="radio"
-                         class="Combined-FormInput Input Input-Radio"
+                         class="Combined-FormInput Checkbox Input-Radio"
                          name="size"
                   >
-                  <label :for="id.id" class="Combined-Label">
+                  <label :for="id.id" class="Combined-Label Label-Radio">
                     {{ id.label }}
                   </label>
                 </div>
                 <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
               </div>
             </div>
+            <div class="Combined-FormContent">
+              <h4 class="Title--h4 Combined-FormTitle">
+                Ваш телефон
+              </h4>
+              <div class="Combined-FormField">
+                <input type="text"
+                       class="Combined-FormInput Input Input-Text"
+                       name="phone"
+                       placeholder="+7 (999) 475 59 00"
+                >
+                <!--                <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
+                                      class="invalid-feedback">Обязательное поле!</span>-->
+              </div>
+              <button type="submit" class="Btn Combined-FormBtn">выбрать вариант</button>
+            </div>
+
           </form>
         </div>
         <div class="Combined-SliderBox">
@@ -147,10 +168,10 @@ export default {
       },
       radioBtnId: [
         {id: "combi-1", label: "Комби - 1",},
-        {id: "combi-2", label: "Комби - 2",},
-        {id: "combi-3", label: "Комби - 3",},
         {id: "combi-1-4", label: "Комби - 1/4",},
+        {id: "combi-2", label: "Комби - 2",},
         {id: "combi-3-4", label: "Комби - 3/4",},
+        {id: "combi-3", label: "Комби - 3",},
         {id: "combi-4-4", label: "Комби - 4/4",},
         {id: "combi-4-5", label: "Комби - 4/5",},
       ]
@@ -192,12 +213,12 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .Combined {
-  padding: 70px 0;
+  padding: 70px 0 130px;
   background-color: var(--color-bg-faq);
 
-  @media (min-width: $screen-l) {
+  @media (min-width: $screen-xl) {
     padding: 94px 0;
   }
 
@@ -213,28 +234,234 @@ export default {
 
   &-Content {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+
+    @media (min-width: $screen-xl) {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 58px;
+    }
   }
 
   &-FormBox {
-    width: 466px;
+    width: 100%;
+    margin: 0 auto;
+
+    @media (min-width: $screen-l) {
+      width: 930px;
+    }
+    @media (min-width: $screen-xl) {
+      width: 466px;
+      margin: 0;
+    }
+  }
+
+  &-Form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 40px;
+
+    @media (min-width: $screen-xl) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &-FormTitle {
+    margin-bottom: 25px;
+  }
+
+  &-FormField {
+    margin-bottom: 65px;
+  }
+
+  &-FormInput {
+    padding: 19px 20px 19px 32px;
+    border: 1px solid var(--color-bg-input);
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    letter-spacing: .045em;
+    color: var(--color-text-btn);
+    background-color: var(--color-text-main3);
+
+    &::placeholder {
+      color: var(--color-text-placeholder2);
+    }
+
+    &:focus {
+      border: 1px solid var(--color-text-btn);
+    }
+
+    @media (min-width: $screen-m) {
+      padding: 28px 32px;
+    }
+  }
+
+  .Field-Number {
+    display: flex;
+    align-items: center;
+    width: 194px;
+    position: relative;
+    padding: 0 48px;
+  }
+
+  .Input-Number {
+    max-width: 94px;
+    padding: 25px 15px 25px 22px;
+    //margin: 0 30px 0;
+  }
+
+  &-Math {
+    display: block;
+    width: 26px;
+    height: 26px;
+
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 26px;
+      height: 2px;
+      top: 50%;
+      transform: translate(0, -50%);
+      background-color: var(--color-text-dark);
+    }
+  }
+
+  .Plus {
+    &:before {
+      right: 0;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 26px;
+      background-color: var(--color-text-dark);
+      top: 50%;
+      transform: translate(0, -50%);
+      right: 12px;
+    }
+  }
+
+  .Minus {
+    &:before {
+      left: 0;
+    }
+  }
+
+  .Field-Radio {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &-RadioBox {
+    margin-bottom: 28px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-Label {
+    position: relative;
+    padding-left: 48px;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%,);
+      border-radius: 50%;
+      background-color: var(--color-text-main);
+      box-shadow: 0px 0px 1px 0px rgba(155, 146, 137, 0.14), inset 0px 5px 6.79px 0.21px rgba(77, 67, 56, 0.13);
+      cursor: pointer;
+      transition: all .3s;
+
+      @media (min-width: $screen-l) {
+        width: 28px;
+        height: 28px;
+      }
+
+    }
+
+    &:after {
+      content: '';
+      border-radius: 50%;
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      top: 50%;
+      left: 6.5px;
+      transform: translate(0, -50%,);
+      background-image: var(--color-bg-btn-before);
+      opacity: 0;
+      transition: opacity .3s;
+
+      @media (min-width: $screen-l) {
+        width: 14px;
+        height: 14px;
+        //top: 254px;
+      }
+    }
+  }
+
+  .Input-Radio:checked + .Label-Radio:after {
+    opacity: 1;
+  }
+
+  .Input-Radio:checked + .Label-Radio:before {
+    box-shadow: inset 0px 5px 6.79px 0.21px rgba(199, 189, 176, 0.13);
+  }
+
+  &-FormBtn {
+    padding: 24px 55px 26px;
+    margin-bottom: 70px;
+    @media (min-width: $screen-xl) {
+      margin-bottom: 0;
+    }
   }
 
   &-SliderBox {
-    width: 830px;
+    width: 100%;
+    margin: 0 auto;
     position: relative;
+
+    @media (min-width: $screen-l) {
+      width: 830px;
+    }
+
+    @media (min-width: $screen-xl) {
+      margin: 0;
+    }
+  }
+
+  &-Slider {
+    box-shadow: var(--color-box-shadow);
   }
 
   &-Slide {
-    width: 830px;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 355px);
-    grid-gap: 10px;
+    grid-gap: 40px 10px;
     justify-content: center;
     align-items: center;
     padding: 43px 0;
     border-radius: 8px;
     background-color: var(--color-text-main3);
+
+    @media (min-width: $screen-l) {
+      width: 830px;
+    }
   }
 
   &-SlideInner {
@@ -242,16 +469,19 @@ export default {
     flex-direction: column;
     //align-items: center;
     //justify-content: center;
-    height: 330px;
+    height: 100%;
     padding: 15px 16px;
     text-align: center;
     border-radius: 8px;
     background-color: var(--color-bg-faq);
+    @media (min-width: $screen-l) {
+      height: 330px;
+    }
   }
 
   &-SlideImgBox {
     width: 100%;
-    height: 255px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -259,6 +489,9 @@ export default {
     padding: 20px 0 25px;
     border-radius: 8px;
     background-color: var(--color-text-main3);
+    @media (min-width: $screen-l) {
+      height: 255px;
+    }
   }
 
   &-SlideText {
@@ -271,9 +504,13 @@ export default {
     width: 200px;
     position: absolute;
     z-index: 3;
-    top: 107%;
+    top: 105%;
     left: 50%;
     transform: translate(-50%, 0);
+
+    @media (min-width: $screen-xl) {
+      top: 87%;
+    }
   }
 
 
