@@ -224,8 +224,13 @@ export default {
 
   &-Title {
     margin-bottom: 45px;
+    padding: 0 20px;
     text-align: center;
     color: var(--color-text-faq);
+
+    @media (min-width: $screen-m) {
+      padding: 0;
+    }
 
     @media (min-width: $screen-l) {
       margin-bottom: 58px;
@@ -259,8 +264,13 @@ export default {
 
   &-Form {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px 40px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0 40px;
+
+    @media (min-width: $screen-m) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 40px;
+    }
 
     @media (min-width: $screen-xl) {
       display: flex;
@@ -451,29 +461,37 @@ export default {
   &-Slide {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 355px);
-    grid-gap: 40px 10px;
+    grid-template-columns: repeat(2, 178px);
+    grid-gap: 5px 5px;
     justify-content: center;
     align-items: center;
     padding: 43px 0;
     border-radius: 8px;
     background-color: var(--color-text-main3);
 
+    @media (min-width: $screen-m) {
+      grid-template-columns: repeat(2, 355px);
+      grid-gap: 40px 10px;
+    }
+
     @media (min-width: $screen-l) {
       width: 830px;
+      grid-gap: 10px 10px;
     }
   }
 
   &-SlideInner {
     display: flex;
     flex-direction: column;
-    //align-items: center;
-    //justify-content: center;
-    height: 100%;
-    padding: 15px 16px;
+    height: 180px;
+    padding: 8px;
     text-align: center;
     border-radius: 8px;
     background-color: var(--color-bg-faq);
+    @media (min-width: $screen-m) {
+      height: 100%;
+      padding: 15px 16px;
+    }
     @media (min-width: $screen-l) {
       height: 330px;
     }
@@ -485,10 +503,13 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 10px;
-    padding: 20px 0 25px;
+    margin: 0 auto;
     border-radius: 8px;
     background-color: var(--color-text-main3);
+    @media (min-width: $screen-m) {
+      margin: 0 auto 10px;
+      padding: 20px 0 25px;
+    }
     @media (min-width: $screen-l) {
       height: 255px;
     }
