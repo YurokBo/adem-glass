@@ -1,5 +1,5 @@
 <template>
-  <section class="Quiz">
+  <section class="Quiz" id="quiz">
     <div class="Container">
       <div class="Decor">
         <span class="Decor-Line Left"></span>

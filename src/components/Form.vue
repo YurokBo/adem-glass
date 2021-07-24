@@ -20,6 +20,7 @@
             <h3 class="Title--h3 Form-FormTitle">
               Оставьте заявку
             </h3>
+            <input type="hidden" name="status" v-model.trim="form.status">
             <div class="Form-Field">
               <input type="text"
                      class="Form-Input Input"
@@ -97,6 +98,7 @@ export default {
   data() {
     return {
       form: {
+        status: 'формы с девушкой',
         size: '',
         doors: '',
         phone: '',
@@ -140,6 +142,7 @@ export default {
       this.$v.form.$touch();
       if (!this.$v.form.$error) {
         const params = new URLSearchParams();
+        params.append('status', this.form.status);
         params.append('size', this.form.size);
         params.append('doors', this.form.doors);
         params.append('name', this.form.name);
@@ -154,7 +157,7 @@ export default {
               }
             }
         ).then(() => {})
-        this.showAuthDialog()
+        setTimeout(()=>this.showAuthDialog(), 1000)
         this.form.size = ''
         this.form.doors = ''
         this.form.name = ''

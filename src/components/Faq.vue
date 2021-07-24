@@ -42,6 +42,7 @@
           </div>
         </div>
         <div class="Faq-FormForm">
+          <input type="hidden" name="status" v-model.trim="form.status">
           <div class="Faq-FormField">
             <input type="text"
                    class="Faq-FormInput Input"
@@ -106,6 +107,7 @@ export default {
         },
       ],
       form: {
+        status: 'формы с FAQ',
         size: '',
         doors: '',
         phone: '',
@@ -143,6 +145,7 @@ export default {
       this.$v.form.$touch();
       if (!this.$v.form.$error) {
         const params = new URLSearchParams();
+        params.append('status', this.form.status);
         params.append('name', this.form.name);
         params.append('phone', this.form.phone);
 
@@ -155,7 +158,7 @@ export default {
               }
             }
         ).then(() => {})
-        this.showAuthDialog()
+        setTimeout(()=>this.showAuthDialog(), 1000)
         this.form.name = ''
         this.form.phone = ''
         this.$nextTick(() => {

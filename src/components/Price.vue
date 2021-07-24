@@ -56,7 +56,7 @@
                 <div class="Price-SlideTableRowText">{{ slide.priceText }}</div>
               </div>
             </div>
-            <button class="Btn Price-SlideBtn">рассчитать стоимость</button>
+            <button class="Btn Price-SlideBtn" @click="scrollTo">рассчитать стоимость</button>
           </div>
         </swiper-slide>
       </swiper>
@@ -83,6 +83,7 @@ import 'swiper/components/pagination/pagination.min.css';
 import SwiperCore, {
   Navigation, Pagination
 } from 'swiper/core';
+import {scrollTo} from "@/utils/utils";
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination]);
@@ -372,6 +373,9 @@ export default {
       ],
       selectedCategory: "colored-price",
     }
+  },
+  methods: {
+    scrollTo
   },
   computed: {
     filteredPeople: function () {

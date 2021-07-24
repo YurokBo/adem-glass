@@ -8,7 +8,8 @@ $to = 'welcome@ademglass.ru';
 $subject = 'Mail from form';
 
 // текст письма
-$message = 'Пользователь: ' . $_POST['name'] . '<br />'
+$message = 'Сообщение с: ' . $_POST['status'] . '<br />'
+    .  'Пользователь: ' . $_POST['name'] . '<br />'
     . 'Нужны двери:' . $_POST['doors'] . '<br />'
     . 'Размер:' . $_POST['size'] . '<br />'
     . 'Вы можете связаться с ним по номеру телефона: <a href="tel:' . $_POST['phone'] . '">' . $_POST['phone'] . '</a>';

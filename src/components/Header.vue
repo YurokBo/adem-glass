@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="Header-BtnBox">
-          <button class="Btn Header-Btn">рассчитать стоимость</button>
+          <button class="Btn Header-Btn" @click="scrollTo">рассчитать стоимость</button>
           <a href="#" class="Header-BtnCatalog">Посмотреть каталог</a>
         </div>
       </div>
@@ -38,6 +38,7 @@
 
 <script>
 import HeaderMenu from "@/components/HeaderMenu";
+import {scrollTo} from "@/utils/utils.js"
 
 export default {
   name: "Header",
@@ -52,6 +53,9 @@ export default {
         {image: "clock.png", text: "Изготовление<br/> дверей от 3-х<br/> рабочих дней"}
       ],
     }
+  },
+  methods: {
+    scrollTo
   }
 }
 </script>
