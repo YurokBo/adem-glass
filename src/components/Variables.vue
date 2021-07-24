@@ -73,17 +73,17 @@
           </div>
         </div>
       </div>
-      <button class="Btn Variables-Btn" @click="scrollTo">рассчитать стоимость</button>
+      <button class="Btn Variables-Btn" @click="scrollToQuiz">рассчитать стоимость</button>
     </div>
   </section>
 </template>
 
 <script>
-import {scrollTo} from "@/utils/utils.js"
+import {scrollToQuiz} from "@/utils/utils.js"
 export default {
   name: "Variables",
   methods: {
-    scrollTo
+    scrollToQuiz
   }
 }
 </script>

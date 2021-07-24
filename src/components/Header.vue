@@ -28,8 +28,8 @@
           </div>
         </div>
         <div class="Header-BtnBox">
-          <button class="Btn Header-Btn" @click="scrollTo">рассчитать стоимость</button>
-          <a href="#" class="Header-BtnCatalog">Посмотреть каталог</a>
+          <button class="Btn Header-Btn" @click="scrollToQuiz">рассчитать стоимость</button>
+          <button class="Header-BtnCatalog" @click="scrollToCatalog">Посмотреть каталог</button>
         </div>
       </div>
     </div>
@@ -38,7 +38,7 @@
 
 <script>
 import HeaderMenu from "@/components/HeaderMenu";
-import {scrollTo} from "@/utils/utils.js"
+import {scrollToCatalog, scrollToQuiz} from "@/utils/utils.js"
 
 export default {
   name: "Header",
@@ -55,7 +55,8 @@ export default {
     }
   },
   methods: {
-    scrollTo
+    scrollToQuiz,
+    scrollToCatalog,
   }
 }
 </script>

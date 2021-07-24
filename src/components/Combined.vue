@@ -14,35 +14,39 @@
       <div class="Combined-Content">
         <div class="Combined-FormBox">
           <form class="Combined-Form" @submit.prevent="onSubmit()" novalidate>
-
             <div class="Combined-FormContent">
               <h4 class="Title--h4 Combined-FormTitle">
                 Размер проема
               </h4>
-              <!--              <div class="Quiz-SlideInput">-->
+              <input type="hidden" name="status" v-model.trim="form.status">
               <div class="Combined-FormField Field-Text">
                 <input type="text"
                        class="Combined-FormInput Input Input-Text"
                        name="size"
                        placeholder="Высота*Ширина"
+                       v-model.trim="form.size"
+                       :class="$v.form.size.$error ? 'is-invalid' : ''"
                 >
-                <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+                <span v-if="$v.form.size.$dirty && !$v.form.size.required"
+                      class="invalid-feedback">Обязательное поле!</span>
               </div>
             </div>
             <div class="Combined-FormContent">
               <h4 class="Title--h4 Combined-FormTitle">
                 Количество дверей
               </h4>
-              <!--              <div class="Quiz-SlideInput">-->
               <div class="Combined-FormField Field-Number">
-                <span class="Combined-Math Minus"></span>
+                <span class="Combined-Math Minus" @click="countDoorsMinus"></span>
                 <input type="text"
                        class="Combined-FormInput Input Input-Number"
-                       name="size"
+                       name="doors"
                        placeholder="0"
+                       v-model.trim="form.doors"
+                       :class="$v.form.doors.$error ? 'is-invalid' : ''"
                 >
-                <span class="Combined-Math Plus"></span>
-                <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+                <span class="Combined-Math Plus" @click="form.doors++"></span>
+                <span v-if="$v.form.doors.$dirty && !$v.form.doors.required"
+                      class="invalid-feedback">Обязательное поле!</span>
               </div>
             </div>
             <div class="Combined-FormContent">
@@ -57,13 +61,17 @@
                   <input :id="id.id"
                          type="radio"
                          class="Combined-FormInput Checkbox Input-Radio"
-                         name="size"
+                         name="variable"
+                         v-model.trim="form.variable"
+                         :class="$v.form.variable.$error ? 'is-invalid' : ''"
+                         :value="id.label"
                   >
                   <label :for="id.id" class="Combined-Label Label-Radio">
                     {{ id.label }}
                   </label>
                 </div>
-                <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+                <span v-if="$v.form.variable.$dirty && !$v.form.variable.required"
+                      class="invalid-feedback">Обязательное поле!</span>
               </div>
             </div>
             <div class="Combined-FormContent">
@@ -75,13 +83,14 @@
                        class="Combined-FormInput Input Input-Text"
                        name="phone"
                        placeholder="+7 (999) 475 59 00"
+                       v-model.trim="form.phone"
+                       :class="$v.form.phone.$error ? 'is-invalid' : ''"
                 >
-                <!--                <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
-                                      class="invalid-feedback">Обязательное поле!</span>-->
+                <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
+                      class="invalid-feedback">Обязательное поле!</span>
               </div>
               <button type="submit" class="Btn Combined-FormBtn">выбрать вариант</button>
             </div>
-
           </form>
         </div>
         <div class="Combined-SliderBox">
@@ -131,11 +140,15 @@ import "swiper/components/thumbs/thumbs.min.css"
 import SwiperCore, {
   Navigation
 } from 'swiper/core';
-//import axios from "axios";
+import axios from "axios";
+import Modal from "@/components/Modal";
+import {required} from "vuelidate/lib/validators";
+import {validationMixin} from "vuelidate";
 
 SwiperCore.use([Navigation]);
 
 export default {
+  mixins: [validationMixin],
   name: "Combined",
   components: {
     Swiper,
@@ -174,21 +187,64 @@ export default {
         {id: "combi-3", label: "Комби - 3",},
         {id: "combi-4-4", label: "Комби - 4/4",},
         {id: "combi-4-5", label: "Комби - 4/5",},
-      ]
+      ],
+      form: {
+        status: 'формы с комбинациями дверей',
+        size: '',
+        doors: '',
+        phone: '',
+        variable: '',
+      },
+    }
+  },
+  validations: {
+    form: {
+      size: {
+        required,
+      },
+      doors: {
+        required,
+      },
+      name: {
+        required,
+      },
+      phone: {
+        required,
+      },
+      variable: {
+        required,
+      },
     }
   },
   methods: {
-    check() {
-      console.log('He;e;e')
+    countDoorsMinus(){
+      this.form.doors > 0 ? --this.form.doors : 0
+    },
+    showAuthDialog() {
+      this.$modal.show(
+          Modal,
+          {},
+          {
+            width: 428,
+            height: 'auto',
+            adaptive: true,
+            scrollable: true,
+            style: "{ backgroundColor: 'rgba(1,7,11,.7)'}",
+            clickToClose: false,
+          },
+          {},
+      );
     },
     onSubmit() {
-      /*this.$v.form.$touch();
+      this.$v.form.$touch();
       if (!this.$v.form.$error) {
         const params = new URLSearchParams();
+        params.append('status', this.form.status);
         params.append('size', this.form.size);
         params.append('doors', this.form.doors);
         params.append('name', this.form.name);
         params.append('phone', this.form.phone);
+        params.append('variable', this.form.variable);
 
         axios.post(
             "/mail.php",
@@ -198,18 +254,20 @@ export default {
                 'content-type': 'application/x-www-form-urlencoded'
               }
             }
-        ).then(() => {})
-        this.showAuthDialog()
+        ).then(() => {
+        })
+        setTimeout(() => this.showAuthDialog(), 1000)
         this.form.size = ''
         this.form.doors = ''
         this.form.name = ''
         this.form.phone = ''
+        this.form.variable = ''
         this.$nextTick(() => {
           this.$v.$reset()
-        })*/
+        })
+      }
     }
-  }
-  ,
+  },
 }
 </script>
 
@@ -284,6 +342,7 @@ export default {
 
   &-FormField {
     margin-bottom: 65px;
+    position: relative;
   }
 
   &-FormInput {
@@ -438,6 +497,14 @@ export default {
     @media (min-width: $screen-xl) {
       margin-bottom: 0;
     }
+  }
+
+  .invalid-feedback {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 10px;
+    color: var(--color-text-error);
   }
 
   &-SliderBox {
