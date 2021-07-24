@@ -115,7 +115,7 @@
               <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
             </div>
           </div>
-          <button type="button" class="Btn Quiz-FormNext next">следующий вопрос</button>
+          <button type="button" class="Btn Quiz-FormNext quiz-next">следующий вопрос</button>
         </form>
       </div>
     </div>
