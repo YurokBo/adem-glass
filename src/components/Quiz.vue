@@ -20,17 +20,45 @@
           <swiper class="Quiz-Slider" :options="options">
             <swiper-slide class="Quiz-Slide">
               <h4 class="Title--h4 Quiz-Question" v-html="questions.question1.question"></h4>
-              <div class="Quiz-SlideAnswers">
-                <div class="Quiz-FormField"
-                     v-for="answer in questions.question1.answers"
-                     :key="answer.id"
-                >
-                  <input type="checkbox" :id="answer.id" class="Quiz-FormInput Checkbox">
-                  <label :for="answer.id" class="Quiz-FormLabel">
-                    <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
-                    <span class="Quiz-FormSpan">{{ answer.text }}</span>
-                  </label>
-                </div>
+              <div class="Quiz-SlideInnerBox">
+                <swiper :options="optionsInner" class="Quiz-SliderInner">
+                  <swiper-slide class="Quiz-SlideInner">
+                    <div class="Quiz-SlideAnswers">
+                      <div class="Quiz-FormField"
+                           v-for="answer in questions.question1.answers1"
+                           :key="answer.id"
+                      >
+                        <input type="checkbox" :id="answer.id" class="Quiz-FormInput Checkbox">
+                        <label :for="answer.id" class="Quiz-FormLabel">
+                          <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
+                          <span class="Quiz-FormSpan">{{ answer.text }}</span>
+                        </label>
+                      </div>
+                    </div>
+                  </swiper-slide>
+                  <swiper-slide class="Quiz-SlideInner">
+                    <div class="Quiz-SlideAnswers">
+                      <div class="Quiz-FormField"
+                           v-for="answer in questions.question1.answers2"
+                           :key="answer.id"
+                      >
+                        <input type="checkbox" :id="answer.id" class="Quiz-FormInput Checkbox">
+                        <label :for="answer.id" class="Quiz-FormLabel">
+                          <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
+                          <span class="Quiz-FormSpan">{{ answer.text }}</span>
+                        </label>
+                      </div>
+                    </div>
+                  </swiper-slide>
+                </swiper>
+<!--                <div class="Quiz-SliderBtns">-->
+                  <div class="swiper-button swiper-button-prev quiz-previnner" slot="button-prev">
+                    <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
+                  </div>
+                  <div class="swiper-button swiper-button-next quiz-nextinner" slot="button-next">
+                    <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
+                  </div>
+<!--                </div>-->
               </div>
             </swiper-slide>
             <swiper-slide class="Quiz-Slide">
@@ -107,14 +135,15 @@
               <button type="submit" class="Btn Quiz-FormBtn">Рассчитать стоимость</button>
             </swiper-slide>
           </swiper>
-          <div class="Quiz-SliderBtns">
-            <div class="swiper-button swiper-button-prev quiz-prev" slot="button-prev">
+<!--          <div class="Quiz-SliderBtns">
+            <div class="swiper-button swiper-button-prev quiz-previnner" slot="button-prev">
               <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
             </div>
-            <div class="swiper-button swiper-button-next quiz-next" slot="button-next">
+            <div class="swiper-button swiper-button-next quiz-nextinner" slot="button-next">
               <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
             </div>
-          </div>
+          </div>-->
+          <button type="button" class="Btn Quiz-FormNext quiz-prev">предыдущий вопрос</button>
           <button type="button" class="Btn Quiz-FormNext quiz-next">следующий вопрос</button>
         </form>
       </div>
@@ -155,11 +184,24 @@ export default {
           type: "progressbar",
         },
       },
+      optionsInner: {
+        // allowTouchMove: false,
+         spaceBetween: 30,
+        navigation: {
+          nextEl: '.quiz-nextinner',
+          prevEl: '.quiz-previnner',
+          disabledClass: 'Btn--disabled-inner'
+        },
+        // pagination: {
+        //   el: ".swiper-pagination",
+        //   type: "progressbar",
+        // },
+      },
 
       questions: {
         question1: {
           question: "Выберите стиль наполнения дверей <br/>(лучше несколько, для сравнения цены)",
-          answers: [
+          answers1: [
             {id: "painted-frosted", img: "quiz-1.png", text: "Окрашенное матовое стекло"},
             {id: "painted-glossy", img: "quiz-2.png", text: "Окрашенное глянцевое стекло"},
             {id: "mirror-corrugated", img: "quiz-3.png", text: "Зеркальное рифленое стекло"},
@@ -168,6 +210,32 @@ export default {
             {id: "classic-pattern", img: "quiz-6.png", text: "Классический узор"},
             {id: "modern-drawing", img: "quiz-7.png", text: "Современный рисунок"},
             {id: "monolithic-glass", img: "quiz-8.png", text: "Монолитное стекло с 3D рисунком"},
+          ],
+          answers2: [
+            {id: "beton-imitation.png", img: "beton-imitation.png", text: "Монолитное стекло с 3D рисунком"},
+            {id: "frosted-mirrorglass.png", img: "frosted-mirrorglass.png", text: "Монолитное стекло с 3D рисунком"},
+            {id: "frosted-mirror.png", img: "frosted-mirror.png", text: "Монолитное стекло с 3D рисунком"},
+            {id: "usual-mirror.png", img: "usual-mirror.png", text: "Монолитное стекло с 3D рисунком"},
+            {
+              id: "natural-drawing-bronze1.png",
+              img: "natural-drawing-bronze1.png",
+              text: "Монолитное стекло с 3D рисунком"
+            },
+            {
+              id: "modern-drawing-bronze.png",
+              img: "modern-drawing-bronze.png",
+              text: "Монолитное стекло с 3D рисунком"
+            },
+            {
+              id: "natural-drawing-bronze2.png",
+              img: "natural-drawing-bronze2.png",
+              text: "Монолитное стекло с 3D рисунком"
+            },
+            {
+              id: "natural-drawing-bronze3.png",
+              img: "natural-drawing-bronze3.png",
+              text: "Монолитное стекло с 3D рисунком"
+            },
           ]
         },
         question2: {
@@ -259,7 +327,7 @@ export default {
 
     @media (min-width: $screen-xl) {
       width: 100%;
-      padding: 70px 187px 73px;
+      padding: 70px 79px /*187px */73px;
     }
   }
 
@@ -289,6 +357,10 @@ export default {
     }
   }
 
+  &-SlideInnerBox {
+    position: relative;
+  }
+
   &-Question {
     margin-bottom: 40px;
   }
@@ -305,7 +377,7 @@ export default {
     @media (min-width: $screen-l) {
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 27px 20px;
-      width: 100%;
+      width: 900px;
     }
 
     @media (min-width: $screen-xl) {
@@ -524,6 +596,7 @@ export default {
       left: 50%;
     }
   }
+
   .swiper-button-prev,
   .swiper-button-next, {
     width: 59px;
@@ -538,8 +611,9 @@ export default {
       height: 69px;
     }
   }
+
   .swiper-button-prev {
-    left: -10px;
+    left: 0;
   }
 
   &-FormNext {
@@ -556,6 +630,11 @@ export default {
     opacity: 0.35;
     cursor: auto;
     pointer-events: none;
+  }
+
+  .Btn--disabled-inner {
+    opacity: 0.55;
+    filter: grayscale(.7);
   }
 }
 </style>
