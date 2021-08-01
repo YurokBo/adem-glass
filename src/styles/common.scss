@@ -179,3 +179,16 @@ img {
   overflow: hidden;
   clip: rect(0 0 0 0);
 }
+
+.vm--modal {
+  //background-color: var(--color-body) !important;
+  //box-shadow: 0px 2px 20px #01070B;
+  border-radius: 12px!important;
+  height: auto !important;
+  overflow: initial !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.vm--container.scrollable .vm--modal {
+  margin-bottom: 150px !important;
+}

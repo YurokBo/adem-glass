@@ -1,28 +1,19 @@
-import Works from "@/components/Works";
+import Modal from "@/components/Modal";
 
-export default function showModal(itemInfo) {
+const width = window.innerWidth;
+
+export function showAuthDialog() {
     this.$modal.show(
+        Modal,
+        {},
         {
-            template: `
-              <div name="modal" class="Modal Modal--bg" @close="$emit('close')">
-              <div class="Modal-Menu">
-                <button type="button" class="Modal-Close Btn" @click="$emit('close')">
-                  <span></span>
-                  <span></span>
-                </button>
-              </div>
-              </div>
-            `,
-            props: ['itemInfo'],
-            components: {Works},
-        },
-        {itemInfo},
-        {
-            width: this.width > 410 ? 400 : 320,
+            width: width > 1300 ? 1280 : 320,
             height: 'auto',
             adaptive: true,
             scrollable: true,
+            style: "{ backgroundColor: 'rgba(1,7,11,.7)'}",
+            clickToClose: false,
         },
         {},
-    )
+    );
 }

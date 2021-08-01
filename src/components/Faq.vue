@@ -78,7 +78,7 @@ import Accordion from "@/components/Accordion";
 import {validationMixin} from 'vuelidate'
 import {required} from "vuelidate/lib/validators";
 import axios from 'axios';
-import Modal from "@/components/Modal";
+import {showAuthDialog} from "@/utils/openModal";
 
 export default {
   mixins: [validationMixin],
@@ -126,21 +126,7 @@ export default {
     }
   },
   methods: {
-    showAuthDialog() {
-      this.$modal.show(
-          Modal,
-          {},
-          {
-            width: 428,
-            height: 'auto',
-            adaptive: true,
-            scrollable: true,
-            style: "{ backgroundColor: 'rgba(1,7,11,.7)'}",
-            clickToClose: false,
-          },
-          {},
-      );
-    },
+    showAuthDialog,
     onSubmit() {
       this.$v.form.$touch();
       if (!this.$v.form.$error) {

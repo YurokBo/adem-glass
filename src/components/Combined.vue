@@ -14,11 +14,11 @@
       <div class="Combined-Content">
         <div class="Combined-FormBox">
           <form class="Combined-Form" @submit.prevent="onSubmit()" novalidate>
+            <input type="hidden" name="status" v-model.trim="form.status">
             <div class="Combined-FormContent">
               <h4 class="Title--h4 Combined-FormTitle">
                 Размер проема
               </h4>
-              <input type="hidden" name="status" v-model.trim="form.status">
               <div class="Combined-FormField Field-Text">
                 <input type="text"
                        class="Combined-FormInput Input Input-Text"
@@ -141,9 +141,9 @@ import SwiperCore, {
   Navigation
 } from 'swiper/core';
 import axios from "axios";
-import Modal from "@/components/Modal";
 import {required} from "vuelidate/lib/validators";
 import {validationMixin} from "vuelidate";
+import {showAuthDialog} from "@/utils/openModal";
 
 SwiperCore.use([Navigation]);
 
@@ -205,9 +205,6 @@ export default {
       doors: {
         required,
       },
-      name: {
-        required,
-      },
       phone: {
         required,
       },
@@ -220,21 +217,7 @@ export default {
     countDoorsMinus(){
       this.form.doors > 0 ? --this.form.doors : 0
     },
-    showAuthDialog() {
-      this.$modal.show(
-          Modal,
-          {},
-          {
-            width: 428,
-            height: 'auto',
-            adaptive: true,
-            scrollable: true,
-            style: "{ backgroundColor: 'rgba(1,7,11,.7)'}",
-            clickToClose: false,
-          },
-          {},
-      );
-    },
+    showAuthDialog,
     onSubmit() {
       this.$v.form.$touch();
       if (!this.$v.form.$error) {
@@ -242,7 +225,6 @@ export default {
         params.append('status', this.form.status);
         params.append('size', this.form.size);
         params.append('doors', this.form.doors);
-        params.append('name', this.form.name);
         params.append('phone', this.form.phone);
         params.append('variable', this.form.variable);
 
