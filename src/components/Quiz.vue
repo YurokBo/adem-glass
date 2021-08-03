@@ -28,11 +28,22 @@
                            v-for="answer in questions.question1.answers1"
                            :key="answer.id"
                       >
-                        <input type="checkbox" :id="answer.id" class="Quiz-FormInput Checkbox">
-                        <label :for="answer.id" class="Quiz-FormLabel">
-                          <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
-                          <span class="Quiz-FormSpan">{{ answer.text }}</span>
-                        </label>
+                        <div class="Quiz-FormFieldBox">
+                          <input type="checkbox"
+                                 :id="answer.id"
+                                 class="Quiz-FormInput Checkbox"
+                                 name="style"
+                                 v-model.trim="form.style"
+                                 :class="$v.form.style.$error ? 'is-invalid' : ''"
+                                 :value="answer.id"
+                          >
+                          <label :for="answer.id" class="Quiz-FormLabel">
+                            <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
+                            <span class="Quiz-FormSpan">{{ answer.text }}</span>
+                          </label>
+                        </div>
+                        <span v-if="$v.form.style.$dirty && !$v.form.style.required"
+                              class="invalid-feedback">Обязательное поле!</span>
                       </div>
                     </div>
                   </swiper-slide>
@@ -42,23 +53,34 @@
                            v-for="answer in questions.question1.answers2"
                            :key="answer.id"
                       >
-                        <input type="checkbox" :id="answer.id" class="Quiz-FormInput Checkbox">
-                        <label :for="answer.id" class="Quiz-FormLabel">
-                          <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
-                          <span class="Quiz-FormSpan">{{ answer.text }}</span>
-                        </label>
+                        <div class="Quiz-FormFieldBox">
+                          <input type="checkbox"
+                                 :id="answer.id"
+                                 class="Quiz-FormInput Checkbox"
+                                 name="style"
+                                 v-model.trim="form.style"
+                                 :class="$v.form.style.$error ? 'is-invalid' : ''"
+                                 :value="answer.id"
+                          >
+                          <label :for="answer.id" class="Quiz-FormLabel">
+                            <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
+                            <span class="Quiz-FormSpan">{{ answer.text }}</span>
+                          </label>
+                        </div>
+                        <span v-if="$v.form.style.$dirty && !$v.form.style.required"
+                              class="invalid-feedback">Обязательное поле!</span>
                       </div>
                     </div>
                   </swiper-slide>
                 </swiper>
-<!--                <div class="Quiz-SliderBtns">-->
-                  <div class="swiper-button swiper-button-prev quiz-previnner" slot="button-prev">
-                    <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
-                  </div>
-                  <div class="swiper-button swiper-button-next quiz-nextinner" slot="button-next">
-                    <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
-                  </div>
-<!--                </div>-->
+                <!--                <div class="Quiz-SliderBtns">-->
+                <div class="swiper-button swiper-button-prev quiz-previnner" slot="button-prev">
+                  <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
+                </div>
+                <div class="swiper-button swiper-button-next quiz-nextinner" slot="button-next">
+                  <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
+                </div>
+                <!--                </div>-->
               </div>
             </swiper-slide>
             <swiper-slide class="Quiz-Slide">
@@ -135,14 +157,14 @@
               <button type="submit" class="Btn Quiz-FormBtn">Рассчитать стоимость</button>
             </swiper-slide>
           </swiper>
-<!--          <div class="Quiz-SliderBtns">
-            <div class="swiper-button swiper-button-prev quiz-previnner" slot="button-prev">
-              <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
-            </div>
-            <div class="swiper-button swiper-button-next quiz-nextinner" slot="button-next">
-              <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
-            </div>
-          </div>-->
+          <!--          <div class="Quiz-SliderBtns">
+                      <div class="swiper-button swiper-button-prev quiz-previnner" slot="button-prev">
+                        <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
+                      </div>
+                      <div class="swiper-button swiper-button-next quiz-nextinner" slot="button-next">
+                        <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
+                      </div>
+                    </div>-->
           <button type="button" class="Btn Quiz-FormNext quiz-prev">предыдущий вопрос</button>
           <button type="button" class="Btn Quiz-FormNext quiz-next">следующий вопрос</button>
         </form>
@@ -159,10 +181,15 @@ import "swiper/components/thumbs/thumbs.min.css"
 import SwiperCore, {
   Navigation
 } from 'swiper/core';
-//import axios from "axios";
+import axios from "axios";
+import {required} from "vuelidate/lib/validators";
+import {validationMixin} from "vuelidate";
+import {showAuthDialog} from "@/utils/openModal";
 
 SwiperCore.use([Navigation]);
+
 export default {
+  mixins: [validationMixin],
   name: "Quiz",
   components: {
     Swiper,
@@ -186,7 +213,7 @@ export default {
       },
       optionsInner: {
         // allowTouchMove: false,
-         spaceBetween: 30,
+        spaceBetween: 30,
         navigation: {
           nextEl: '.quiz-nextinner',
           prevEl: '.quiz-previnner',
@@ -197,7 +224,6 @@ export default {
         //   type: "progressbar",
         // },
       },
-
       questions: {
         question1: {
           question: "Выберите стиль наполнения дверей <br/>(лучше несколько, для сравнения цены)",
@@ -251,44 +277,68 @@ export default {
             {id: "comby-4-5", img: "comby_4-5.png", text: "Комби 4-5"},
           ]
         }
-      }
+      },
+      form: {
+        status: 'квиз',
+        size: '',
+        doors: '',
+        phone: '',
+        style: '',
+      },
+    }
+  },
+  validations: {
+    form: {
+      size: {
+        required,
+      },
+      doors: {
+        required,
+      },
+      phone: {
+        required,
+      },
+      style: {
+        required,
+      },
     }
   },
   methods: {
-    onSubmit() {
-      // this.$v.form.$touch();
-      // if (!this.$v.form.$error) {
-      //   const params = new URLSearchParams();
-      //   params.append('size', this.form.size);
-      //   params.append('doors', this.form.doors);
-      //   params.append('name', this.form.name);
-      //   params.append('phone', this.form.phone);
-      //
-      //   axios.post(
-      //       "/mail.php",
-      //       params,
-      //       {
-      //         headers: {
-      //           'content-type': 'application/x-www-form-urlencoded'
-      //         }
-      //       }
-      //   ).then(() => {})
-      //   this.showAuthDialog()
-      //   this.form.size = ''
-      //   this.form.doors = ''
-      //   this.form.name = ''
-      //   this.form.phone = ''
-      //   this.$nextTick(() => {
-      //     this.$v.$reset()
-      //   })
-      // }
+    countDoorsMinus() {
+      this.form.doors > 0 ? --this.form.doors : 0
     },
-    // addToDoor() {
-    //   console.log(this.doorsCount++)
-    // },
-    // removeFromDoor() {
-    //   console.log( this.doorsCount === 0 ? this.doorsCount-- : 0)
-    // }
+    showAuthDialog,
+    onSubmit() {
+      this.$v.form.$touch();
+      if (!this.$v.form.$error) {
+        const params = new URLSearchParams();
+        params.append('size', this.form.size);
+        params.append('doors', this.form.doors);
+        params.append('name', this.form.name);
+        params.append('phone', this.form.phone);
+        params.append('phone', this.form.style);
+
+        axios.post(
+            "/mail.php",
+            params,
+            {
+              headers: {
+                'content-type': 'application/x-www-form-urlencoded'
+              }
+            }
+        ).then(() => {
+        })
+        this.showAuthDialog()
+        this.form.size = ''
+        this.form.doors = ''
+        this.form.name = ''
+        this.form.phone = ''
+        this.form.style = ''
+        this.$nextTick(() => {
+          this.$v.$reset()
+        })
+      }
+    },
   }
 }
 </script>
@@ -327,7 +377,8 @@ export default {
 
     @media (min-width: $screen-xl) {
       width: 100%;
-      padding: 70px 79px /*187px */73px;
+      padding: 70px 79px /*187px */
+      73px;
     }
   }
 
@@ -635,6 +686,14 @@ export default {
   .Btn--disabled-inner {
     opacity: 0.55;
     filter: grayscale(.7);
+  }
+
+  .invalid-feedback {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 10px;
+    color: var(--color-text-error);
   }
 }
 </style>

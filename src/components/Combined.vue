@@ -132,7 +132,6 @@
 </template>
 
 <script>
-//import axios from "axios";
 import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
 
