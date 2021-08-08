@@ -50,7 +50,7 @@
                   <swiper-slide class="Quiz-SlideInner">
                     <div class="Quiz-SlideAnswers">
                       <div class="Quiz-FormField"
-                           v-for="answer in questions.question1.answers2"
+                           v-for="(answer) in questions.question1.answers2"
                            :key="answer.id"
                       >
                         <div class="Quiz-FormFieldBox">
@@ -100,60 +100,101 @@
             </swiper-slide>
             <swiper-slide class="Quiz-Slide">
               <h4 class="Title--h4 Quiz-Question">
-                Укажите размер проема
+                Укажите размер проема (см)
               </h4>
               <!--              <div class="Quiz-SlideInput">-->
-              <div class="Quiz-FormField">
-                <input type="text"
-                       class="Quiz-FormInput Input"
-                       name="size"
-                       placeholder="Высота*Ширина"
-                >
-                <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+              <div class="Quiz-FormGroup">
+                <div class="Quiz-FormField Quiz-FormFieldSize">
+                  <span>Высота</span>
+                  <input type="text"
+                         class="Quiz-FormInput Input Quiz-FormInputSize"
+                         name="size"
+                  >
+                  <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+                </div>
+                <div class="Quiz-FormField Quiz-FormFieldSize">
+                  <span>Ширина</span>
+                  <input type="text"
+                         class="Quiz-FormInput Input Quiz-FormInputSize"
+                         name="size"
+                  >
+                  <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+                </div>
               </div>
               <!--              </div>-->
-            </swiper-slide>
-            <swiper-slide class="Quiz-Slide">
               <h4 class="Title--h4 Quiz-Question">
-                Количество дверей
+                Укажите количество дверей
               </h4>
               <!--              <div class="Quiz-SlideInput">-->
               <div class="Quiz-FormField Field-Number">
-                <span class="Quiz-Math Minus"></span>
+                <span class="Quiz-Math Minus" @click="countDoorsMinus">
+                  <img src="@/assets/image/minus.png" alt="plus">
+                </span>
                 <input type="text"
                        class="Quiz-FormInput Input Input-Number"
-                       name="size"
+                       name="doors"
                        placeholder="0"
+                       v-model.trim="form.doors"
+                       :class="$v.form.doors.$error ? 'is-invalid' : ''"
                 >
-                <span class="Quiz-Math Plus"></span>
-                <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+                <span class="Quiz-Math Plus" @click="form.doors++">
+                  <img src="@/assets/image/plus.png" alt="plus">
+                </span>
+                <span v-if="$v.form.doors.$dirty && !$v.form.doors.required"
+                      class="invalid-feedback">Обязательное поле!</span>
               </div>
+
               <!--              </div>-->
             </swiper-slide>
             <swiper-slide class="Quiz-Slide">
               <h4 class="Title--h4 Quiz-Question">
-                Отлично! Теперь мы знаем, какие двери Вы хотите.<br/>
-                Укажите как с Вами связаться
+                Куда отправить расчет стоимости?
               </h4>
               <!--              <div class="Quiz-SlideInput">-->
-              <div class="Quiz-FormField Quiz-FormField--bottom">
-                <input type="text"
-                       class="Quiz-FormInput Input"
-                       name="name"
-                       placeholder="Ваше имя"
-                >
-                <!--                <span v-if="$v.form.name.$dirty && !$v.form.name.required"
-                                      class="invalid-feedback">Обязательное поле!</span>-->
+              <div class="Quiz-FormGroup">
+                <div class="Quiz-FormField Quiz-FormField">
+                  <input type="text"
+                         class="Quiz-FormInput Input"
+                         name="name"
+                         placeholder="Ваше имя"
+                  >
+                  <!--                <span v-if="$v.form.name.$dirty && !$v.form.name.required"
+                                        class="invalid-feedback">Обязательное поле!</span>-->
+                </div>
+                <div class="Quiz-FormField">
+                  <input type="text"
+                         class="Quiz-FormInput Input"
+                         name="phone"
+                         placeholder="Ваш телефон"
+                  >
+                  <!--                <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
+                                        class="invalid-feedback">Обязательное поле!</span>-->
+                </div>
               </div>
-              <div class="Quiz-FormField">
-                <input type="text"
-                       class="Quiz-FormInput Input"
-                       name="phone"
-                       placeholder="Ваш телефон"
+              <h4 class="Title--h4 Quiz-Question">
+                Выберите удобный мессенджер
+              </h4>
+              <div class="Quiz-FormGroup">
+                <div class="Quiz-FormField Social"
+                     v-for="(item,i) in social"
+                     :key="i"
                 >
-                <!--                <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
-                                      class="invalid-feedback">Обязательное поле!</span>-->
+                  <input type="radio"
+                         :id="i"
+                         class="Checkbox Social-Input"
+                         name="style"
+                  >
+                  <label :for="i" class="Social-Label">
+                    <img :src="require(`@/assets/image/${item.icon}`)"
+                         alt="icon"
+                         :style="{width: `${item.width}px`}"
+                         class="Social-Icon"
+                    >
+                    <span class="Social-Span">{{ item.name }}</span>
+                  </label>
+                </div>
               </div>
+
               <button type="submit" class="Btn Quiz-FormBtn">Рассчитать стоимость</button>
             </swiper-slide>
           </swiper>
@@ -165,8 +206,10 @@
                         <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
                       </div>
                     </div>-->
-          <button type="button" class="Btn Quiz-FormNext quiz-prev">предыдущий вопрос</button>
-          <button type="button" class="Btn Quiz-FormNext quiz-next">следующий вопрос</button>
+          <div class="Quiz-FormBtnGroup">
+            <button type="button" class="Quiz-FormPrev quiz-prev">предыдущий вопрос</button>
+            <button type="button" class="Btn Quiz-FormNext quiz-next">следующий вопрос</button>
+          </div>
         </form>
       </div>
     </div>
@@ -224,6 +267,12 @@ export default {
         //   type: "progressbar",
         // },
       },
+      social: [
+        {icon: "call.svg", width: "31", name: "Звонок"},
+        {icon: "whatsapp.svg", width: "37", name: "WhatsApp"},
+        {icon: "viber.svg", width: "36", name: "Viber"},
+        {icon: "telegram.svg", width: "37", name: "Telegram"},
+      ],
       questions: {
         question1: {
           question: "Выберите стиль наполнения дверей <br/>(лучше несколько, для сравнения цены)",
@@ -276,7 +325,7 @@ export default {
             {id: "comby-4-4", img: "comby_4-4.png", text: "Комби 4-4"},
             {id: "comby-4-5", img: "comby_4-5.png", text: "Комби 4-5"},
           ]
-        }
+        },
       },
       form: {
         status: 'квиз',
@@ -306,6 +355,9 @@ export default {
   methods: {
     countDoorsMinus() {
       this.form.doors > 0 ? --this.form.doors : 0
+    },
+    countDoorsPlus() {
+      this.form.doors === 0 || '' ? ++this.form.doors : 0
     },
     showAuthDialog,
     onSubmit() {
@@ -576,47 +628,47 @@ export default {
   .Field-Number {
     display: flex;
     align-items: center;
-    width: 260px;
+    width: 288px;
+    justify-content: space-between;
     margin: 0 auto;
-    position: relative;
   }
 
   .Input-Number {
-    margin: 0 30px 0;
+    width: 74px;
+    padding: 18px 32px 19px;
   }
 
   .Quiz-Math {
-    display: block;
-    width: 26px;
-    height: 26px;
-
+    width: 47px;
+    height: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-image: var(--color-bg-btn);
+    position: relative;
+    z-index: 1;
+    transition: 3s all;
     cursor: pointer;
 
     &:before {
-      content: "";
+      content: '';
+      display: block;
       position: absolute;
-      width: 26px;
-      height: 2px;
-      top: 50%;
-      transform: translate(0, -50%);
-      background-color: var(--color-text-dark);
+      width: 100%;
+      height: 100%;
+      bottom: 1px;
+      left: 0;
+      border-radius: 50%;
+      background-image: var(--color-bg-btn-before);
+      z-index: -1;
     }
   }
 
-  .Plus {
-    &:after {
-      content: "";
-      position: absolute;
-      width: 2px;
-      height: 25px;
-      background-color: var(--color-text-dark);
-      //top: -50%;
-      right: -7.5px;
+  .Plus, .Minus {
+    img {
+      margin-bottom: 3px;
     }
-  }
-
-  .Minus {
-    margin-right: 30px;
   }
 
   &-FormBtn {
@@ -667,12 +719,108 @@ export default {
     left: 0;
   }
 
+  &-FormGroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-FormFieldSize {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    span {
+      margin-right: 13px;
+      font-size: 18px;
+      color: rgb(150, 149, 148);
+    }
+  }
+
+
+  &-FormInputSize {
+    width: 104px;
+    padding: 16px 36px 18px;
+    font-size: 18px;
+  }
+
   &-FormNext {
     margin-top: 36px;
     padding: 22px 24px 26px;
 
     @media (min-width: $screen-m) {
-      padding: 24px 23px 28px;
+      padding: 24px 37px 28px;
+    }
+  }
+
+  &-FormPrev {
+    position: relative;
+    margin-right: 12px;
+    padding: 26px 32px 30px;
+    font-family: 'Museo Sans Cyrl', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--color-text-btn-gold);
+
+    border: 1px solid var(--color-text-btn-before);
+    border-radius: 8px;
+    transition: .3s;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 0;
+      right: 0;
+      bottom: 2px;
+      border-radius: 8px;
+      padding: 1px;
+      background: var(--color-bg-btn);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      box-shadow: 0px 6px 9px 0px rgba(93, 84, 74, 0.28);
+    }
+
+    &:hover, &:focus {
+      &:before {
+        background: var(--color-bg-btn-before);
+      }
+    }
+
+    @media (min-width: $screen-m) {
+      padding: 28px 37px 30px;
+      font-size: 14px;
+    }
+  }
+
+  .Social {
+
+    &-Input {
+
+    }
+    &-Label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    &-Icon {
+
+    }
+    &-Span {
+
     }
   }
 
@@ -681,6 +829,10 @@ export default {
     opacity: 0.35;
     cursor: auto;
     pointer-events: none;
+  }
+
+  .quiz-prev.Quiz-FormPrev.Btn--disabled {
+    display: none;
   }
 
   .Btn--disabled-inner {
