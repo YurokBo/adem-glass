@@ -35,7 +35,7 @@
                                  name="style"
                                  v-model.trim="form.style"
                                  :class="$v.form.style.$error ? 'is-invalid' : ''"
-                                 :value="answer.id"
+                                 :value="answer.text"
                           >
                           <label :for="answer.id" class="Quiz-FormLabel">
                             <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
@@ -60,7 +60,7 @@
                                  name="style"
                                  v-model.trim="form.style"
                                  :class="$v.form.style.$error ? 'is-invalid' : ''"
-                                 :value="answer.id"
+                                 :value="answer.text"
                           >
                           <label :for="answer.id" class="Quiz-FormLabel">
                             <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
@@ -90,11 +90,18 @@
                      v-for="answer in questions.question2.answers"
                      :key="answer.id"
                 >
-                  <input type="checkbox" :id="answer.id" class="Quiz-FormInput Checkbox">
+                  <input type="checkbox" :id="answer.id" class="Quiz-FormInput Checkbox"
+                         name="style"
+                         v-model.trim="form.variable"
+                         :class="$v.form.variable.$error ? 'is-invalid' : ''"
+                         :value="answer.id"
+                  >
                   <label :for="answer.id" class="Quiz-FormLabel">
                     <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
                     <span class="Quiz-FormSpan">{{ answer.text }}</span>
                   </label>
+                  <span v-if="$v.form.variable.$dirty && !$v.form.variable.required"
+                        class="invalid-feedback">Обязательное поле!</span>
                 </div>
               </div>
             </swiper-slide>
@@ -108,7 +115,7 @@
                   <span>Высота</span>
                   <input type="text"
                          class="Quiz-FormInput Input Quiz-FormInputSize"
-                         name="size"
+                         name="height"
                   >
                   <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
                 </div>
@@ -116,7 +123,7 @@
                   <span>Ширина</span>
                   <input type="text"
                          class="Quiz-FormInput Input Quiz-FormInputSize"
-                         name="size"
+                         name="width"
                   >
                   <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
                 </div>
@@ -198,14 +205,6 @@
               <button type="submit" class="Btn Quiz-FormBtn">Рассчитать стоимость</button>
             </swiper-slide>
           </swiper>
-          <!--          <div class="Quiz-SliderBtns">
-                      <div class="swiper-button swiper-button-prev quiz-previnner" slot="button-prev">
-                        <img src="../assets/image/arrow-slider-prev.png" alt="" class="Prev">
-                      </div>
-                      <div class="swiper-button swiper-button-next quiz-nextinner" slot="button-next">
-                        <img src="../assets/image/arrow-slider-next.png" alt="" class="Next">
-                      </div>
-                    </div>-->
           <div class="Quiz-FormBtnGroup">
             <button type="button" class="Quiz-FormPrev quiz-prev">предыдущий вопрос</button>
             <button type="button" class="Btn Quiz-FormNext quiz-next">следующий вопрос</button>
@@ -287,27 +286,27 @@ export default {
             {id: "monolithic-glass", img: "quiz-8.png", text: "Монолитное стекло с 3D рисунком"},
           ],
           answers2: [
-            {id: "beton-imitation.png", img: "beton-imitation.png", text: "Монолитное стекло с 3D рисунком"},
-            {id: "frosted-mirrorglass.png", img: "frosted-mirrorglass.png", text: "Монолитное стекло с 3D рисунком"},
-            {id: "frosted-mirror.png", img: "frosted-mirror.png", text: "Монолитное стекло с 3D рисунком"},
-            {id: "usual-mirror.png", img: "usual-mirror.png", text: "Монолитное стекло с 3D рисунком"},
+            {id: "beton-imitation", img: "beton-imitation.png", text: "Монолитное стекло с 3D рисунком"},
+            {id: "frosted-mirrorglass", img: "frosted-mirrorglass.png", text: "Монолитное стекло с 3D рисунком"},
+            {id: "frosted-mirror", img: "frosted-mirror.png", text: "Монолитное стекло с 3D рисунком"},
+            {id: "usual-mirror", img: "usual-mirror.png", text: "Монолитное стекло с 3D рисунком"},
             {
-              id: "natural-drawing-bronze1.png",
+              id: "natural-drawing-bronze1",
               img: "natural-drawing-bronze1.png",
               text: "Монолитное стекло с 3D рисунком"
             },
             {
-              id: "modern-drawing-bronze.png",
+              id: "modern-drawing-bronze",
               img: "modern-drawing-bronze.png",
               text: "Монолитное стекло с 3D рисунком"
             },
             {
-              id: "natural-drawing-bronze2.png",
+              id: "natural-drawing-bronze2",
               img: "natural-drawing-bronze2.png",
               text: "Монолитное стекло с 3D рисунком"
             },
             {
-              id: "natural-drawing-bronze3.png",
+              id: "natural-drawing-bronze3",
               img: "natural-drawing-bronze3.png",
               text: "Монолитное стекло с 3D рисунком"
             },
@@ -333,6 +332,7 @@ export default {
         doors: '',
         phone: '',
         style: '',
+        variable: '',
       },
     }
   },
@@ -348,6 +348,9 @@ export default {
         required,
       },
       style: {
+        required,
+      },
+      variable: {
         required,
       },
     }
@@ -368,7 +371,8 @@ export default {
         params.append('doors', this.form.doors);
         params.append('name', this.form.name);
         params.append('phone', this.form.phone);
-        params.append('phone', this.form.style);
+        params.append('style', this.form.style);
+        params.append('variable', this.form.variable);
 
         axios.post(
             "/mail.php",
@@ -386,6 +390,7 @@ export default {
         this.form.name = ''
         this.form.phone = ''
         this.form.style = ''
+        this.form.variable = ''
         this.$nextTick(() => {
           this.$v.$reset()
         })
