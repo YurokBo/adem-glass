@@ -806,24 +806,57 @@ export default {
   }
 
   .Social {
+    margin-right: 27px;
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     &-Input {
 
     }
+
     &-Label {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      height: 79px;
+      filter: grayscale(.9);
+      opacity: .4;
+      border-bottom: 3px dashed transparent;
+      cursor: pointer;
+      transition: opacity .3s ease;
+
+      &:hover {
+        filter: grayscale(0);
+        opacity: 1;
+        border-bottom: 3px dashed #ce9b56;
+      }
     }
+
     &-Icon {
 
     }
-    &-Span {
 
+    &-Span {
+      font-weight: 400;
+      font-size: 20px;
+      letter-spacing: .05em;
+      color: #ce9b56;
+      margin-bottom: 3px;
+    }
+    &-Input:checked + &-Label {
+      filter: grayscale(0);
+      opacity: 1;
+      border-bottom: 3px dashed #ce9b56;
     }
   }
-
+  .Social-Input:checked + .Social-Label {
+    filter: grayscale(0);
+    opacity: 1;
+    border-bottom: 3px dashed #ce9b56;
+  }
   .quiz-prev.Btn--disabled,
   .quiz-next.Btn--disabled {
     opacity: 0.35;
