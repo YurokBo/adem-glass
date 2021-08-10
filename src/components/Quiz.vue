@@ -17,6 +17,7 @@
         </h2>
         <form class="Quiz-Form" @submit.prevent="onSubmit()" novalidate>
           <div class="swiper-pagination"></div>
+          <input type="hidden" name="status" v-model.trim="form.status">
           <swiper class="Quiz-Slider" :options="options">
             <swiper-slide class="Quiz-Slide">
               <h4 class="Title--h4 Quiz-Question" v-html="questions.question1.question"></h4>
@@ -91,7 +92,7 @@
                      :key="answer.id"
                 >
                   <input type="checkbox" :id="answer.id" class="Quiz-FormInput Checkbox"
-                         name="style"
+                         name="variable"
                          v-model.trim="form.variable"
                          :class="$v.form.variable.$error ? 'is-invalid' : ''"
                          :value="answer.id"
@@ -116,16 +117,22 @@
                   <input type="text"
                          class="Quiz-FormInput Input Quiz-FormInputSize"
                          name="height"
+                         v-model.trim="form.height"
+                         :class="$v.form.height.$error ? 'is-invalid' : ''"
                   >
-                  <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+                  <span v-if="$v.form.height.$dirty && !$v.form.height.required"
+                        class="invalid-feedback">Обязательное поле!</span>
                 </div>
                 <div class="Quiz-FormField Quiz-FormFieldSize">
                   <span>Ширина</span>
                   <input type="text"
                          class="Quiz-FormInput Input Quiz-FormInputSize"
                          name="width"
+                         v-model.trim="form.width"
+                         :class="$v.form.width.$error ? 'is-invalid' : ''"
                   >
-                  <!--                  <span class="invalid-feedback">Обязательное поле!</span>-->
+                  <span v-if="$v.form.width.$dirty && !$v.form.width.required"
+                        class="invalid-feedback">Обязательное поле!</span>
                 </div>
               </div>
               <!--              </div>-->
@@ -163,19 +170,22 @@
                   <input type="text"
                          class="Quiz-FormInput Input"
                          name="name"
-                         placeholder="Ваше имя"
+                         placeholder="Ваше имя" v-model.trim="form.name"
+                         :class="$v.form.name.$error ? 'is-invalid' : ''"
                   >
-                  <!--                <span v-if="$v.form.name.$dirty && !$v.form.name.required"
-                                        class="invalid-feedback">Обязательное поле!</span>-->
+                  <span v-if="$v.form.name.$dirty && !$v.form.name.required"
+                        class="invalid-feedback">Обязательное поле!</span>
                 </div>
                 <div class="Quiz-FormField">
                   <input type="text"
                          class="Quiz-FormInput Input"
                          name="phone"
                          placeholder="Ваш телефон"
+                         v-model.trim="form.phone"
+                         :class="$v.form.phone.$error ? 'is-invalid' : ''"
                   >
-                  <!--                <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
-                                        class="invalid-feedback">Обязательное поле!</span>-->
+                  <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
+                        class="invalid-feedback">Обязательное поле!</span>
                 </div>
               </div>
               <h4 class="Title--h4 Quiz-Question">
@@ -189,8 +199,13 @@
                   <input type="radio"
                          :id="i"
                          class="Checkbox Social-Input"
-                         name="style"
+                         name="social"
+                         v-model.trim="form.social"
+                         :class="$v.form.social.$error ? 'is-invalid' : ''"
+                         :value="item.name"
                   >
+                  <span v-if="$v.form.social.$dirty && !$v.form.social.required"
+                        class="invalid-feedback">Обязательное поле!</span>
                   <label :for="i" class="Social-Label">
                     <img :src="require(`@/assets/image/${item.icon}`)"
                          alt="icon"
@@ -201,7 +216,6 @@
                   </label>
                 </div>
               </div>
-
               <button type="submit" class="Btn Quiz-FormBtn">Рассчитать стоимость</button>
             </swiper-slide>
           </swiper>
@@ -328,29 +342,41 @@ export default {
       },
       form: {
         status: 'квиз',
-        size: '',
         doors: '',
         phone: '',
+        name: '',
         style: '',
         variable: '',
+        width: '',
+        height: '',
+        social: '',
       },
     }
   },
   validations: {
     form: {
-      size: {
-        required,
-      },
       doors: {
         required,
       },
       phone: {
         required,
       },
+      name: {
+        required,
+      },
       style: {
         required,
       },
       variable: {
+        required,
+      },
+      width: {
+        required,
+      },
+      height: {
+        required,
+      },
+      social: {
         required,
       },
     }
@@ -367,12 +393,15 @@ export default {
       this.$v.form.$touch();
       if (!this.$v.form.$error) {
         const params = new URLSearchParams();
-        params.append('size', this.form.size);
+        params.append('status', this.form.status);
         params.append('doors', this.form.doors);
         params.append('name', this.form.name);
         params.append('phone', this.form.phone);
         params.append('style', this.form.style);
         params.append('variable', this.form.variable);
+        params.append('width', this.form.width);
+        params.append('height', this.form.height);
+        params.append('social', this.form.social);
 
         axios.post(
             "/mail.php",
@@ -385,12 +414,15 @@ export default {
         ).then(() => {
         })
         this.showAuthDialog()
-        this.form.size = ''
+        this.form.status = ''
         this.form.doors = ''
         this.form.name = ''
         this.form.phone = ''
         this.form.style = ''
         this.form.variable = ''
+        this.form.width = ''
+        this.form.height = ''
+        this.form.social = ''
         this.$nextTick(() => {
           this.$v.$reset()
         })
@@ -881,7 +913,7 @@ export default {
   .invalid-feedback {
     position: absolute;
     top: -20px;
-    left: 0;
+    right: 0;
     font-size: 10px;
     color: var(--color-text-error);
   }

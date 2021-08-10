@@ -13,6 +13,10 @@ $message = 'Сообщение с: ' . $_POST['status'] . '<br />'
     . 'Нужны двери:' . $_POST['doors'] . '<br />'
     . 'Размер:' . $_POST['size'] . '<br />'
     . 'Вариант:' . $_POST['variable'] . '<br />'
+    . 'Вариант:' . $_POST['style'] . '<br />'
+    . 'Вариант:' . $_POST['width'] . '<br />'
+    . 'Вариант:' . $_POST['height'] . '<br />'
+    . 'Вариант:' . $_POST['social'] . '<br />'
     . 'Вы можете связаться с ним по номеру телефона: <a href="tel:' . $_POST['phone'] . '">' . $_POST['phone'] . '</a>';
 
 
