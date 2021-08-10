@@ -300,29 +300,29 @@ export default {
             {id: "monolithic-glass", img: "quiz-8.png", text: "Монолитное стекло с 3D рисунком"},
           ],
           answers2: [
-            {id: "beton-imitation", img: "beton-imitation.png", text: "Монолитное стекло с 3D рисунком"},
-            {id: "frosted-mirrorglass", img: "frosted-mirrorglass.png", text: "Монолитное стекло с 3D рисунком"},
-            {id: "frosted-mirror", img: "frosted-mirror.png", text: "Монолитное стекло с 3D рисунком"},
-            {id: "usual-mirror", img: "usual-mirror.png", text: "Монолитное стекло с 3D рисунком"},
+            {id: "beton-imitation", img: "beton-imitation.png", text: "Имитация бетона"},
+            {id: "frosted-mirrorglass", img: "frosted-mirrorglass.png", text: "Матовое зеркало бронза"},
+            {id: "frosted-mirror", img: "frosted-mirror.png", text: "Матовое зеркало"},
+            {id: "usual-mirror", img: "usual-mirror.png", text: "Обычное зеркало"},
             {
               id: "natural-drawing-bronze1",
               img: "natural-drawing-bronze1.png",
-              text: "Монолитное стекло с 3D рисунком"
+              text: "Природный рисунок бронза 1"
             },
             {
               id: "modern-drawing-bronze",
               img: "modern-drawing-bronze.png",
-              text: "Монолитное стекло с 3D рисунком"
+              text: "Современный рисунок бронза"
             },
             {
               id: "natural-drawing-bronze2",
               img: "natural-drawing-bronze2.png",
-              text: "Монолитное стекло с 3D рисунком"
+              text: "Природный рисунок бронза 2"
             },
             {
               id: "natural-drawing-bronze3",
               img: "natural-drawing-bronze3.png",
-              text: "Монолитное стекло с 3D рисунком"
+              text: "Природный рисунок бронза 3"
             },
           ]
         },
@@ -345,8 +345,8 @@ export default {
         doors: '',
         phone: '',
         name: '',
-        style: '',
-        variable: '',
+        style: [],
+        variable: [],
         width: '',
         height: '',
         social: '',
@@ -418,8 +418,8 @@ export default {
         this.form.doors = ''
         this.form.name = ''
         this.form.phone = ''
-        this.form.style = ''
-        this.form.variable = ''
+        this.form.style = []
+        this.form.variable = []
         this.form.width = ''
         this.form.height = ''
         this.form.social = ''
