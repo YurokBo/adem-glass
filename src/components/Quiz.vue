@@ -511,7 +511,8 @@ export default {
     grid-gap: 14px 12px;
     width: 327px;
     height: 520px;
-    overflow-y: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
     margin: 0 auto 100px;
 
     @media (min-width: $screen-l) {
