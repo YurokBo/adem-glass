@@ -510,19 +510,19 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 14px 12px;
     width: 327px;
-    height: 520px;
+    height: 480px;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin: 0 auto 100px;
+    margin: 0 auto 70px;
 
     @media (min-width: $screen-l) {
-      grid-template-columns: repeat(3, 1fr);
       grid-gap: 27px 20px;
-      width: 900px;
+      width: 500px;
     }
 
     @media (min-width: $screen-xl) {
       grid-template-columns: repeat(4, 1fr);
+      width: 900px;
       height: 100%;
       margin-bottom: 0;
     }
@@ -718,43 +718,56 @@ export default {
     }
   }
 
-  &-SliderBtns {
-    width: 150px;
-    position: absolute;
-    z-index: 3;
-    bottom: 18%;
-    left: 52%;
-    transform: translate(-50%, 0);
-
-    @media (min-width: $screen-l) {
-      width: 180px;
-      bottom: 19%;
-    }
-
-    @media (min-width: $screen-xl) {
-      width: 1123px;
-      bottom: 45%;
-      left: 50%;
-    }
-  }
+  //&-SliderBtns {
+  //  width: 150px;
+  //  position: absolute;
+  //  z-index: 3;
+  //  bottom: 18%;
+  //  left: 52%;
+  //  transform: translate(-50%, 0);
+  //
+  //  @media (min-width: $screen-l) {
+  //    width: 180px;
+  //    bottom: 19%;
+  //  }
+  //
+  //  @media (min-width: $screen-xl) {
+  //    //width: 1123px;
+  //    bottom: 45%;
+  //    left: 50%;
+  //  }
+  //}
 
   .swiper-button-prev,
   .swiper-button-next, {
+    position: absolute;
     width: 59px;
-    height: 59px;
+    //height: 59px;
+    top: 98%;
 
     &:after {
       content: none;
     }
 
+    @media (min-width: $screen-s) {
+      top: 50%;
+    }
+
     @media (min-width: 1070px) {
       width: 69px;
-      height: 69px;
     }
   }
 
   .swiper-button-prev {
-    left: 0;
+    left: 140px;
+
+    @media (min-width: 1070px) {
+      left: 0;
+    }
+  }
+
+  .swiper-button-next {
+    right: 140px;
   }
 
   &-FormGroup {
