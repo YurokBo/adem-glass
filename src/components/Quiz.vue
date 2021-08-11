@@ -413,7 +413,7 @@ export default {
             }
         ).then(() => {
         })
-        this.showAuthDialog()
+        this.showAuthDialog('quiz')
         this.form.status = ''
         this.form.doors = ''
         this.form.name = ''

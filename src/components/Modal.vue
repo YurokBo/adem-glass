@@ -14,7 +14,8 @@
           Ваш персональный менеджер свяжется с Вами
           в течение 30 минут
         </p>
-        <button type="button" class="Btn Modal-Close" @click="$emit('close')">Вернуться на главную</button>
+        <a v-if="content === 'quiz'" href="/" class="Btn Modal-Close" @click="$emit('close')">Вернуться на главную</a>
+        <button v-else type="button" class="Btn Modal-Close" @click="$emit('close')">Вернуться на главную</button>
       </div>
     </div>
   </div>
@@ -22,7 +23,14 @@
 
 <script>
 export default {
-  name: "Modal"
+  name: "Modal",
+  props: {
+    content: {
+      type: String,
+      required: false,
+      default: '',
+    }
+  }
 }
 </script>
 
@@ -74,7 +82,8 @@ export default {
   }
 
   &-Close {
-    padding: 24px 55px 26px;
+    width: 100%;
+    padding: 24px 10px 26px;
   }
 
   &-ImgBox {
