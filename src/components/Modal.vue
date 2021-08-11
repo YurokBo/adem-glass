@@ -10,7 +10,11 @@
       </div>
       <div class="Modal-Content">
         <h2 class="Title Modal-Title">заявка принята!</h2>
-        <p class="Modal-Text">
+        <p v-if="content === 'quiz'" class="Modal-Text">
+          Ваш персональный менеджер свяжется с Вами
+          в течение 30 минут по указанному мессенджеру
+        </p>
+        <p v-else class="Modal-Text">
           Ваш персональный менеджер свяжется с Вами
           в течение 30 минут
         </p>
@@ -83,6 +87,7 @@ export default {
 
   &-Close {
     width: 100%;
+     text-align: center;
     padding: 24px 10px 26px;
   }
 
