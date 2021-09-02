@@ -743,31 +743,44 @@ export default {
     position: absolute;
     width: 59px;
     //height: 59px;
-    top: 98%;
+    top: 97%;
 
     &:after {
       content: none;
     }
 
     @media (min-width: $screen-s) {
-      top: 50%;
+      top: 94.5%;
     }
 
-    @media (min-width: 1070px) {
+    @media (min-width: $screen-l) {
+      top: 50%;
       width: 69px;
     }
   }
 
   .swiper-button-prev {
-    left: 140px;
+    left: 80px;
 
-    @media (min-width: 1070px) {
+    @media (min-width: $screen-s) {
+      left: 160px;
+    }
+
+    @media (min-width: $screen-l) {
       left: 0;
     }
   }
 
   .swiper-button-next {
-    right: 140px;
+    right: 80px;
+
+    @media (min-width: $screen-s) {
+      right: 160px;
+    }
+
+    @media (min-width: $screen-l) {
+      right: 0;
+    }
   }
 
   &-FormGroup {
