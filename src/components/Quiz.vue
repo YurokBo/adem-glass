@@ -191,8 +191,8 @@
               <h4 class="Title--h4 Quiz-Question">
                 Выберите удобный мессенджер
               </h4>
-              <div class="Quiz-FormGroup">
-                <div class="Quiz-FormField Social"
+              <div class="Quiz-FormSocials">
+                <div class="Social"
                      v-for="(item,i) in social"
                      :key="i"
                 >
@@ -622,7 +622,7 @@ export default {
   }
 
   &-FormField {
-    margin: 0 auto;
+    margin: 0 auto 20px;
     position: relative;
 
     @media (min-width: $screen-l) {
@@ -640,7 +640,7 @@ export default {
 
   &-FormInput {
     width: 72%;
-    margin: 0 auto;
+    //margin: 0 auto;
     padding: 28px 32px;
     border: 1px solid var(--color-bg-input);
     border-radius: 8px;
@@ -710,7 +710,7 @@ export default {
   }
 
   &-FormBtn {
-    margin-top: 50px;
+    margin: 50px 0 20px;
     padding: 22px 24px 26px;
 
     @media (min-width: $screen-m) {
@@ -785,31 +785,52 @@ export default {
 
   &-FormGroup {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     margin-bottom: 50px;
 
     &:last-child {
       margin-bottom: 0;
     }
+
+    @media (min-width: $screen-l) {
+      flex-direction: row;
+      justify-content: center;
+    }
   }
 
   &-FormFieldSize {
+    width: 300px;
     display: flex;
     align-items: center;
-    margin-right: 30px;
+    justify-content: space-between;
+    margin-bottom: 20px;
 
     &:last-child {
-      margin-right: 0;
+      margin-bottom: 0;
     }
 
     span {
-      margin-right: 13px;
-      font-size: 18px;
+      //margin-right: 8px;
+      font-size: 14px;
       color: rgb(150, 149, 148);
     }
-  }
 
+    @media (min-width: $screen-l) {
+      margin-right: 30px;
+      margin-bottom: 0;
+
+      span {
+        margin-right: 13px;
+        font-size: 18px;
+        color: rgb(150, 149, 148);
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
 
   &-FormInputSize {
     width: 104px;
@@ -817,19 +838,30 @@ export default {
     font-size: 18px;
   }
 
+  &-FormBtnGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: $screen-s) {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
   &-FormNext {
-    margin-top: 36px;
+    margin-top: 20px;
     padding: 22px 24px 26px;
 
-    @media (min-width: $screen-m) {
+    @media (min-width: $screen-s) {
       padding: 24px 37px 28px;
+      margin-top: 0;
     }
   }
 
   &-FormPrev {
     position: relative;
-    margin-right: 12px;
-    padding: 26px 32px 30px;
+    padding: 26px 20px 30px;
     font-family: 'Museo Sans Cyrl', sans-serif;
     font-weight: 900;
     font-size: 12px;
@@ -864,20 +896,34 @@ export default {
     }
 
     @media (min-width: $screen-m) {
+      margin-right: 12px;
       padding: 28px 37px 30px;
       font-size: 14px;
     }
   }
 
-  .Social {
-    margin-right: 27px;
+  &-FormSocials {
+    display: grid;
+    grid-template-columns: repeat(2, 110px);
+    grid-gap: 15px;
+    justify-content: center;
 
-    &:last-child {
-      margin-right: 0;
+
+    @media (min-width: $screen-s) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+  }
 
-    &-Input {
+  .Social {
 
+    @media (min-width: $screen-s) {
+      margin-right: 27px;
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
 
     &-Label {
@@ -899,28 +945,31 @@ export default {
       }
     }
 
-    &-Icon {
-
-    }
-
     &-Span {
       font-weight: 400;
-      font-size: 20px;
+      font-size: 16px;
       letter-spacing: .05em;
       color: #ce9b56;
       margin-bottom: 3px;
+
+      @media (min-width: $screen-l) {
+        font-size: 20px;
+      }
     }
+
     &-Input:checked + &-Label {
       filter: grayscale(0);
       opacity: 1;
       border-bottom: 3px dashed #ce9b56;
     }
   }
+
   .Social-Input:checked + .Social-Label {
     filter: grayscale(0);
     opacity: 1;
     border-bottom: 3px dashed #ce9b56;
   }
+
   .quiz-prev.Btn--disabled,
   .quiz-next.Btn--disabled {
     opacity: 0.35;
@@ -928,7 +977,8 @@ export default {
     pointer-events: none;
   }
 
-  .quiz-prev.Quiz-FormPrev.Btn--disabled {
+  .quiz-next.Quiz-FormNext.Btn--disabled,
+  .quiz-prev.Quiz-FormPrev.Btn--disabled, {
     display: none;
   }
 
