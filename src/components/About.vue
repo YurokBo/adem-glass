@@ -121,8 +121,17 @@ export default {
     padding: 87px 0;
   }
 
-  .Decor-Text {
-    color: var(--color-text-btn);
+  .Decor {
+    top: 40%;
+    .Right {
+      width: 60%;
+    }
+    .Left {
+      width: 40%;
+    }
+    &-Text {
+      color: var(--color-text-btn);
+    }
   }
 
   &-Title {

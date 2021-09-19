@@ -261,6 +261,19 @@ export default {
     padding: 94px 0;
   }
 
+  .Decor {
+    top: 47%;
+    .Right {
+      width: 60%;
+    }
+    .Left {
+      width: 40%;
+    }
+    &-Text {
+      color: var(--color-text-btn);
+    }
+  }
+
   &-Title {
     margin-bottom: 45px;
     padding: 0 20px;

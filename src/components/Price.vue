@@ -392,6 +392,19 @@ export default {
 .Price {
   padding: 85px 0;
 
+  .Decor {
+    top: 123%;
+    .Right {
+      width: 30%;
+    }
+    .Left {
+      width: 30%;
+    }
+    &-Text {
+      color: var(--color-text-btn);
+    }
+  }
+
   &-Title {
     margin-bottom: 52px;
     text-align: center;

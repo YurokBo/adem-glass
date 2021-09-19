@@ -161,6 +161,16 @@ export default {
   padding: 95px 0 90px;
   background-color: var(--color-bg-faq);
 
+  .Decor {
+    top: 23%;
+    .Right {
+      width: 60%;
+    }
+    .Left {
+      width: 40%;
+    }
+  }
+
   &-Title {
     margin-bottom: 75px;
     text-align: center;

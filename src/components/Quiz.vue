@@ -377,7 +377,7 @@ export default {
         required,
       },
       social: {
-        required,
+        //required,
       },
     }
   },
@@ -444,8 +444,14 @@ export default {
     padding: 0 0 90px;
   }
 
-  .Decor-Text {
-    color: var(--color-text-btn);
+  .Decor {
+    top: 55%;
+    .Right {
+      width: 95%;
+    }
+    &-Text {
+      color: var(--color-text-btn);
+    }
   }
 
   &-Content {
