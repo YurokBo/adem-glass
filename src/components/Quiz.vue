@@ -25,6 +25,8 @@
                 <swiper :options="optionsInner" class="Quiz-SliderInner">
                   <swiper-slide class="Quiz-SlideInner">
                     <div class="Quiz-SlideAnswers">
+                      <!--                      <span v-if="$v.form.style.$dirty && !$v.form.style.required"-->
+                      <!--                            class="invalid-feedback">Обязательное поле!</span>-->
                       <div class="Quiz-FormField"
                            v-for="answer in questions.question1.answers1"
                            :key="answer.id"
@@ -43,13 +45,13 @@
                             <span class="Quiz-FormSpan">{{ answer.text }}</span>
                           </label>
                         </div>
-                        <span v-if="$v.form.style.$dirty && !$v.form.style.required"
-                              class="invalid-feedback">Обязательное поле!</span>
                       </div>
                     </div>
                   </swiper-slide>
                   <swiper-slide class="Quiz-SlideInner">
                     <div class="Quiz-SlideAnswers">
+                      <!--                      <span v-if="$v.form.style.$dirty && !$v.form.style.required"-->
+                      <!--                            class="invalid-feedback">Обязательное поле!</span>-->
                       <div class="Quiz-FormField"
                            v-for="(answer) in questions.question1.answers2"
                            :key="answer.id"
@@ -68,8 +70,6 @@
                             <span class="Quiz-FormSpan">{{ answer.text }}</span>
                           </label>
                         </div>
-                        <span v-if="$v.form.style.$dirty && !$v.form.style.required"
-                              class="invalid-feedback">Обязательное поле!</span>
                       </div>
                     </div>
                   </swiper-slide>
@@ -101,8 +101,8 @@
                     <img :src="require(`@/assets/image/${answer.img}`)" alt="" class="Quiz-FormImg">
                     <span class="Quiz-FormSpan">{{ answer.text }}</span>
                   </label>
-                  <span v-if="$v.form.variable.$dirty && !$v.form.variable.required"
-                        class="invalid-feedback">Обязательное поле!</span>
+                  <!--                  <span v-if="$v.form.variable.$dirty && !$v.form.variable.required"-->
+                  <!--                        class="invalid-feedback">Обязательное поле!</span>-->
                 </div>
               </div>
             </swiper-slide>
@@ -120,8 +120,8 @@
                          v-model.trim="form.height"
                          :class="$v.form.height.$error ? 'is-invalid' : ''"
                   >
-                  <span v-if="$v.form.height.$dirty && !$v.form.height.required"
-                        class="invalid-feedback">Обязательное поле!</span>
+                  <!--                  <span v-if="$v.form.height.$dirty && !$v.form.height.required"-->
+                  <!--                        class="invalid-feedback">Обязательное поле!</span>-->
                 </div>
                 <div class="Quiz-FormField Quiz-FormFieldSize">
                   <span>Ширина</span>
@@ -131,8 +131,8 @@
                          v-model.trim="form.width"
                          :class="$v.form.width.$error ? 'is-invalid' : ''"
                   >
-                  <span v-if="$v.form.width.$dirty && !$v.form.width.required"
-                        class="invalid-feedback">Обязательное поле!</span>
+                  <!--                  <span v-if="$v.form.width.$dirty && !$v.form.width.required"-->
+                  <!--                        class="invalid-feedback">Обязательное поле!</span>-->
                 </div>
               </div>
               <!--              </div>-->
@@ -154,8 +154,8 @@
                 <span class="Quiz-Math Plus" @click="form.doors++">
                   <img src="@/assets/image/plus.png" alt="plus">
                 </span>
-                <span v-if="$v.form.doors.$dirty && !$v.form.doors.required"
-                      class="invalid-feedback">Обязательное поле!</span>
+                <!--                <span v-if="$v.form.doors.$dirty && !$v.form.doors.required"-->
+                <!--                      class="invalid-feedback">Обязательное поле!</span>-->
               </div>
 
               <!--              </div>-->
@@ -173,8 +173,8 @@
                          placeholder="Ваше имя" v-model.trim="form.name"
                          :class="$v.form.name.$error ? 'is-invalid' : ''"
                   >
-                  <span v-if="$v.form.name.$dirty && !$v.form.name.required"
-                        class="invalid-feedback">Обязательное поле!</span>
+                  <!--                  <span v-if="$v.form.name.$dirty && !$v.form.name.required"-->
+                  <!--                        class="invalid-feedback">Обязательное поле!</span>-->
                 </div>
                 <div class="Quiz-FormField">
                   <input type="text"
@@ -184,8 +184,8 @@
                          v-model.trim="form.phone"
                          :class="$v.form.phone.$error ? 'is-invalid' : ''"
                   >
-                  <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
-                        class="invalid-feedback">Обязательное поле!</span>
+                  <!--                  <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"-->
+                  <!--                        class="invalid-feedback">Обязательное поле!</span>-->
                 </div>
               </div>
               <h4 class="Title--h4 Quiz-Question">
@@ -204,8 +204,8 @@
                          :class="$v.form.social.$error ? 'is-invalid' : ''"
                          :value="item.name"
                   >
-                  <span v-if="$v.form.social.$dirty && !$v.form.social.required"
-                        class="invalid-feedback">Обязательное поле!</span>
+<!--                  <span v-if="$v.form.social.$dirty && !$v.form.social.required"-->
+<!--                        class="invalid-feedback">Обязательное поле!</span>-->
                   <label :for="i" class="Social-Label">
                     <img :src="require(`@/assets/image/${item.icon}`)"
                          alt="icon"
@@ -217,6 +217,8 @@
                 </div>
               </div>
               <button type="submit" class="Btn Quiz-FormBtn">Рассчитать стоимость</button>
+              <span v-if="$v.form.phone.$dirty && !$v.form.phone.required"
+                    class="invalid-feedback">Для отправки данных необходимо заполнить все поля!</span>
             </swiper-slide>
           </swiper>
           <div class="Quiz-FormBtnGroup">
@@ -446,9 +448,11 @@ export default {
 
   .Decor {
     top: 55%;
+
     .Right {
       width: 95%;
     }
+
     &-Text {
       color: var(--color-text-btn);
     }
@@ -994,11 +998,12 @@ export default {
   }
 
   .invalid-feedback {
-    position: absolute;
-    top: -20px;
-    right: 0;
-    font-size: 10px;
+    display: block;
+    font-size: 14px;
     color: var(--color-text-error);
+    @media (min-width: $screen-l) {
+      font-size: 24px;
+    }
   }
 }
 </style>
